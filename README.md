@@ -53,12 +53,15 @@
 ### Для открытия/закрытия popup Входа
 
     document.querySelector('.popup_login').classList.toggle('popup_opened');
+    document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
 
 ### Для открытия/закрытия popup Регистрации
 
     document.querySelector('.popup_signup').classList.toggle('popup_opened');
+    document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
 
 ### Для открытия/закрытия popup после регистрации
 
     document.querySelector('.popup_registered').classList.toggle('popup_opened');
+    document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
 

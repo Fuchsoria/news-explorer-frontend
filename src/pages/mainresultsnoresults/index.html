@@ -43,7 +43,9 @@
         <section class="author">
           <div class="author__content container container_content">
             <picture>
-              <img class="author__image" src="../<%= require('../../images/image-03.jpg') %>" alt="Author" />
+              <source media="(max-width: 400px)" srcset="../<%= require('../../images/author-400.jpg') %>" />
+              <source media="(max-width: 800px)" srcset="../<%= require('../../images/author-800.jpg') %>" />
+              <img class="author__image" src="../<%= require('../../images/author.jpg') %>" alt="Author" />
             </picture>
             <div class="author__about">
               <h2 class="author__title">Об авторе</h2>
@@ -80,6 +82,80 @@
       </footer>
       <div class="overlay"></div>
     </div>
+
+    <div class="popup popup_login popup_overlay">
+      <div class="popup__container">
+        <form class="form form_login">
+          <h3 class="form__title">Вход</h3>
+          <fieldset class="form__fieldset">
+            <div class="form__field">
+              <h6 class="form__field-title">Email</h6>
+              <input
+                type="email"
+                class="form__input"
+                pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
+                placeholder="Введите почту"
+              />
+              <p class="form__error">Неправильный формат email</p>
+            </div>
+            <div class="form__field">
+              <h6 class="form__field-title">Пароль</h6>
+              <input type="password" class="form__input" placeholder="Введите пароль" />
+            </div>
+          </fieldset>
+          <p class="form__error form__error_server">Неверная почта или пароль</p>
+          <button class="form__button form__button_login">Войти</button>
+        </form>
+        <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>
+      </div>
+    </div>
+
+    <div class="popup popup_signup popup_overlay">
+      <div class="popup__container">
+        <form class="form form_signup">
+          <h3 class="form__title">Регистрация</h3>
+          <fieldset class="form__fieldset">
+            <div class="form__field">
+              <h6 class="form__field-title">Email</h6>
+              <input
+                type="email"
+                class="form__input"
+                pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
+                placeholder="Введите почту"
+              />
+              <p class="form__error">Неправильный формат email</p>
+            </div>
+            <div class="form__field">
+              <h6 class="form__field-title">Пароль</h6>
+              <input type="password" class="form__input" placeholder="Введите пароль" />
+            </div>
+            <div class="form__field">
+              <h6 class="form__field-title">Имя</h6>
+              <input
+                type="text"
+                class="form__input"
+                minlength="2"
+                maxlength="20"
+                pattern="([А-ЯЁ]{1}[а-яё]+)(-[А-ЯЁ]{1}[а-яё]+)?"
+                placeholder="Имя"
+              />
+              <p class="form__error">В имени разрешены только русские символы начинающиеся с заглавной буквы</p>
+            </div>
+          </fieldset>
+          <p class="form__error form__error_server">Такой пользователь уже есть</p>
+          <button class="form__button form__button_signup">Зарегистрировать</button>
+        </form>
+        <div class="popup__text">или <span class="popup__link">Войти</span></div>
+      </div>
+    </div>
+
+    <div class="popup popup_registered popup_overlay">
+      <div class="popup__container">
+        <p class="popup__message">Пользователь успешно зарегистрирован!</p>
+        <div class="popup__link popup__link_registered">Выполнить вход</div>
+      </div>
+    </div>
+
     <script src="<%= htmlWebpackPlugin.files.chunks.mainresultsnoresults.entry %>"></script>
   </body>
 </html>

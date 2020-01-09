@@ -38,7 +38,9 @@
         <section class="author">
           <div class="author__content container container_content">
             <picture>
-              <img class="author__image" src="<%= require('./images/image-03.jpg') %>" alt="Author" />
+              <source media="(max-width: 400px)" srcset="<%= require('./images/author-400.jpg') %>" />
+              <source media="(max-width: 800px)" srcset="<%= require('./images/author-800.jpg') %>" />
+              <img class="author__image" src="<%= require('./images/author.jpg') %>" alt="Author" />
             </picture>
             <div class="author__about">
               <h2 class="author__title">Об авторе</h2>
