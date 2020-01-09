@@ -12,8 +12,8 @@
 .nav {
   display: flex;
   height: 80px;
-  background: rgba(196, 196, 196, 0.01);
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  background: rgba(196, 196, 196, .01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
 }
 
 @media screen and (max-width: 992px) {
@@ -27,8 +27,8 @@
     position: relative;
     height: 56px;
     box-shadow: none;
-    background: rgba(196, 196, 196, 0.01);
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+    background: rgba(196, 196, 196, .01);
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
     z-index: 999;
   }
 }

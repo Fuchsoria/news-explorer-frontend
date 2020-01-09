@@ -1,6 +1,6 @@
 .card__auth-notice {
   background: #fff;
-  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
+  box-shadow: 0px 10px 22px rgba(59, 74, 116, .1);
   border-radius: 10px;
   height: 40px;
   padding: 0 15px;
@@ -10,7 +10,7 @@
   align-items: center;
 
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
 }
 
 .card__bookmark-icon:hover ~ .card__auth-notice {

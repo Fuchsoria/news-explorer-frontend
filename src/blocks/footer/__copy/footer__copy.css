@@ -1,17 +1,17 @@
 .footer__copy {
   text-decoration: none;
-  font-family: Roboto;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
   color: #b6bcbf;
   margin-top: 33px;
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
 
 .footer__copy:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 @media screen and (max-width: 992px) {

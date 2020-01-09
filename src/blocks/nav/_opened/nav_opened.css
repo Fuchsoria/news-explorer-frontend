@@ -9,6 +9,6 @@
 @media screen and (max-width: 767px) {
   .nav.nav_opened {
     background: #1a1b22;
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
   }
 }

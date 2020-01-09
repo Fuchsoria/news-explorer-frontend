@@ -1,5 +1,5 @@
 .menu__link {
-  font-family: Roboto;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -7,11 +7,11 @@
   color: #1a1b22;
   text-decoration: none;
   margin: 0 15px;
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
 
 .menu__link:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 @media screen and (max-width: 767px) {

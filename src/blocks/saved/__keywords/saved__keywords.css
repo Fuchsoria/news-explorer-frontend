@@ -1,7 +1,7 @@
 @import url(./_bold/saved__keywords_bold.css);
 
 .saved__keywords {
-  font-family: Roboto;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

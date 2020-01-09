@@ -1,7 +1,7 @@
 @import url(./_theme/nav__logo_theme_dark.css);
 
 .nav__logo {
-  font-family: Roboto Slab;
+  font-family: Roboto Slab, arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -9,11 +9,11 @@
   color: #ffffff;
   text-decoration: none;
   margin-top: 30px;
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
 
 .nav__logo:hover {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 @media screen and (max-width: 992px) {

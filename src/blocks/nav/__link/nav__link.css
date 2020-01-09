@@ -2,7 +2,7 @@
 @import url(./_theme/nav__link_theme_dark.css);
 
 .nav__link {
-  font-family: Roboto;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -10,7 +10,7 @@
   color: #b6bcbf;
   text-decoration: none;
   padding: 30px 0 23px 0;
-  transition: color 0.3s;
+  transition: color .3s;
 }
 
 .nav__link:hover {

@@ -5,7 +5,7 @@
   background-color: transparent;
   box-sizing: border-box;
   border-radius: 100px;
-  font-family: Roboto;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -21,11 +21,11 @@
   display: flex;
   align-items: center;
 
-  transition: opacity 0.3s;
+  transition: opacity .3s;
 }
 
 .nav__auth-button:hover {
-  opacity: 0.7;
+  opacity: .7;
 }
 
 .nav__auth-button:focus {

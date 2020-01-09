@@ -13,7 +13,7 @@
 
   cursor: pointer;
 
-  transition: background-image 0.5s;
+  transition: background-image .5s;
 }
 
 .card__bookmark-icon:hover {
