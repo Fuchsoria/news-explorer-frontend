@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="keywords" content="Поиск новостей, новости" />
+    <meta name="description" content="Поиск новостей по ключевым словам" />
+    <meta name="author" content="Герман" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>News Explorer - Главная страница</title>
+    <link rel="stylesheet" href="../mainresultsloading/mainresultsloading.fce8a5cc310a471115b7.css?2b1ffdd5f2276c466f0f" />
+  </head>
+  <body>
+    <div class="news-explorer">
+      <header class="header header_background container">
+        <nav class="nav">
+          <div class="nav__content container container_content">
+            <a href="/" class="nav__logo">NewsExplorer</a>
+            <div class="nav__burger"></div>
+            <ul class="nav__items">
+              <li class="nav__item"><a href="/" class="nav__link nav__link_current">Главная</a></li>
+              <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
+            </ul>
+          </div>
+        </nav>
+        <section class="search">
+          <h1 class="search__title">Что в мире творится?</h1>
+          <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+          <form class="search__form">
+            <input type="text" class="search__input" placeholder="Введите тему новости" />
+            <button class="search__button">Искать</button>
+          </form>
+        </section>
+      </header>
+      <main class="main container">
+        <div class="loading">
+          <div class="loading__circle"></div>
+          <p class="loading__text">Идет поиск новостей...</p>
+        </div>
+        <section class="author">
+          <div class="author__content container container_content">
+            <picture>
+              <img class="author__image" src="/images/image-03.jpg" alt="Author" />
+            </picture>
+            <div class="author__about">
+              <h2 class="author__title">Об авторе</h2>
+              <p class="author__text">
+                Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими
+                технологиями разработки владеете.
+              </p>
+              <p class="author__text">
+                Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь
+                потенциальным заказчикам.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer container">
+        <div class="footer__content container container_content">
+          <a href="/" class="footer__copy">© 2019 Supersite</a>
+          <ul class="menu">
+            <li class="menu__item"><a href="/" class="menu__link">Главная</a></li>
+            <li class="menu__item">
+              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link">Яндекс.Практикум</a>
+            </li>
+          </ul>
+          <div class="socials">
+            <a href="https://github.com/Fuchsoria" target="_blank" class="socials__link"
+              ><img src="/images/github.svg" class="socials__icon" alt="github"
+            /></a>
+            <a href="https://www.facebook.com/german.fuchsoria" target="_blank" class="socials__link">
+              <img src="/images/fb.svg" class="socials__icon" alt="facebook" />
+            </a>
+          </div>
+        </div>
+      </footer>
+      <div class="overlay"></div>
+    </div>
+    <script src="../mainresultsloading/mainresultsloading.19a631517f6d367c6073.js?2b1ffdd5f2276c466f0f"></script>
+  </body>
+</html>
