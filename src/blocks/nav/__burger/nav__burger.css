@@ -1,0 +1,22 @@
+@import url(./_opened/nav__burger_opened.css);
+@import url(./_dark/nav__burger_dark.css);
+
+.nav__burger {
+  display: none;
+  height: 24px;
+  width: 24px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../../../images/burger.svg);
+}
+
+@media screen and (max-width: 767px) {
+  .nav__burger {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 16px;
+    cursor: pointer;
+  }
+}

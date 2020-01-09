@@ -1,0 +1,30 @@
+.form__input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #000000;
+
+  padding: 8px 0;
+}
+
+.form__input::placeholder {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.form__input:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(105, 105, 105, 0.2);
+}

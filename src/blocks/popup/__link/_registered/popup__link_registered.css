@@ -1,0 +1,12 @@
+.popup__link.popup__link_registered {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #2f71e5;
+  text-align: left;
+
+  margin: 14px 0 20px 0;
+}

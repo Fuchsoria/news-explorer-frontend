@@ -1,0 +1,13 @@
+@import url(./_opened/nav__items_opened.css);
+
+.nav__items {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__items {
+    display: none;
+  }
+}

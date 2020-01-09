@@ -1,0 +1,7 @@
+.nav__link.nav__link_theme_dark {
+ color: #1A1B22;
+}
+
+.nav__link.nav__link_theme_dark:hover {
+  color: #1A1B22;
+}

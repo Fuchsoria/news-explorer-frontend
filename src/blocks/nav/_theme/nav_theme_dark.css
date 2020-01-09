@@ -1,0 +1,11 @@
+.nav.nav_theme_dark {
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+}
+
+.nav.nav_theme_dark.nav_opened {
+  background: #fff;
+  box-shadow: inset 0px -1px 0px #edeff7;
+}
+.nav.nav_theme_dark .nav__items_opened {
+  background: #fff;
+}

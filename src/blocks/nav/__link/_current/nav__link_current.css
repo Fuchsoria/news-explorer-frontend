@@ -1,0 +1,15 @@
+.nav__link.nav__link_current {
+  border-bottom: #fff solid 3px;
+  color: #fff;
+}
+
+.nav__link_theme_dark.nav__link_current {
+  border-bottom: #1A1B22 solid 3px;
+  color: #1A1B22;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__link.nav__link_current {
+    border: none;
+  }
+}

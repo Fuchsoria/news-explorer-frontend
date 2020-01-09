@@ -1,0 +1,39 @@
+@import url(./_disabled/form__button_disabled.css);
+
+.form__button {
+  height: 64px;
+  width: 100%;
+  margin-top: 8px;
+  background: #2f71e5;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border-radius: 100px;
+  border: none;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #fff;
+
+  transition: background-color 0.3s;
+}
+
+.form__button:hover {
+  background-color: #347eff;
+}
+
+.form__button:focus {
+  outline: none;
+}
+
+.form__button:active {
+  background-color: #2a65cc;
+}

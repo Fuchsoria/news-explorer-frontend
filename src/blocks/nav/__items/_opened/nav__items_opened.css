@@ -1,0 +1,13 @@
+@media screen and (max-width: 767px) {
+  .nav__items.nav__items_opened {
+    display: flex;
+    flex-direction: column;
+    background: #1a1b22;
+    padding: 16px 16px 24px 16px;
+    position: absolute;
+    left: 0;
+    top: 56px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
