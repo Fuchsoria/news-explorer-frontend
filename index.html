@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <title>News Explorer - Главная страница</title>
-    <link rel="stylesheet" href="main/main.81fcc79477ee109e7099.css?a1675e1b057ebfb0cfa8" />
+    <link rel="stylesheet" href="main/main.81fcc79477ee109e7099.css?d46e7e7b69528b629e58" />
   </head>
   <body>
     <div class="news-explorer">
@@ -38,7 +38,9 @@
         <section class="author">
           <div class="author__content container container_content">
             <picture>
-              <img class="author__image" src="images/image-03.jpg" alt="Author" />
+              <source media="(max-width: 400px)" srcset="images/author-400.jpg" />
+              <source media="(max-width: 800px)" srcset="images/author-800.jpg" />
+              <img class="author__image" src="images/author.jpg" alt="Author" />
             </picture>
             <div class="author__about">
               <h2 class="author__title">Об авторе</h2>
@@ -148,6 +150,6 @@
       </div>
     </div>
 
-    <script src="main/main.19a631517f6d367c6073.js?a1675e1b057ebfb0cfa8"></script>
+    <script src="main/main.19a631517f6d367c6073.js?d46e7e7b69528b629e58"></script>
   </body>
 </html>
