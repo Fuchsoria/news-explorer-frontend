@@ -4,10 +4,11 @@
   "description": "Frontend for news explorer diplom project",
   "main": "index.js",
   "scripts": {
-    "start": "SET NODE_ENV=production&webpack-dev-server --mode production",
-    "build": "SET NODE_ENV=production&rimraf dist && webpack --mode production",
-    "dev": "SET NODE_ENV=development&webpack-dev-server --mode development --watch",
-    "deploy": "SET NODE_ENV=production&gh-pages -d dist"
+    "start": "cross-env NODE_ENV=production&webpack-dev-server --mode production",
+    "build": "cross-env NODE_ENV=production&rimraf dist && webpack --mode production",
+    "dev": "cross-env ENV=development&webpack-dev-server --mode development --watch",
+    "deploy": "cross-env NODE_ENV=production&&npm run build &&gh-pages -d dist",
+    "deploy-scp": "cross-env NODE_ENV=production&&npm run build && scp -r ./dist/* german@84.201.151.177:/home/german/news-explorer-frontend"
   },
   "repository": {
     "type": "git",

@@ -48,7 +48,7 @@ module.exports = {
             options: {
               mozjpeg: {
                 progressive: true,
-                quality: 65,
+                quality: 85,
               },
               optipng: {
                 enabled: false,
@@ -57,14 +57,14 @@ module.exports = {
                 enabled: true,
               },
               pngquant: {
-                quality: [0.65, 0.9],
+                quality: [0.85, 0.9],
                 speed: 4,
               },
               gifsicle: {
                 interlaced: false,
               },
               webp: {
-                quality: 75,
+                quality: 85,
               },
             },
           },

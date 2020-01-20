@@ -1,19 +1,19 @@
 # Дипломная работа news-explorer
 
 ## Описание
-Инфраструктура фронтенда дипломной работы и вёрстка страниц макета
+Инфраструктура фронтенда дипломной работы и вёрстка страниц макета новостного приложения, для инфраструктуры используется плотная конфигурация webpack а для вёрстки методология бэм. Ссылка на gh-pages: [https://fuchsoria.github.io/news-explorer-frontend/](https://fuchsoria.github.io/news-explorer-frontend/), на сервере: [https://news-explorer.info](https://news-explorer.info).
 
 ## Установка
 Для установки необходимо наличие установленного nodejs и npm.
 
 Сохраните проект у себя на компьютере:
 
-    git clone <project link>
+    git clone https://github.com/Fuchsoria/news-explorer-frontend.git
 
 В корне проекта через консоль/терминал запустите команду:
 
     npm install
-### После успешной установки станут доступны команды: 
+### После успешной установки станут доступны команды:
 Поднятие локального сервера с режимом разработки:
 
     npm run dev
@@ -24,8 +24,11 @@
 Деплой на gh-pages:
 
     npm run deploy
+Деплой на сервер:
 
-## Страницы (Локально)
+    npm run deploy-scp
+
+## Страницы для тестирования вёрстки (gh-pages)
 
 ### Главная страница (Неавторизован)
 [https://fuchsoria.github.io/news-explorer-frontend](https://fuchsoria.github.io/news-explorer-frontend)
@@ -50,17 +53,17 @@
     document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
     document.querySelector('.overlay').classList.toggle('overlay_opened');
 
-### Для открытия/закрытия popup Входа
+### Для открытия/закрытия popup 'Входа'
 
     document.querySelector('.popup_login').classList.toggle('popup_opened');
     document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
 
-### Для открытия/закрытия popup Регистрации
+### Для открытия/закрытия popup 'Регистрации'
 
     document.querySelector('.popup_signup').classList.toggle('popup_opened');
     document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
 
-### Для открытия/закрытия popup после регистрации
+### Для открытия/закрытия popup 'после регистрации'
 
     document.querySelector('.popup_registered').classList.toggle('popup_opened');
     document.querySelector('.nav__burger').classList.toggle('nav__burger_opened');
