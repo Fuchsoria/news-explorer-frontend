@@ -28,10 +28,15 @@
 
     npm run deploy-scp
 
-## Страницы для тестирования вёрстки (gh-pages)
+## Основные страницы для тестирования вёрстки (gh-pages)
 
 ### Главная страница (Неавторизован)
 [https://fuchsoria.github.io/news-explorer-frontend](https://fuchsoria.github.io/news-explorer-frontend)
+### Страница сохраненных новостей (Авторизован)
+[https://fuchsoria.github.io/news-explorer-frontend/savednews](https://fuchsoria.github.io/news-explorer-frontend/savednews)
+
+## Дополнительные состояния вёрстки на страницах (gh-pages)
+
 ### Главная страница (Авторизован)
 [https://fuchsoria.github.io/news-explorer-frontend/mainloggedin](https://fuchsoria.github.io/news-explorer-frontend/mainloggedin)
 ### Главная страница - Результаты (Неавторизован)
@@ -42,8 +47,6 @@
 [https://fuchsoria.github.io/news-explorer-frontend/mainresultsloading](https://fuchsoria.github.io/news-explorer-frontend/mainresultsloading)
 ### Главная страница - Нет результатов (Неавторизован)
 [https://fuchsoria.github.io/news-explorer-frontend/mainresultsnoresults](https://fuchsoria.github.io/news-explorer-frontend/mainresultsnoresults)
-### Страница сохраненных новостей (Авторизован)
-[https://fuchsoria.github.io/news-explorer-frontend/savednews](https://fuchsoria.github.io/news-explorer-frontend/savednews)
 
 ## Команды для тестирования вёрстки:
 ### Для открытия/закрытия мобильного меню при разрешение меньше 768px:
