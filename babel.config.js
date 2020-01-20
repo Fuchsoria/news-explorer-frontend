@@ -12,7 +12,7 @@ const presets = [
         esmodules: true,
       },
       useBuiltIns: 'usage',
-      corejs: '3.0.0',
+      corejs: '3.1.4',
     },
   ],
 ];
