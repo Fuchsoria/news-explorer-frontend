@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <title>News Explorer - Главная страница</title>
-    <link rel="stylesheet" href="main/main.81fcc79477ee109e7099.css?3b2a93dd2202b7e120d5" />
+    <link rel="stylesheet" href="main/main.81fcc79477ee109e7099.css?b4c36dd437af599cc078" />
   </head>
   <body>
     <div class="news-explorer">
@@ -29,7 +29,7 @@
           <h1 class="search__title">Что в мире творится?</h1>
           <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
           <form class="search__form">
-            <input type="text" class="search__input" placeholder="Введите тему новости" />
+            <input type="text" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" pattern="([а-яёА-ЯЁa-zA-Z0-9]+)"/>
             <button class="search__button">Искать</button>
           </form>
         </section>
@@ -40,7 +40,7 @@
             <picture>
               <source media="(max-width: 400px)" srcset="images/author-400.jpg" />
               <source media="(max-width: 800px)" srcset="images/author-800.jpg" />
-              <img class="author__image" src="images/author.jpg" alt="Author" />
+              <img class="author__image" src="images/author.jpg" alt="Автор" />
             </picture>
             <div class="author__about">
               <h2 class="author__title">Об авторе</h2>
@@ -67,10 +67,10 @@
           </ul>
           <div class="socials">
             <a href="https://github.com/Fuchsoria" target="_blank" class="socials__link"
-              ><img src="images/github.svg" class="socials__icon" alt="github"
+              ><img src="images/github.svg" class="socials__icon" alt="Профиль github"
             /></a>
             <a href="https://www.facebook.com/german.fuchsoria" target="_blank" class="socials__link">
-              <img src="images/fb.svg" class="socials__icon" alt="facebook" />
+              <img src="images/fb.svg" class="socials__icon" alt="Профиль facebook" />
             </a>
           </div>
         </div>
@@ -150,6 +150,6 @@
       </div>
     </div>
 
-    <script src="main/main.19a631517f6d367c6073.js?3b2a93dd2202b7e120d5"></script>
+    <script src="main/main.19a631517f6d367c6073.js?b4c36dd437af599cc078"></script>
   </body>
 </html>
