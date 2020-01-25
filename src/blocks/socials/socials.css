@@ -1,0 +1,22 @@
+@import url(./__icon/socials__icon.css);
+@import url(./__link/socials__link.css);
+
+.socials {
+  margin-top: 28px;
+  display: flex;
+}
+
+@media screen and (max-width: 992px) {
+  .socials {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .socials {
+    margin: 0;
+    position: absolute;
+    top: 20px;
+    right: 16px;
+  }
+}

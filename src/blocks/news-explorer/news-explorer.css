@@ -1,0 +1,8 @@
+.news-explorer {
+  width: 100%;
+  background-color: #f5f6f7;
+}
+
+.news-explorer:focus {
+  outline: none;
+}

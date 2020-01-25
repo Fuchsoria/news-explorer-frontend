@@ -1,0 +1,21 @@
+@import url(./_marked/card__bookmark-icon_marked.css);
+@import url(./_remove/card__bookmark-icon_remove.css);
+
+.card__bookmark-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  background-image: url(../../../images/bookmark.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  cursor: pointer;
+
+  transition: background-image .5s;
+}
+
+.card__bookmark-icon:hover {
+  background-image: url(../../../images/bookmark-hover.svg);
+}

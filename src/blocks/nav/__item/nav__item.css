@@ -1,0 +1,18 @@
+@import url(./_auth/nav__item_auth.css);
+
+.nav__item {
+  margin-right: 32px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 992px) {
+  .nav__item {
+    margin-top: 22px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav__item {
+    margin: 0;
+  }
+}

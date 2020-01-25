@@ -1,0 +1,7 @@
+.card__bookmark-icon.card__bookmark-icon_remove {
+  background-image: url(../../../../images/trash.svg);
+}
+
+.card__bookmark-icon.card__bookmark-icon_remove:hover {
+  background-image: url(../../../../images/trash-hover.svg);
+}

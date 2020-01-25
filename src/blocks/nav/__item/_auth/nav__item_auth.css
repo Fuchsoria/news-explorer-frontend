@@ -1,0 +1,16 @@
+.nav__item.nav__item_auth {
+  margin-right: 0;
+  margin-top: 19px;
+}
+
+@media screen and (max-width: 992px) {
+  .nav__item.nav__item_auth {
+    margin-top: 14px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav__item.nav__item_auth {
+    margin-top: 22px;
+  }
+}

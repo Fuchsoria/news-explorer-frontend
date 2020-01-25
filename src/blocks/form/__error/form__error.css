@@ -1,0 +1,21 @@
+@import url(./_server/form__error_server.css);
+@import url(./_server/form__error_server_visible.css);
+
+.form__error {
+  font-family: Inter, arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #ff0000;
+
+  padding: 0;
+  margin: 0 0 0 0;
+
+  opacity: 0;
+}
+
+.form__input:invalid:not(:placeholder-shown) + .form__error {
+  opacity: 1;
+}

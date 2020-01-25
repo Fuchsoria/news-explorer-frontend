@@ -1,0 +1,44 @@
+.results__more {
+  display: block;
+  width: 288px;
+  height: 64px;
+  border-radius: 80px;
+  border: none;
+  cursor: pointer;
+
+  background-color: #fff;
+
+  font-family: Roboto, arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+
+  color: #1a1b22;
+
+  margin: 64px auto 0 auto;
+
+  transition: opacity .3s;
+}
+
+.results__more:hover {
+  opacity: .7;
+}
+
+.results__more:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 992px) {
+  .results__more {
+    width: 240px;
+    height: 56px;
+    margin: 32px auto 0 auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .results__more {
+    margin-top: 16px;
+  }
+}

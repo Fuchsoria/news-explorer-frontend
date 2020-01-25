@@ -1,0 +1,19 @@
+@import url(./__articles-count/saved__articles-count.css);
+@import url(./__keywords/saved__keywords.css);
+@import url(./__title/saved__title.css);
+
+.saved {
+  padding: 40px 0 56px 0;
+}
+
+@media screen and (max-width: 992px) {
+  .saved {
+    padding: 24px 0 32px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .saved {
+    padding: 8px 0 32px 0;
+  }
+}

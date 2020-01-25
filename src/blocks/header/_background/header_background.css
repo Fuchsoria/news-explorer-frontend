@@ -1,0 +1,20 @@
+.header.header_background {
+  min-height: 576px;
+  background-image: url(../../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+@media screen and (max-width: 992px) {
+  .header.header_background {
+    min-height: auto;
+    padding-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header.header_background {
+    padding-bottom: 32px;
+    background-image: url(../../../images/georgia-de-lotz--mini.jpg);
+  }
+}

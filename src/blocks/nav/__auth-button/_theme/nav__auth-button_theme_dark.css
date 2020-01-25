@@ -1,0 +1,12 @@
+.nav__auth-button.nav__auth-button_theme_dark {
+  border: 1px solid #d1d2d6;
+
+  color: #1a1b22;
+
+  transition: border .5s;
+}
+
+.nav__auth-button.nav__auth-button_theme_dark:hover {
+  border: 1px solid #1a1b22;
+  opacity: 1;
+}

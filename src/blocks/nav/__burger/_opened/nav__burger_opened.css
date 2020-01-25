@@ -1,0 +1,7 @@
+.nav__burger.nav__burger_opened {
+  background-image: url(../../../../images/burger-opened.svg);
+}
+
+.nav__burger.nav__burger_dark.nav__burger_opened {
+  background-image: url(../../../../images/burger_opened_dark.svg);
+}

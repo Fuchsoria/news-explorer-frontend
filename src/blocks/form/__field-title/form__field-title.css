@@ -1,0 +1,11 @@
+.form__field-title {
+  font-family: Inter, arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #2f71e5;
+
+  margin: 12px 0 0 0;
+}

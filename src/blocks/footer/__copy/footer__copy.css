@@ -1,0 +1,27 @@
+.footer__copy {
+  text-decoration: none;
+  font-family: Roboto, arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #b6bcbf;
+  margin-top: 33px;
+  transition: opacity .3s;
+}
+
+.footer__copy:hover {
+  opacity: .5;
+}
+
+@media screen and (max-width: 992px) {
+  .footer__copy {
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__copy {
+    margin-bottom: 22px;
+  }
+}

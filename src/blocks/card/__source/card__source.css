@@ -1,0 +1,12 @@
+.card__source {
+  font-family: Roboto Slab, arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+
+  margin: 0;
+  color: #b6bcbf;
+}

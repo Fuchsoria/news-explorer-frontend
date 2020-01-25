@@ -1,0 +1,22 @@
+.card__content {
+  padding: 20px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 304px;
+}
+
+@media screen and (max-width: 992px) {
+  .card__content {
+    padding: 16px;
+    height: 270px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__content {
+    height: 244px;
+    box-sizing: border-box;
+  }
+}

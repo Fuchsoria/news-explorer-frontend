@@ -1,0 +1,19 @@
+@import url(./__content/footer__content.css);
+@import url(./__copy/footer__copy.css);
+
+.footer {
+  height: 80px;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 992px) {
+  .footer {
+    height: 64px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    position: relative;
+  }
+}

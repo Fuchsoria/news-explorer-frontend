@@ -1,0 +1,11 @@
+.nav__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__content {
+    flex-direction: column;
+  }
+}

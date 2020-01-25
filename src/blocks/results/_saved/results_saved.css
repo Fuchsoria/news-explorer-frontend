@@ -1,0 +1,15 @@
+.results.results_saved {
+  margin: 62px 0;
+}
+
+@media screen and (max-width: 992px) {
+  .results.results_saved {
+    margin: 32px 0 32px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .results.results_saved {
+    margin: 24px 0;
+  }
+}
