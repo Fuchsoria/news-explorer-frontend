@@ -16,14 +16,6 @@
     <div class="news-explorer">
       <header class="header header_background container">
         <nav class="nav">
-          <div class="nav__content container container_content">
-            <a href="./" class="nav__logo">NewsExplorer</a>
-            <div class="nav__burger"></div>
-            <ul class="nav__items">
-              <li class="nav__item"><a href="./" class="nav__link nav__link_current">Главная</a></li>
-              <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
-            </ul>
-          </div>
         </nav>
         <section class="search">
           <h1 class="search__title">Что в мире творится?</h1>
@@ -150,6 +142,48 @@
       </div>
     </div>
 
+    <template id="nav-notlogged-light">
+      <div class="nav__content container container_content">
+        <a href="./" class="nav__logo">NewsExplorer</a>
+        <div class="nav__burger"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="./" class="nav__link nav__link_current">Главная</a></li>
+          <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
+        </ul>
+      </div>
+    </template>
+    <template id="nav-logged-light">
+      <div class="nav__content container container_content">
+        <a href="../" class="nav__logo">NewsExplorer</a>
+        <div class="nav__burger"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="../" class="nav__link nav__link_current">Главная</a></li>
+          <li class="nav__item"><a href="../savednews" class="nav__link">Сохранённые статьи</a></li>
+          <li class="nav__item nav__item_auth">
+            <button class="nav__auth-button">
+              <span class="nav__username">Грета</span> <img class="nav__exit" src="<%= require('./images/Union.svg') %>" alt="Выход" />
+            </button>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <template id="nav-logged-dark">
+      <div class="nav__content container container_content">
+        <a href="../" class="nav__logo nav__logo_theme_dark">NewsExplorer</a>
+        <div class="nav__burger nav__burger_dark"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Главная</a></li>
+          <li class="nav__item">
+            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Сохранённые статьи</a>
+          </li>
+          <li class="nav__item nav__item_auth">
+            <button class="nav__auth-button nav__auth-button_theme_dark">
+              <span class="nav__username">Грета</span> <img class="nav__exit" src="<%= require('./images/Union_dark.svg') %>" alt="Выход" />
+            </button>
+          </li>
+        </ul>
+      </div>
+    </template>
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
   </body>
 </html>

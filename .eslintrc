@@ -4,5 +4,8 @@
     "document": true,
 	"fetch": true
   },
-  "extends": "airbnb-base"
+  "extends": "airbnb-base",
+  "rules": {
+	"no-underscore-dangle": ["error", { "allowAfterThis": true }]
+  }
 }
