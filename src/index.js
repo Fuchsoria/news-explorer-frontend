@@ -1,13 +1,28 @@
 import './index.css';
 
 import Header from './js/components/Header';
+import Popup from './js/components/Popup';
 import STORAGE from './js/constants/storage';
 import { mainApiLinks, newsApiParams, newsApiLink } from './js/constants/index';
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 // Пропсы: объект с цветом light либо dark, домэлемент навигации
-const header = new Header({ color: 'light' }, document.querySelector('.nav'));
+
+const popupSignin = new Popup(
+  { templateName: '#popup-signin', container: '.popup__container', closeElement: '.popup__close-area' },
+  document.querySelector('.popup'),
+);
+const popupSignup = new Popup(
+  { templateName: '#popup-signup', container: '.popup__container', closeElement: '.popup__close-area' },
+  document.querySelector('.popup'),
+);
+const popupRegistered = new Popup(
+  { templateName: '#popup-registered', container: '.popup__container', closeElement: '.popup__close-area' },
+  document.querySelector('.popup'),
+);
+
+const header = new Header({ color: 'light' }, document.querySelector('.nav'), { popupSignin: popupSignin.open });
 
 // Пропсы в объекте: залогинен ли пользователь, имя пользователя, шаблоны разных состояний шапки
 

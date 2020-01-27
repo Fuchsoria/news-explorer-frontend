@@ -4,7 +4,9 @@
 @import url(./__text/popup__text.css);
 @import url(./__link/popup__link.css);
 @import url(./__message/popup__message.css);
+@import url(./__close-area/popup__close-area.css);
+@import url(./__close/popup__close.css);
 
 /* .popup {
-    
+
 } */
