@@ -135,4 +135,9 @@ module.exports = {
       canPrint: true,
     }),
   ],
+  devServer: {
+    allowedHosts: [
+      'test.news-explorer.info',
+    ],
+  },
 };
