@@ -1,7 +1,6 @@
 export default class BaseComponent {
-  constructor(domElement, handlers) {
+  constructor(domElement) {
     this._domElement = domElement;
-    this._handlers = handlers;
     this._mounts = [];
   }
 
@@ -17,17 +16,38 @@ export default class BaseComponent {
     });
   }
 
-  _mount(element, handlers) {
-    console.log('Загружаю компонент');
+  // Подгрузка обработчиков в единый массив внутри компонента
+  _mount({ element, handlers }) {
     this._setHandlers(element, handlers);
     this._mounts.push({ element, handlers });
-    console.log('Обновленный компонент', this._mounts);
   }
 
-  _unmount() {
-    console.log('Выгружаю компонент', this._mounts);
-    this._mounts.forEach((item) => {
-      this._removeHandlers(item.element, item.handlers);
+  _mountLocalHandlers(array) {
+    array.forEach((item) => {
+      this._mount(item);
     });
+  }
+
+  _mountHandlers() {
+    console.log('Загружаю компоненты');
+    this._handlers.forEach((item) => {
+      this._mount(item);
+    });
+    console.log('Обновленные компоненты', this._mounts);
+  }
+
+  setMountHandlers(array) {
+    this._handlers = array;
+  }
+
+  // Выгрузка всех хандлеров компонента
+  _unmount() {
+    if (this._mounts.length > 0) {
+      this._mounts.forEach((item) => {
+        this._removeHandlers(item.element, item.handlers);
+      });
+      this._mounts = [];
+      console.log('Выгрузил компонент', this._mounts);
+    }
   }
 }

@@ -9,10 +9,7 @@ import NewsApi from './js/api/NewsApi';
 
 // Пропсы: объект с цветом light либо dark, домэлемент навигации
 
-const popupSignin = new Popup(
-  { templateName: '#popup-signin', container: '.popup__container', closeElement: '.popup__close-area' },
-  document.querySelector('.popup'),
-);
+
 const popupSignup = new Popup(
   { templateName: '#popup-signup', container: '.popup__container', closeElement: '.popup__close-area' },
   document.querySelector('.popup'),
@@ -21,8 +18,33 @@ const popupRegistered = new Popup(
   { templateName: '#popup-registered', container: '.popup__container', closeElement: '.popup__close-area' },
   document.querySelector('.popup'),
 );
+const popupSignin = new Popup(
+  { templateName: '#popup-signin', container: '.popup__container', closeElement: '.popup__close-area' },
+  document.querySelector('.popup'),
+);
 
-const header = new Header({ color: 'light' }, document.querySelector('.nav'), { popupSignin: popupSignin.open });
+popupSignup.setMountHandlers([{ element: '.popup__link', handlers: [popupSignin.open] }]);
+popupSignin.setMountHandlers([{ element: '.popup__link', handlers: [popupSignup.open] }]);
+
+/*
+* Первым аргументом передаём пропсы, вторым основной домЭлемент,
+*/
+const header = new Header({ color: 'light' },
+  document.querySelector('.nav'));
+
+/*
+* Подключаем необходимые хандлеры, которые будут использованы
+*/
+header.setMountHandlers([{ element: '.nav__auth-button', handlers: [popupSignin.open] }]);
+
+header.render({
+  isLoggedIn: false,
+  userName: 'Герман',
+  notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
+  loggedLightTemplate: document.querySelector('#nav-logged-light'),
+  loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
+});
+
 
 // Пропсы в объекте: залогинен ли пользователь, имя пользователя, шаблоны разных состояний шапки
 
@@ -34,13 +56,6 @@ const header = new Header({ color: 'light' }, document.querySelector('.nav'), { 
 //   loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
 // });
 
-header.render({
-  isLoggedIn: false,
-  userName: 'Герман',
-  notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
-  loggedLightTemplate: document.querySelector('#nav-logged-light'),
-  loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
-});
 
 // console.log(STORAGE);
 

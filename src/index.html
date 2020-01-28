@@ -27,6 +27,7 @@
               minlength="2"
               maxlength="30"
               pattern="([а-яёА-ЯЁa-zA-Z0-9]+)"
+              required
             />
             <button class="search__button">Искать</button>
           </form>
@@ -137,12 +138,13 @@
               class="form__input"
               pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
               placeholder="Введите почту"
+              required
             />
             <p class="form__error">Неправильный формат email</p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input type="password" class="form__input" placeholder="Введите пароль" />
+            <input type="password" class="form__input" placeholder="Введите пароль" required/>
           </div>
         </fieldset>
         <p class="form__error form__error_server">Неверная почта или пароль</p>
@@ -164,12 +166,13 @@
               class="form__input"
               pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
               placeholder="Введите почту"
+              required
             />
             <p class="form__error">Неправильный формат email</p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input type="password" class="form__input" placeholder="Введите пароль" />
+            <input type="password" class="form__input" placeholder="Введите пароль" required />
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Имя</h6>
@@ -180,6 +183,7 @@
               maxlength="20"
               pattern="([А-ЯЁ]{1}[а-яё]+)(-[А-ЯЁ]{1}[а-яё]+)?"
               placeholder="Имя"
+              required
             />
             <p class="form__error">В имени разрешены только русские символы начинающиеся с заглавной буквы</p>
           </div>

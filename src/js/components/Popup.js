@@ -2,8 +2,8 @@ import BaseComponent from './BaseComponent';
 
 export default class Popup extends BaseComponent {
   constructor({ templateName, container, closeElement },
-    _domElement, _handlers, _setHandlers, _removeHandlers) {
-    super(_domElement, _handlers, _setHandlers, _removeHandlers);
+    _domElement, _mount, _mountLocalHandlers, _mountHandlers, setMountHandlers, _unmount) {
+    super(_domElement, _mount, _mountLocalHandlers, _mountHandlers, setMountHandlers, _unmount);
 
     this._template = document.querySelector(templateName);
     this._container = container;
@@ -16,13 +16,13 @@ export default class Popup extends BaseComponent {
     console.log('открыл');
     this._domElement.classList.add('popup_opened');
     this._render();
-    this._setHandlers(this._closeElement, [this.close]);
+    this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] }]);
   }
 
   close() {
     console.log('закрыл');
     this._domElement.classList.remove('popup_opened');
-    this._removeHandlers(this._closeElement, [this.close]);
+    this._unmount();
   }
 
   _createPopup() {
@@ -32,8 +32,11 @@ export default class Popup extends BaseComponent {
   }
 
   _render() {
+    this._unmount();
     // Очищаем popup и рендерим его заного
     this._domElement.querySelector(this._container).innerHTML = '';
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
+
+    this._mountHandlers();
   }
 }
