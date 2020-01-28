@@ -21,6 +21,7 @@
           <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
           <form class="search__form">
             <input
+              name="search"
               type="text"
               class="search__input"
               placeholder="Введите тему новости"
@@ -134,6 +135,7 @@
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
             <input
+              name="email"
               type="email"
               class="form__input"
               pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
@@ -144,7 +146,7 @@
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input type="password" class="form__input" placeholder="Введите пароль" required/>
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" required/>
           </div>
         </fieldset>
         <p class="form__error form__error_server">Неверная почта или пароль</p>
@@ -162,6 +164,7 @@
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
             <input
+              name="email"
               type="email"
               class="form__input"
               pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
@@ -172,11 +175,12 @@
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input type="password" class="form__input" placeholder="Введите пароль" required />
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" required />
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Имя</h6>
             <input
+              name="name"
               type="text"
               class="form__input"
               minlength="2"
