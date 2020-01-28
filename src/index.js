@@ -1,5 +1,6 @@
 import './index.css';
 
+import validator from 'validator';
 import Header from './js/components/Header';
 import Popup from './js/components/Popup';
 import Form from './js/components/Form';
@@ -25,11 +26,23 @@ const popupSignin = new Popup(
 );
 
 
-popupSignup.setDependecies({ popupSignin });
-popupSignin.setDependecies({ popupSignup });
-// popupSignup.setMountHandlers([{ element: '.popup__link', handlers: [popupSignup.clearContent, popupSignin.setContent] },
-//   { element: '.form_signup', handlers: [(e) => { e.preventDefault(); console.log(e); }], event: 'submit' }]);
-// popupSignin.setMountHandlers([{ element: '.popup__link', handlers: [popupSignin.clearContent, popupSignup.setContent] }]);
+const signinForm = new Form(document.querySelector('.popup'),
+  { form: '.form_login', email: 'email', password: 'password' },
+  { formName: 'signinForm' });
+const signupForm = new Form(document.querySelector('.popup'),
+  {
+    form: '.form_signup', email: 'email', password: 'password', name: 'name',
+  },
+  { formName: 'signupForm' });
+const searchForm = new Form(document.querySelector('.popup'),
+  { form: '.search__form', search: 'search' },
+  { formName: 'searchForm' });
+signinForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
+signupForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
+searchForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
+
+popupSignup.setDependecies({ popupSignin, signupForm });
+popupSignin.setDependecies({ popupSignup, signinForm });
 
 
 // Первым аргументом передаём пропсы, вторым основной домЭлемент,
@@ -50,23 +63,11 @@ header.render({
 });
 
 
-const signinForm = new Form(false, { email: 'email', password: 'password' }, { formName: 'signinForm' });
-const signupForm = new Form(false, { email: 'email', password: 'password', name: 'name' }, { formName: 'signipForm' });
-const searchForm = new Form(false, { search: 'search' }, { formName: 'searchForm' });
-
-
-signinForm.setDependecies({/* валидация, ивент при сабмите */});
-signupForm.setDependecies({/* валидация, ивент при сабмите */});
-searchForm.setDependecies({/* валидация, ивент при сабмите */});
-
-// Пропсы в объекте: залогинен ли пользователь, имя пользователя, шаблоны разных состояний шапки
+// Пропсы в объекте: залогинен ли пользователь, имя пользователя
 
 // header.render({
-//   isLoggedIn: false,
+//   isLoggedIn: true,
 //   userName: 'Герман',
-//   notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
-//   loggedLightTemplate: document.querySelector('#nav-logged-light'),
-//   loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
 // });
 
 

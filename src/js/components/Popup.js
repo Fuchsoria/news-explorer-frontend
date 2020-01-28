@@ -40,10 +40,21 @@ export default class Popup extends BaseComponent {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
     this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] }]);
 
+
     if (this._dependecies.popupSignin) {
+      // Если есть такая зависимость, значит это форма регистрации с линком на авторизацию
+      console.log(this._dependecies.signupForm);
       this._mount({ element: '.popup__link', handlers: [this._linkToSignin] });
+      if (this._dependecies.signupForm) {
+        this._dependecies.signupForm.handlers();
+      }
     } else if (this._dependecies.popupSignup) {
+      // Если есть такая зависимость, значит это форма авторизации с линком на регистрацию
       this._mount({ element: '.popup__link', handlers: [this._linkToSignup] });
+      console.log(this._dependecies.signinForm);
+      if (this._dependecies.signinForm) {
+        this._dependecies.signinForm.handlers();
+      }
     }
   }
 
