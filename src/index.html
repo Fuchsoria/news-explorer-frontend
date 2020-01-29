@@ -157,7 +157,7 @@
       <div class="popup__close-area">
         <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
       </div>
-      <form class="form form_signup">
+      <form class="form form_signup" novalidate>
         <h3 class="form__title">Регистрация</h3>
         <fieldset class="form__fieldset">
           <div class="form__field">
@@ -166,15 +166,14 @@
               name="email"
               type="email"
               class="form__input"
-              pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
               placeholder="Введите почту"
-              required
             />
-            <p class="form__error">Неправильный формат email</p>
+            <p class="form__error"></p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input name="password" type="password" class="form__input" placeholder="Введите пароль" required />
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
+            <p class="form__error"></p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Имя</h6>
@@ -182,13 +181,9 @@
               name="name"
               type="text"
               class="form__input"
-              minlength="2"
-              maxlength="20"
-              pattern="([А-ЯЁ]{1}[а-яё]+)(-[А-ЯЁ]{1}[а-яё]+)?"
               placeholder="Имя"
-              required
             />
-            <p class="form__error">В имени разрешены только русские символы начинающиеся с заглавной буквы</p>
+            <p class="form__error"></p>
           </div>
         </fieldset>
         <p class="form__error form__error_server">Такой пользователь уже есть</p>

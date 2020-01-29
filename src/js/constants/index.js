@@ -21,6 +21,7 @@ const formErrorsText = {
   wrongEmailOrPassword: 'Неверная почта или пароль',
   emptyField: 'Поле не может быть пустым',
   serverError: 'Произошла серверная ошибка',
+  conflict: 'Пользователь с данным Email уже зарегистрирован',
 };
 
 export {

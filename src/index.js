@@ -12,8 +12,6 @@ import {
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
-// Пропсы: объект с цветом light либо dark, домэлемент навигации
-
 const mainApi = new MainApi(mainApiLinks);
 const newsApi = new NewsApi(newsApiLink, newsApiParams);
 
@@ -30,7 +28,7 @@ const popupSignin = new Popup(
   { templateName: '#popup-signin', container: '.popup__container', closeElement: '.popup__close-area' },
 );
 
-// Первым аргументом передаём пропсы, вторым основной домЭлемент,
+// Первым аргументом передаём дом элемент, вторым передаём пропсы,
 const header = new Header(
   document.querySelector('.nav'), {
     notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
@@ -47,7 +45,6 @@ header.render({
   userName: 'Герман',
 });
 
-
 const signinForm = new Form(document.querySelector('.popup'),
   { form: '.form_login', email: 'email', password: 'password' },
   { formName: 'signinForm' });
@@ -59,13 +56,18 @@ const signupForm = new Form(document.querySelector('.popup'),
 const searchForm = new Form(document.querySelector('.popup'),
   { form: '.search__form', search: 'search' },
   { formName: 'searchForm' });
+
 signinForm.setDependecies({
-  validator, xss, mainApi, formErrorsText, header/* валидация, ивент при сабмите */ });
-signupForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
+  validator, xss, mainApi, formErrorsText,
+});
+signupForm.setDependecies({
+  validator, xss, mainApi, formErrorsText, popupSignup, popupRegistered,
+});
 searchForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
 
-popupSignup.setDependecies({ popupSignin, signupForm });
+popupSignup.setDependecies({ popupSignin, signupForm, popupRegistered });
 popupSignin.setDependecies({ popupSignup, signinForm });
+popupRegistered.setDependecies({ popupSignin, signinForm });
 
 
 // Пропсы в объекте: залогинен ли пользователь, имя пользователя
@@ -82,15 +84,6 @@ popupSignin.setDependecies({ popupSignup, signinForm });
 // STORAGE.name = 'Герман';
 
 // console.log(STORAGE);
-
-
-// mainApi.signup({ email: 'testnew@test.ru', password: 'test', name: 'TestName' })
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
-
-// mainApi.signin({ email: 'testnew@test.ru', password: 'test' })
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
 
 // mainApi.getUserData()
 //   .then((resp) => console.log(resp))

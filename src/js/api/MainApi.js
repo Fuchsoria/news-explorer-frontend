@@ -15,8 +15,7 @@ export default class MainApi {
         password,
         name,
       }),
-    }).then((resp) => resp.json())
-      .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
   }
 
   signin({ email, password }) {

@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "0.2.0",
+  "version": "0.3.5",
   "description": "Frontend for news explorer diplom project",
   "main": "index.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "cssnano": "4.1.10",
     "path": "0.12.7",
     "validator": "12.2.0",
-    "xss": "^1.0.6"
+    "xss": "1.0.6"
   },
   "bugs": {
     "url": "https://github.com/Fuchsoria/news-explorer-frontend/issues"
