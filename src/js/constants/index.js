@@ -16,6 +16,13 @@ const newsApiParams = {
 };
 const newsApiLink = 'https://newsapi.org/v2/everything?';
 
+const formErrorsText = {
+  wrongEmailFormat: 'Неправильный формат email',
+  wrongEmailOrPassword: 'Неверная почта или пароль',
+  emptyField: 'Поле не может быть пустым',
+  serverError: 'Произошла серверная ошибка',
+};
+
 export {
-  mainApiLinks, mainApiDomain, newsApiParams, newsApiLink,
+  mainApiLinks, mainApiDomain, newsApiParams, newsApiLink, formErrorsText,
 };

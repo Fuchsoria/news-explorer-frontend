@@ -129,7 +129,7 @@
       <div class="popup__close-area">
         <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
       </div>
-      <form class="form form_login">
+      <form class="form form_login" novalidate>
         <h3 class="form__title">Вход</h3>
         <fieldset class="form__fieldset">
           <div class="form__field">
@@ -138,18 +138,17 @@
               name="email"
               type="email"
               class="form__input"
-              pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
               placeholder="Введите почту"
-              required
             />
-            <p class="form__error">Неправильный формат email</p>
+            <p class="form__error"></p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input name="password" type="password" class="form__input" placeholder="Введите пароль" required/>
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль"/>
+            <p class="form__error"></p>
           </div>
         </fieldset>
-        <p class="form__error form__error_server">Неверная почта или пароль</p>
+        <p class="form__error form__error_server"></p>
         <button class="form__button form__button_login">Войти</button>
       </form>
       <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>

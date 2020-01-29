@@ -1,4 +1,4 @@
-{	
+{
   "globals": {
     "window": true,
     "document": true,
@@ -6,6 +6,7 @@
   },
   "extends": "airbnb-base",
   "rules": {
-	"no-underscore-dangle": ["error", { "allowAfterThis": true }]
+  "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+  "class-methods-use-this": ["error", { "exceptMethods": ["_setInputError"] }]
   }
 }
