@@ -17,6 +17,35 @@ const newsApiParams = {
 };
 const newsApiLink = 'https://newsapi.org/v2/everything?';
 
+const popupRegisteredElements = {
+  templateName: '#popup-registered',
+  container: '.popup__container',
+  closeElement: '.popup__close-area',
+};
+const popupSignupElements = {
+  templateName: '#popup-signup',
+  container: '.popup__container',
+  closeElement: '.popup__close-area',
+};
+const popupSigninElements = {
+  templateName: '#popup-signin',
+  container: '.popup__container',
+  closeElement: '.popup__close-area',
+};
+const headerTemplates = {
+  notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
+  loggedLightTemplate: document.querySelector('#nav-logged-light'),
+  loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
+};
+const signinFormElements = { form: '.form_login', email: 'email', password: 'password' };
+const signupFormElements = {
+  form: '.form_signup',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+};
+const searchFormElements = { form: '.search__form', search: 'search' };
+
 const formErrorsText = {
   wrongEmailFormat: 'Неправильный формат email',
   wrongEmailOrPassword: 'Неверная почта или пароль',
@@ -30,5 +59,17 @@ const headerElements = {
 };
 
 export {
-  mainApiLinks, mainApiDomain, newsApiParams, newsApiLink, formErrorsText, headerElements,
+  mainApiLinks,
+  mainApiDomain,
+  newsApiParams,
+  newsApiLink,
+  formErrorsText,
+  headerElements,
+  popupRegisteredElements,
+  popupSignupElements,
+  popupSigninElements,
+  headerTemplates,
+  signinFormElements,
+  signupFormElements,
+  searchFormElements,
 };
