@@ -1,6 +1,8 @@
 export default class MainApi {
   constructor(apiLinks) {
     this._apiLinks = apiLinks;
+    this.getUserData = this.getUserData.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   signup({ email, password, name }) {
@@ -32,12 +34,25 @@ export default class MainApi {
     }).catch((err) => console.log(err));
   }
 
+  logout() {
+    return fetch(this._apiLinks.logout, {
+      method: 'POST',
+      credentials: 'include',
+    }).catch((err) => console.log(err));
+  }
+
   getUserData() {
     return fetch(this._apiLinks.getUserData, {
       method: 'GET',
       credentials: 'include',
-    }).then((resp) => resp.json())
-      .catch((err) => console.log(err));
+    })
+      .then((resp) => {
+        if (resp.status !== 200) {
+          throw new Error('Unauthorized');
+        }
+        return resp.json();
+      })
+      .catch((err) => console.log(err.message));
   }
 
   getArticles() {

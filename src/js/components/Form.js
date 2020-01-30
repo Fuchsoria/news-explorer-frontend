@@ -146,15 +146,15 @@ export default class Form extends BaseComponent {
         .then((resp) => {
           if (resp.status === 200) {
             this._setServerError();
-            console.log('Пользователь успешно авторизован');
+            if (this._dependecies.auth && this._dependecies.popupSignin) {
+              const { auth, popupSignin } = this._dependecies;
+
+              auth.sendCheckRequest();
+              popupSignin.close();
+            }
           } else if (resp.status === 401) {
             throw new Error('401');
           }
-        })
-        // убрать после авторизации
-        .then(() => {
-          this._setButtonActive();
-          this._setInputsActive();
         })
         .catch(() => {
           this._setServerError(401);

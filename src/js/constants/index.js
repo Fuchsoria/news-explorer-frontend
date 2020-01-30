@@ -7,6 +7,7 @@ const mainApiLinks = {
   getArticles: `${mainApiDomain}/articles`,
   createArticle: `${mainApiDomain}/articles`,
   removeArticle: `${mainApiDomain}/articles`,
+  logout: `${mainApiDomain}/logout`,
 };
 
 const newsApiParams = {
@@ -24,6 +25,10 @@ const formErrorsText = {
   conflict: 'Пользователь с данным Email уже зарегистрирован',
 };
 
+const headerElements = {
+  authButton: '.nav__auth-button',
+};
+
 export {
-  mainApiLinks, mainApiDomain, newsApiParams, newsApiLink, formErrorsText,
+  mainApiLinks, mainApiDomain, newsApiParams, newsApiLink, formErrorsText, headerElements,
 };

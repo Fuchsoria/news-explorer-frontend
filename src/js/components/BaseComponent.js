@@ -35,12 +35,14 @@ export default class BaseComponent {
 
   // Подгрузка внешних обработчиков
   _mountHandlers() {
-    console.log('Подгрузчик обработчиков', this._handlers);
-    console.log('Загружаю компоненты');
-    this._handlers.forEach((item) => {
-      this._mount(item);
-    });
-    console.log('Обновленные компоненты', this._mounts);
+    if (this._handlers) {
+      console.log('Подгрузчик обработчиков', this._handlers);
+      console.log('Загружаю компоненты');
+      this._handlers.forEach((item) => {
+        this._mount(item);
+      });
+      console.log('Обновленные компоненты', this._mounts);
+    }
   }
 
   // Установка внешних обработчиков

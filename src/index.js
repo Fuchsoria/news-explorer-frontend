@@ -5,13 +5,14 @@ import xss from 'xss';
 import Header from './js/components/Header';
 import Popup from './js/components/Popup';
 import Form from './js/components/Form';
-import STORAGE from './js/constants/storage';
+import Auth from './js/modules/auth';
 import {
-  mainApiLinks, newsApiParams, newsApiLink, formErrorsText,
+  mainApiLinks, newsApiParams, newsApiLink, formErrorsText, headerElements,
 } from './js/constants/index';
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
+const auth = new Auth();
 const mainApi = new MainApi(mainApiLinks);
 const newsApi = new NewsApi(newsApiLink, newsApiParams);
 
@@ -28,7 +29,7 @@ const popupSignin = new Popup(
   { templateName: '#popup-signin', container: '.popup__container', closeElement: '.popup__close-area' },
 );
 
-// Первым аргументом передаём дом элемент, вторым передаём пропсы,
+// Первым аргументом передаём дом элемент, вторым передаём шаблоны, третьим пропсы,
 const header = new Header(
   document.querySelector('.nav'), {
     notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
@@ -37,13 +38,6 @@ const header = new Header(
   }, { color: 'light' },
 );
 
-// Подключаем необходимые хандлеры, которые будут использованы после рендера
-header.setMountHandlers([{ element: '.nav__auth-button', handlers: [popupSignin.open] }]);
-
-header.render({
-  isLoggedIn: false,
-  userName: 'Герман',
-});
 
 const signinForm = new Form(document.querySelector('.popup'),
   { form: '.form_login', email: 'email', password: 'password' },
@@ -58,7 +52,7 @@ const searchForm = new Form(document.querySelector('.popup'),
   { formName: 'searchForm' });
 
 signinForm.setDependecies({
-  validator, xss, mainApi, formErrorsText,
+  validator, xss, mainApi, formErrorsText, auth, popupSignin,
 });
 signupForm.setDependecies({
   validator, xss, mainApi, formErrorsText, popupSignup, popupRegistered,
@@ -70,24 +64,12 @@ popupSignin.setDependecies({ popupSignup, signinForm });
 popupRegistered.setDependecies({ popupSignin, signinForm });
 
 
-// Пропсы в объекте: залогинен ли пользователь, имя пользователя
+auth.setDependecies({
+  mainApi, header, popupSignin, headerElements,
+});
 
-// header.render({
-//   isLoggedIn: true,
-//   userName: 'Герман',
-// });
+auth.sendCheckRequest();
 
-
-// console.log(STORAGE);
-
-// STORAGE.items = ['test1', 'test2'];
-// STORAGE.name = 'Герман';
-
-// console.log(STORAGE);
-
-// mainApi.getUserData()
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
 
 // mainApi.getArticles()
 //   .then((resp) => console.log(resp))
