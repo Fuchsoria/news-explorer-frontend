@@ -1,5 +1,6 @@
 @import url(./_server/form__error_server.css);
 @import url(./_server/form__error_server_visible.css);
+@import url(./_search/form__error_search.css);
 @import url(./_visible/form__error_visible.css);
 
 .form__error {

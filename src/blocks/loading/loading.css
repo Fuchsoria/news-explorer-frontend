@@ -7,4 +7,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width: 992px) {
+  .loading {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .loading {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }

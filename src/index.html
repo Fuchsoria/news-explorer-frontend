@@ -20,22 +20,16 @@
         <section class="search">
           <h1 class="search__title">Что в мире творится?</h1>
           <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
-          <form class="search__form">
-            <input
-              name="search"
-              type="text"
-              class="search__input"
-              placeholder="Введите тему новости"
-              minlength="2"
-              maxlength="30"
-              pattern="([а-яёА-ЯЁa-zA-Z0-9]+)"
-              required
-            />
+          <form class="search__form" novalidate>
+            <p class="form__error form__error_search">Тест ошибки</p>
+            <input name="search" type="text" class="search__input" placeholder="Введите тему новости" />
             <button class="search__button">Искать</button>
           </form>
         </section>
       </header>
       <main class="main container">
+        <div class="results">
+        </div>
         <section class="author">
           <div class="author__content container container_content">
             <picture>
@@ -91,6 +85,7 @@
         </ul>
       </div>
     </template>
+
     <template id="nav-logged-light">
       <div class="nav__content container container_content">
         <a href="../" class="nav__logo">NewsExplorer</a>
@@ -107,6 +102,7 @@
         </ul>
       </div>
     </template>
+
     <template id="nav-logged-dark">
       <div class="nav__content container container_content">
         <a href="../" class="nav__logo nav__logo_theme_dark">NewsExplorer</a>
@@ -125,6 +121,7 @@
         </ul>
       </div>
     </template>
+
     <template id="popup-signin">
       <div class="popup__close-area">
         <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
@@ -134,17 +131,12 @@
         <fieldset class="form__fieldset">
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
-            <input
-              name="email"
-              type="email"
-              class="form__input"
-              placeholder="Введите почту"
-            />
+            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
             <p class="form__error"></p>
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Пароль</h6>
-            <input name="password" type="password" class="form__input" placeholder="Введите пароль"/>
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
             <p class="form__error"></p>
           </div>
         </fieldset>
@@ -153,6 +145,7 @@
       </form>
       <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>
     </template>
+
     <template id="popup-signup">
       <div class="popup__close-area">
         <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
@@ -162,12 +155,7 @@
         <fieldset class="form__fieldset">
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
-            <input
-              name="email"
-              type="email"
-              class="form__input"
-              placeholder="Введите почту"
-            />
+            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
             <p class="form__error"></p>
           </div>
           <div class="form__field">
@@ -177,12 +165,7 @@
           </div>
           <div class="form__field">
             <h6 class="form__field-title">Имя</h6>
-            <input
-              name="name"
-              type="text"
-              class="form__input"
-              placeholder="Имя"
-            />
+            <input name="name" type="text" class="form__input" placeholder="Имя" />
             <p class="form__error"></p>
           </div>
         </fieldset>
@@ -191,6 +174,7 @@
       </form>
       <div class="popup__text">или <span class="popup__link">Войти</span></div>
     </template>
+
     <template id="popup-registered">
       <div class="popup__close-area">
         <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
@@ -198,6 +182,75 @@
       <p class="popup__message">Пользователь успешно зарегистрирован!</p>
       <div class="popup__link popup__link_registered">Выполнить вход</div>
     </template>
+
+    <template id="loading">
+      <div class="loading">
+        <div class="loading__circle"></div>
+        <p class="loading__text">Идет поиск новостей...</p>
+      </div>
+    </template>
+
+    <template id="no-results">
+      <div class="no-results">
+        <img src="<%= require('./images/not-found_v1.svg') %>" alt="Нет результатов" class="no-results__icon" />
+        <h2 class="no-results__title">Ничего не найдено</h2>
+        <p class="no-results__text">К сожалению по вашему запросу ничего не найдено.</p>
+      </div>
+    </template>
+
+    <template id="results">
+      <div class="results__content container container_content">
+        <h2 class="results__title">Результаты поиска</h2>
+        <div class="results__cards">
+          <!-- сюда карточки -->
+        </div>
+        <!-- сюда кнопку -->
+      </div>
+    </template>
+
+    <template id="show-more">
+      <button class="results__more">Показать еще</button>
+    </template>
+
+    <template id="card">
+      <article class="card">
+        <img src="" alt="Изображение новости" class="card__img" />
+        <h6 class="card__keyword card__keyword_hidden"></h6>
+        <div class="card__bookmark">
+          <!-- сюда рендерим закладку, в зависимости от статуса -->
+        </div>
+        <div class="card__content">
+          <div class="card__limiter">
+            <h5 class="card__date">2 августа, 2019</h5>
+            <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
+            <p class="card__text">
+              Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую
+              красоту одного из местных чудес природы.
+            </p>
+          </div>
+          <h4 class="card__source">Афиша</h4>
+        </div>
+      </article>
+    </template>
+
+    <template id="bookmark-loggedin">
+      <div class="card__bookmark-icon"></div>
+    </template>
+
+    <template id="bookmark-notloggedin">
+      <div class="card__bookmark-icon"></div>
+      <div class="card__auth-notice">
+        <p class="card__notice-message">Войдите, чтобы сохранять статьи</p>
+      </div>
+    </template>
+
+    <template id="bookmark-savednews">
+      <div class="card__bookmark-icon card__bookmark-icon_remove"></div>
+      <div class="card__auth-notice">
+        <p class="card__notice-message">Убрать из сохранённых</p>
+      </div>
+    </template>
+
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
   </body>
 </html>

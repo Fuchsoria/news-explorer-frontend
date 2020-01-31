@@ -9,6 +9,7 @@ export default class Form extends BaseComponent {
     this._sendSearchRequest = this._sendSearchRequest.bind(this);
     this._validateSigninForm = this._validateSigninForm.bind(this);
     this._validateSignupForm = this._validateSignupForm.bind(this);
+    this._validateSearchForm = this._validateSearchForm.bind(this);
   }
 
   _setServerError(errorNumber) {
@@ -33,8 +34,14 @@ export default class Form extends BaseComponent {
     return this._domElement.querySelector(this._blockElements.form);
   }
 
-  _setInputError(input, errorText) {
-    const errorField = input.closest('.form__field').querySelector('.form__error');
+  _setInputError(input, errorText, searchInput) {
+    let errorField;
+
+    if (!searchInput) {
+      errorField = input.closest('.form__field').querySelector('.form__error');
+    } else {
+      errorField = this._domElement.querySelector('.form__error');
+    }
 
     if (errorText) {
       errorField.textContent = errorText;
@@ -49,35 +56,49 @@ export default class Form extends BaseComponent {
     const { validator, formErrorsText } = this._dependecies;
     let validationResult = true;
 
-    if (validator.isEmpty(input.value)) {
+    if (validator.isEmpty(input.value) && inputName !== 'query') {
       this._setInputError(input, formErrorsText.emptyField);
       validationResult = false;
     } else if (inputName === 'email' && !validator.isEmail(input.value)) {
       this._setInputError(input, formErrorsText.wrongEmailFormat);
       validationResult = false;
-      // } else if (inputName === 'password') {
-      // } else if (inputName === 'name') {
-
-      // } else if (inputName === 'searchQuery') {
+    } else if (validator.isEmpty(input.value) && inputName === 'query') {
+      this._setInputError(input, formErrorsText.emptyQuery, true);
+      validationResult = false;
+    } else if (inputName === 'query') {
+      this._setInputError(input, false, true);
     } else {
       this._setInputError(input);
     }
-
 
     return validationResult;
   }
 
 
-  _setButtonDisabled() {
-    const button = this._currentFormElement().querySelector('.form__button');
-    button.classList.add('form__button_disabled');
-    button.setAttribute('disabled', true);
+  _setButtonDisabled(type) {
+    if (type === 'search') {
+      const button = this._currentFormElement().querySelector('.search__button');
+
+      button.setAttribute('disabled', true);
+    } else {
+      const button = this._currentFormElement().querySelector('.form__button');
+
+      button.classList.add('form__button_disabled');
+      button.setAttribute('disabled', true);
+    }
   }
 
-  _setButtonActive() {
-    const button = this._currentFormElement().querySelector('.form__button');
-    button.classList.remove('form__button_disabled');
-    button.removeAttribute('disabled');
+  _setButtonActive(type) {
+    if (type === 'search') {
+      const button = this._currentFormElement().querySelector('.search__button');
+
+      button.removeAttribute('disabled');
+    } else {
+      const button = this._currentFormElement().querySelector('.form__button');
+
+      button.classList.remove('form__button_disabled');
+      button.removeAttribute('disabled');
+    }
   }
 
   _setInputsDisabled() {
@@ -99,8 +120,10 @@ export default class Form extends BaseComponent {
   _getInfo() {
     const form = this._currentFormElement();
     let dataObject;
-    const xssFilter = this._dependecies.xss;
+
     if (this._dependecies.xss) {
+      const xssFilter = this._dependecies.xss;
+
       dataObject = {
         searchQuery: form.search ? xssFilter(form.search.value) : 'none',
         email: form.email ? xssFilter(form.email.value) : 'none',
@@ -181,6 +204,7 @@ export default class Form extends BaseComponent {
 
   _sendSignupRequest(event) {
     event.preventDefault();
+
     if (this._dependecies.mainApi) {
       this._setButtonDisabled();
       this._setInputsDisabled();
@@ -208,16 +232,32 @@ export default class Form extends BaseComponent {
     }
   }
 
+  _validateSearchForm() {
+    const form = this._currentFormElement();
+    const { search } = form;
+    const queryResult = this._validateInput('query', search);
+
+    return queryResult;
+  }
+
 
   _sendSearchRequest(event) {
     event.preventDefault();
-    console.log(this._getInfo());
-    console.log('Отправляю на поиск новостей');
+    const validateResult = this._validateSearchForm();
+
+    if (validateResult) {
+      console.log(this._getInfo());
+      // this._setButtonDisabled('search');
+      // this._setInputsDisabled();
+
+      console.log('Отправляю на поиск новостей');
+    } else {
+      console.log('Невалидно');
+    }
   }
 
   handlers() {
     this._unmount();
-    console.log(this);
     if (this._props.formName === 'signinForm') {
       this._setButtonDisabled();
       this._mount({ element: this._blockElements.form, handlers: [this._sendSigninRequest], event: 'submit' });
@@ -227,6 +267,7 @@ export default class Form extends BaseComponent {
       this._mount({ element: this._blockElements.form, handlers: [this._validateSignupForm], event: 'input' });
       this._mount({ element: this._blockElements.form, handlers: [this._sendSignupRequest], event: 'submit' });
     } else if (this._props.formName === 'searchForm') {
+      this._mount({ element: this._blockElements.form, handlers: [this._validateSearchForm], event: 'input' });
       this._mount({ element: this._blockElements.form, handlers: [this._sendSearchRequest], event: 'submit' });
     }
   }

@@ -23,6 +23,7 @@ export default class Popup extends BaseComponent {
   }
 
   clearContent() {
+    /* innerHTML используется ТОЛЬКО для очистки внутренностей блока */
     this._unmount();
     this._domElement.querySelector(this._container).innerHTML = '';
   }
@@ -46,22 +47,19 @@ export default class Popup extends BaseComponent {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
     this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] }]);
 
-
-    if (this._dependecies.popupSignin) {
-      // Если есть такая зависимость, значит это форма регистрации с линком на авторизацию
+    if (this._props.popupName === 'popupSignup' && this._dependecies.popupSignin) {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignin] });
+
       if (this._dependecies.signupForm) {
         this._dependecies.signupForm.handlers();
       }
-    } else if (this._dependecies.popupSignup) {
-      // Если есть такая зависимость, значит это форма авторизации с линком на регистрацию
+    } else if (this._props.popupName === 'popupSignin' && this._dependecies.popupSignup) {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignup] });
+
       if (this._dependecies.signinForm) {
         this._dependecies.signinForm.handlers();
       }
-    } else if (this._dependecies.popupSignin && this._dependecies.signinForm) {
-      console.log('Мы на попапе после регистрации');
-      // При таких зависимостях может быть только popup после регистрации
+    } else if (this._props.popupName === 'popupRegistered' && this._dependecies.popupSignin && this._dependecies.signinForm) {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignin] });
     }
   }

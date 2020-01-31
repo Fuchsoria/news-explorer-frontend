@@ -47,6 +47,7 @@ const formErrorsText = {
   emptyField: 'Поле не может быть пустым',
   serverError: 'Произошла серверная ошибка',
   conflict: 'Пользователь с данным Email уже зарегистрирован',
+  emptyQuery: 'Нужно ввести ключевое слово',
 };
 
 const headerElements = {

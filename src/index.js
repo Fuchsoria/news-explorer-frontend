@@ -17,9 +17,9 @@ const auth = new Auth();
 const mainApi = new MainApi(mainApiLinks);
 const newsApi = new NewsApi(newsApiLink, newsApiParams);
 
-const popupRegistered = new Popup(document.querySelector('.popup'), popupRegisteredElements);
-const popupSignup = new Popup(document.querySelector('.popup'), popupSignupElements);
-const popupSignin = new Popup(document.querySelector('.popup'), popupSigninElements);
+const popupRegistered = new Popup(document.querySelector('.popup'), popupRegisteredElements, { popupName: 'popupRegistered' });
+const popupSignup = new Popup(document.querySelector('.popup'), popupSignupElements, { popupName: 'popupSignup' });
+const popupSignin = new Popup(document.querySelector('.popup'), popupSigninElements, { popupName: 'popupSignin' });
 
 // Первым аргументом передаём дом элемент, вторым передаём шаблоны, третьим пропсы,
 const header = new Header(
@@ -36,7 +36,9 @@ signinForm.setDependecies({
 signupForm.setDependecies({
   validator, xss, mainApi, formErrorsText, popupSignup, popupRegistered,
 });
-searchForm.setDependecies({ validator/* валидация, ивент при сабмите */ });
+searchForm.setDependecies({
+  validator, xss, formErrorsText, newsApi, auth,
+});
 
 popupSignup.setDependecies({ popupSignin, signupForm, popupRegistered });
 popupSignin.setDependecies({ popupSignup, signinForm });

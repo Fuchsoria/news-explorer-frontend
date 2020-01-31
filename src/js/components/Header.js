@@ -81,16 +81,18 @@ export default class Header extends BaseComponent {
   }
 
   render(props) {
+    const navbarNode = this._domElement.querySelector(this._blockElements.navbar);
+
     // Убираем предыдущие хандлеры шапки, если они есть
     this._unmount();
 
     // В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
     this._cleanupOpenedNavbar();
 
-    // Очищаем навбар и рендерим его заного
-    this._domElement.querySelector(this._blockElements.navbar).innerHTML = '';
-    this._domElement.querySelector(this._blockElements.navbar)
-      .appendChild(this._createElement(props));
+    /* Очищаем навбар и рендерим его заного,
+    * innerHTML используется ТОЛЬКО для очистки внутренностей блока */
+    navbarNode.innerHTML = '';
+    navbarNode.appendChild(this._createElement(props));
 
     // Инициируем мобильные дом элементы
     this._initialMobileNavbar();

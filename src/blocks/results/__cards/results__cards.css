@@ -2,7 +2,6 @@
   margin-top: 64px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(1fr);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
 }

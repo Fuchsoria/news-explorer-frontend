@@ -47,7 +47,6 @@ export default class BaseComponent {
 
   // Установка внешних обработчиков
   setMountHandlers(array) {
-    console.log(array);
     this._handlers = array;
   }
 
@@ -56,7 +55,7 @@ export default class BaseComponent {
     this._dependecies = dependecies;
   }
 
-  // Выгрузка всех хандлеров компонента
+  // Выгрузка всех обработчиков компонента
   _unmount() {
     if (this._mounts.length > 0) {
       console.log(this._mounts);
@@ -64,7 +63,7 @@ export default class BaseComponent {
         this._removeHandlers(item.element, item.handlers, item.event);
       });
       this._mounts = [];
-      console.log('Выгрузил компонент', this._mounts);
+      console.log('Выгрузил компоненты', this._mounts);
     }
   }
 }
