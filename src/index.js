@@ -8,7 +8,6 @@ import Auth from './js/modules/auth';
 import {
   mainApiLinks, newsApiParams, newsApiLink, formErrorsText, headerElements,
   popupRegisteredElements, popupSignupElements, popupSigninElements,
-  headerTemplates,
   signinFormElements, signupFormElements, searchFormElements,
 } from './js/constants/index';
 import MainApi from './js/api/MainApi';
@@ -24,12 +23,12 @@ const popupSignin = new Popup(document.querySelector('.popup'), popupSigninEleme
 
 // Первым аргументом передаём дом элемент, вторым передаём шаблоны, третьим пропсы,
 const header = new Header(
-  document.querySelector('.nav'), headerTemplates, { color: 'light' },
+  document.querySelector('.header'), headerElements, { color: 'light' },
 );
 
 const signinForm = new Form(document.querySelector('.popup'), signinFormElements, { formName: 'signinForm' });
 const signupForm = new Form(document.querySelector('.popup'), signupFormElements, { formName: 'signupForm' });
-const searchForm = new Form(document.querySelector('.popup'), searchFormElements, { formName: 'searchForm' });
+const searchForm = new Form(document.querySelector('.search'), searchFormElements, { formName: 'searchForm' });
 
 signinForm.setDependecies({
   validator, xss, mainApi, formErrorsText, auth, popupSignin,
@@ -49,6 +48,8 @@ auth.setDependecies({
 });
 
 auth.sendCheckRequest();
+
+searchForm.handlers();
 
 
 // mainApi.getArticles()

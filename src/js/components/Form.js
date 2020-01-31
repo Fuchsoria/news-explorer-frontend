@@ -211,11 +211,13 @@ export default class Form extends BaseComponent {
 
   _sendSearchRequest(event) {
     event.preventDefault();
+    console.log(this._getInfo());
     console.log('Отправляю на поиск новостей');
   }
 
   handlers() {
     this._unmount();
+    console.log(this);
     if (this._props.formName === 'signinForm') {
       this._setButtonDisabled();
       this._mount({ element: this._blockElements.form, handlers: [this._sendSigninRequest], event: 'submit' });

@@ -32,11 +32,6 @@ const popupSigninElements = {
   container: '.popup__container',
   closeElement: '.popup__close-area',
 };
-const headerTemplates = {
-  notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
-  loggedLightTemplate: document.querySelector('#nav-logged-light'),
-  loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
-};
 const signinFormElements = { form: '.form_login', email: 'email', password: 'password' };
 const signupFormElements = {
   form: '.form_signup',
@@ -55,7 +50,18 @@ const formErrorsText = {
 };
 
 const headerElements = {
+  notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
+  loggedLightTemplate: document.querySelector('#nav-logged-light'),
+  loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
   authButton: '.nav__auth-button',
+  navBurger: '.nav__burger',
+  navbar: '.nav',
+  navItems: '.nav__items',
+  overlay: '.overlay',
+  navBurgerOpened: 'nav__burger_opened',
+  navbarOpened: 'nav_opened',
+  navItemsOpened: 'nav__items_opened',
+  overlayOpened: 'overlay_opened',
 };
 
 export {
@@ -68,7 +74,6 @@ export {
   popupRegisteredElements,
   popupSignupElements,
   popupSigninElements,
-  headerTemplates,
   signinFormElements,
   signupFormElements,
   searchFormElements,

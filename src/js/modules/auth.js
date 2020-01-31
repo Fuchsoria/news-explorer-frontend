@@ -33,10 +33,10 @@ export default class Auth {
       && this._dependecies.popupSignin
       && this._dependecies.headerElements) {
       const { header, popupSignin, headerElements } = this._dependecies;
-
       // Подключаем необходимые хандлеры, которые будут использованы после рендера
       header.setMountHandlers(
-        [{ element: headerElements.authButton, handlers: [popupSignin.open] }],
+        [{ element: headerElements.authButton, handlers: [popupSignin.open] },
+          { element: headerElements.navBurger, handlers: [header.openMobileNavbar] }],
       );
 
       header.render({
@@ -53,7 +53,8 @@ export default class Auth {
       const { header, headerElements } = this._dependecies;
 
       header.setMountHandlers(
-        [{ element: headerElements.authButton, handlers: [this.userLogout] }],
+        [{ element: headerElements.authButton, handlers: [this.userLogout] },
+          { element: headerElements.navBurger, handlers: [header.openMobileNavbar] }],
       );
 
       header.render({

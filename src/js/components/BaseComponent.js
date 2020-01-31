@@ -47,6 +47,7 @@ export default class BaseComponent {
 
   // Установка внешних обработчиков
   setMountHandlers(array) {
+    console.log(array);
     this._handlers = array;
   }
 

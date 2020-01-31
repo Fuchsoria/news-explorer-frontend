@@ -5,6 +5,8 @@ export default class Header extends BaseComponent {
     super(...args);
 
     this.render = this.render.bind(this);
+    this.openMobileNavbar = this.openMobileNavbar.bind(this);
+    this.closeMobileNavbar = this.closeMobileNavbar.bind(this);
   }
 
   _createElement({
@@ -28,13 +30,70 @@ export default class Header extends BaseComponent {
     return this._navContent;
   }
 
+  _initialMobileNavbar() {
+    const {
+      navBurger, navbar, navItems, overlay,
+    } = this._blockElements;
+
+    this._navbar = this._domElement.querySelector(navbar);
+    this._navItems = this._domElement.querySelector(navItems);
+    this._navBurger = this._domElement.querySelector(navBurger);
+    this._overlay = this._domElement.querySelector(overlay);
+  }
+
+  _cleanupOpenedNavbar() {
+    const {
+      navbarOpened, overlayOpened,
+    } = this._blockElements;
+
+    if (this._navbar && this._overlay) {
+      this._navbar.classList.remove(navbarOpened);
+      this._overlay.classList.remove(overlayOpened);
+    }
+  }
+
+  openMobileNavbar() {
+    const {
+      navBurger, navBurgerOpened, navbarOpened, navItemsOpened, overlayOpened,
+    } = this._blockElements;
+
+    this._navbar.classList.add(navbarOpened);
+    this._navItems.classList.add(navItemsOpened);
+    this._navBurger.classList.add(navBurgerOpened);
+    this._overlay.classList.add(overlayOpened);
+
+    this._removeHandlers(navBurger, [this.openMobileNavbar], 'click');
+    this._setHandlers(navBurger, [this.closeMobileNavbar], 'click');
+  }
+
+  closeMobileNavbar() {
+    const {
+      navBurger, navBurgerOpened, navbarOpened, navItemsOpened, overlayOpened,
+    } = this._blockElements;
+
+    this._navbar.classList.remove(navbarOpened);
+    this._navItems.classList.remove(navItemsOpened);
+    this._navBurger.classList.remove(navBurgerOpened);
+    this._overlay.classList.remove(overlayOpened);
+
+    this._removeHandlers(navBurger, [this.closeMobileNavbar], 'click');
+    this._setHandlers(navBurger, [this.openMobileNavbar], 'click');
+  }
+
   render(props) {
     // Убираем предыдущие хандлеры шапки, если они есть
     this._unmount();
 
+    // В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
+    this._cleanupOpenedNavbar();
+
     // Очищаем навбар и рендерим его заного
-    this._domElement.innerHTML = '';
-    this._domElement.appendChild(this._createElement(props));
+    this._domElement.querySelector(this._blockElements.navbar).innerHTML = '';
+    this._domElement.querySelector(this._blockElements.navbar)
+      .appendChild(this._createElement(props));
+
+    // Инициируем мобильные дом элементы
+    this._initialMobileNavbar();
 
     // Подгружаем необходимые хандлеры
     this._mountHandlers();
