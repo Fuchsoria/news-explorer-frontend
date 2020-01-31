@@ -1,16 +1,18 @@
 export default class NewsApi {
-  constructor(newsApiLink, newsApiParams) {
-    this._newsApiLink = newsApiLink;
-    this._newsApiParams = newsApiParams;
+  constructor(newsApiLink, newsApiParams, newsApiDependecies) {
+    this._apiLink = newsApiLink;
+    this._apiParams = newsApiParams;
+    this._apiDependecies = newsApiDependecies;
   }
 
   getNews(query) {
-    const { sortBy, pageSize, apiKey } = this._newsApiParams;
-    const dateTo = '2020-01-26';
-    const dateFrom = '2020-01-19';
+    const { sortBy, pageSize, apiKey } = this._apiParams;
+    const { formatCurrentDate, formatWeekBeforeDate } = this._apiDependecies;
+    const dateTo = formatCurrentDate();
+    const dateFrom = formatWeekBeforeDate();
 
     return fetch(
-      `${this._newsApiLink}q=${query}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=${pageSize}&apiKey=${apiKey}`,
+      `${this._apiLink}q=${query}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=${pageSize}&apiKey=${apiKey}`,
     )
       .then((resp) => resp.json())
       .catch((err) => console.log(err));

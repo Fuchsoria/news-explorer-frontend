@@ -10,12 +10,20 @@ import {
   popupRegisteredElements, popupSignupElements, popupSigninElements,
   signinFormElements, signupFormElements, searchFormElements,
 } from './js/constants/index';
+import {
+  formatCurrentDate,
+  formatWeekBeforeDate,
+  formatNewsDate,
+} from './js/utils';
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 const auth = new Auth();
 const mainApi = new MainApi(mainApiLinks);
-const newsApi = new NewsApi(newsApiLink, newsApiParams);
+const newsApi = new NewsApi(newsApiLink, newsApiParams, {
+  formatCurrentDate,
+  formatWeekBeforeDate,
+});
 
 const popupRegistered = new Popup(document.querySelector('.popup'), popupRegisteredElements, { popupName: 'popupRegistered' });
 const popupSignup = new Popup(document.querySelector('.popup'), popupSignupElements, { popupName: 'popupSignup' });
@@ -53,6 +61,11 @@ auth.sendCheckRequest();
 
 searchForm.handlers();
 
+console.log(formatCurrentDate());
+console.log(formatWeekBeforeDate());
+
+console.log(formatNewsDate(new Date()));
+
 
 // mainApi.getArticles()
 //   .then((resp) => console.log(resp))
@@ -74,6 +87,6 @@ searchForm.handlers();
 //   .then((resp) => console.log(resp))
 //   .catch((err) => console.log(err));
 
-// newsApi.getNews('человек')
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
+newsApi.getNews('человек')
+  .then((resp) => console.log(resp))
+  .catch((err) => console.log(err));

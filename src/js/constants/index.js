@@ -65,6 +65,8 @@ const headerElements = {
   overlayOpened: 'overlay_opened',
 };
 
+const dateMonths = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+
 export {
   mainApiLinks,
   mainApiDomain,
@@ -78,4 +80,5 @@ export {
   signinFormElements,
   signupFormElements,
   searchFormElements,
+  dateMonths,
 };
