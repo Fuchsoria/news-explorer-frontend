@@ -15,14 +15,14 @@ export default class Form extends BaseComponent {
   _setServerError(errorNumber) {
     const errorField = this._domElement.querySelector(this._blockElements.form).querySelector('.form__error_server');
 
-    if (errorNumber === 401 && this._dependecies.formErrorsText) {
-      errorField.textContent = this._dependecies.formErrorsText.wrongEmailOrPassword;
+    if (errorNumber === 401 && this._dependecies.FORM_ERRORS_TEXT) {
+      errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.wrongEmailOrPassword;
       errorField.classList.add('form__error_server_visible');
-    } else if (errorNumber === 409 && this._dependecies.formErrorsText) {
-      errorField.textContent = this._dependecies.formErrorsText.conflict;
+    } else if (errorNumber === 409 && this._dependecies.FORM_ERRORS_TEXT) {
+      errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.conflict;
       errorField.classList.add('form__error_server_visible');
-    } else if (errorNumber === 500 && this._dependecies.formErrorsText) {
-      errorField.textContent = this._dependecies.formErrorsText.serverError;
+    } else if (errorNumber === 500 && this._dependecies.FORM_ERRORS_TEXT) {
+      errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.serverError;
       errorField.classList.add('form__error_server_visible');
     } else {
       errorField.classList.remove('form__error_server_visible');
@@ -53,17 +53,17 @@ export default class Form extends BaseComponent {
   }
 
   _validateInput(inputName, input) {
-    const { validator, formErrorsText } = this._dependecies;
+    const { validator, FORM_ERRORS_TEXT } = this._dependecies;
     let validationResult = true;
 
     if (validator.isEmpty(input.value) && inputName !== 'query') {
-      this._setInputError(input, formErrorsText.emptyField);
+      this._setInputError(input, FORM_ERRORS_TEXT.emptyField);
       validationResult = false;
     } else if (inputName === 'email' && !validator.isEmail(input.value)) {
-      this._setInputError(input, formErrorsText.wrongEmailFormat);
+      this._setInputError(input, FORM_ERRORS_TEXT.wrongEmailFormat);
       validationResult = false;
     } else if (validator.isEmpty(input.value) && inputName === 'query') {
-      this._setInputError(input, formErrorsText.emptyQuery, true);
+      this._setInputError(input, FORM_ERRORS_TEXT.emptyQuery, true);
       validationResult = false;
     } else if (inputName === 'query') {
       this._setInputError(input, false, true);

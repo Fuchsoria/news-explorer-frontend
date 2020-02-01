@@ -1,47 +1,48 @@
-const mainApiDomain = 'https://api.news-explorer.info';
+const MAIN_API_DOMAIN = 'https://api.news-explorer.info';
 
-const mainApiLinks = {
-  signup: `${mainApiDomain}/signup`,
-  signin: `${mainApiDomain}/signin`,
-  getUserData: `${mainApiDomain}/users/me`,
-  getArticles: `${mainApiDomain}/articles`,
-  createArticle: `${mainApiDomain}/articles`,
-  removeArticle: `${mainApiDomain}/articles`,
-  logout: `${mainApiDomain}/logout`,
+const MAIN_API_LINKS = {
+  signup: `${MAIN_API_DOMAIN}/signup`,
+  signin: `${MAIN_API_DOMAIN}/signin`,
+  getUserData: `${MAIN_API_DOMAIN}/users/me`,
+  getArticles: `${MAIN_API_DOMAIN}/articles`,
+  createArticle: `${MAIN_API_DOMAIN}/articles`,
+  removeArticle: `${MAIN_API_DOMAIN}/articles`,
+  logout: `${MAIN_API_DOMAIN}/logout`,
 };
 
-const newsApiParams = {
+const NEWS_API_PARAMS = {
   sortBy: 'popularity',
   apiKey: '8059f596a47c4f5b91e73ee4e8a374d9',
   pageSize: 100,
 };
-const newsApiLink = 'https://newsapi.org/v2/everything?';
+const NEWS_API_LINK = 'https://newsapi.org/v2/everything?';
 
-const popupRegisteredElements = {
+const POPUP_REGISTERED_ELEMENTS = {
   templateName: '#popup-registered',
   container: '.popup__container',
   closeElement: '.popup__close-area',
 };
-const popupSignupElements = {
+const POPUP_SIGNUP_ELEMENTS = {
   templateName: '#popup-signup',
   container: '.popup__container',
   closeElement: '.popup__close-area',
 };
-const popupSigninElements = {
+const POPUP_SIGNIN_ELEMENTS = {
   templateName: '#popup-signin',
   container: '.popup__container',
   closeElement: '.popup__close-area',
 };
-const signinFormElements = { form: '.form_login', email: 'email', password: 'password' };
-const signupFormElements = {
+
+const SIGNIN_FORM_ELEMENTS = { form: '.form_login', email: 'email', password: 'password' };
+const SIGNUP_FORM_ELEMENTS = {
   form: '.form_signup',
   email: 'email',
   password: 'password',
   name: 'name',
 };
-const searchFormElements = { form: '.search__form', search: 'search' };
+const SEARCH_FORM_ELEMENTS = { form: '.search__form', search: 'search' };
 
-const formErrorsText = {
+const FORM_ERRORS_TEXT = {
   wrongEmailFormat: 'Неправильный формат email',
   wrongEmailOrPassword: 'Неверная почта или пароль',
   emptyField: 'Поле не может быть пустым',
@@ -50,7 +51,7 @@ const formErrorsText = {
   emptyQuery: 'Нужно ввести ключевое слово',
 };
 
-const headerElements = {
+const HEADER_ELEMENTS = {
   notLoggedLightTemplate: document.querySelector('#nav-notlogged-light'),
   loggedLightTemplate: document.querySelector('#nav-logged-light'),
   loggedDarkTemplate: document.querySelector('#nav-logged-dark'),
@@ -65,20 +66,20 @@ const headerElements = {
   overlayOpened: 'overlay_opened',
 };
 
-const dateMonths = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+const DATE_MONTHS = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
 export {
-  mainApiLinks,
-  mainApiDomain,
-  newsApiParams,
-  newsApiLink,
-  formErrorsText,
-  headerElements,
-  popupRegisteredElements,
-  popupSignupElements,
-  popupSigninElements,
-  signinFormElements,
-  signupFormElements,
-  searchFormElements,
-  dateMonths,
+  MAIN_API_LINKS,
+  MAIN_API_DOMAIN,
+  NEWS_API_PARAMS,
+  NEWS_API_LINK,
+  FORM_ERRORS_TEXT,
+  HEADER_ELEMENTS,
+  POPUP_REGISTERED_ELEMENTS,
+  POPUP_SIGNUP_ELEMENTS,
+  POPUP_SIGNIN_ELEMENTS,
+  SIGNIN_FORM_ELEMENTS,
+  SIGNUP_FORM_ELEMENTS,
+  SEARCH_FORM_ELEMENTS,
+  DATE_MONTHS,
 };

@@ -31,12 +31,12 @@ export default class Auth {
 
     if (this._dependecies.header
       && this._dependecies.popupSignin
-      && this._dependecies.headerElements) {
-      const { header, popupSignin, headerElements } = this._dependecies;
+      && this._dependecies.HEADER_ELEMENTS) {
+      const { header, popupSignin, HEADER_ELEMENTS } = this._dependecies;
       // Подключаем необходимые хандлеры, которые будут использованы после рендера
       header.setMountHandlers(
-        [{ element: headerElements.authButton, handlers: [popupSignin.open] },
-          { element: headerElements.navBurger, handlers: [header.openMobileNavbar] }],
+        [{ element: HEADER_ELEMENTS.authButton, handlers: [popupSignin.open] },
+          { element: HEADER_ELEMENTS.navBurger, handlers: [header.openMobileNavbar] }],
       );
 
       header.render({
@@ -49,12 +49,12 @@ export default class Auth {
   _setAuthorizedComponents() {
     this._loggedIn = true;
 
-    if (this._dependecies.header && this._dependecies.headerElements) {
-      const { header, headerElements } = this._dependecies;
+    if (this._dependecies.header && this._dependecies.HEADER_ELEMENTS) {
+      const { header, HEADER_ELEMENTS } = this._dependecies;
 
       header.setMountHandlers(
-        [{ element: headerElements.authButton, handlers: [this.userLogout] },
-          { element: headerElements.navBurger, handlers: [header.openMobileNavbar] }],
+        [{ element: HEADER_ELEMENTS.authButton, handlers: [this.userLogout] },
+          { element: HEADER_ELEMENTS.navBurger, handlers: [header.openMobileNavbar] }],
       );
 
       header.render({

@@ -1,11 +1,10 @@
-import { dateMonths } from '../constants';
+import { DATE_MONTHS } from '../constants';
 
 const formatCurrentDate = () => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
-
 
   return `${year}-${month + 1}-${day}`;
 };
@@ -29,7 +28,7 @@ const formatNewsDate = (newsDate) => {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return `${day} ${dateMonths[month]}, ${year}`;
+  return `${day} ${DATE_MONTHS[month]}, ${year}`;
 };
 
 

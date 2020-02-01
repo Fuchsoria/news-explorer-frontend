@@ -6,9 +6,9 @@ import Popup from './js/components/Popup';
 import Form from './js/components/Form';
 import Auth from './js/modules/auth';
 import {
-  mainApiLinks, newsApiParams, newsApiLink, formErrorsText, headerElements,
-  popupRegisteredElements, popupSignupElements, popupSigninElements,
-  signinFormElements, signupFormElements, searchFormElements,
+  MAIN_API_LINKS, NEWS_API_PARAMS, NEWS_API_LINK, FORM_ERRORS_TEXT, HEADER_ELEMENTS,
+  POPUP_REGISTERED_ELEMENTS, POPUP_SIGNUP_ELEMENTS, POPUP_SIGNIN_ELEMENTS,
+  SIGNIN_FORM_ELEMENTS, SIGNUP_FORM_ELEMENTS, SEARCH_FORM_ELEMENTS,
 } from './js/constants/index';
 import {
   formatCurrentDate,
@@ -19,33 +19,32 @@ import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 const auth = new Auth();
-const mainApi = new MainApi(mainApiLinks);
-const newsApi = new NewsApi(newsApiLink, newsApiParams, {
+const mainApi = new MainApi(MAIN_API_LINKS);
+const newsApi = new NewsApi(NEWS_API_LINK, NEWS_API_PARAMS, {
   formatCurrentDate,
   formatWeekBeforeDate,
 });
 
-const popupRegistered = new Popup(document.querySelector('.popup'), popupRegisteredElements, { popupName: 'popupRegistered' });
-const popupSignup = new Popup(document.querySelector('.popup'), popupSignupElements, { popupName: 'popupSignup' });
-const popupSignin = new Popup(document.querySelector('.popup'), popupSigninElements, { popupName: 'popupSignin' });
+const popupRegistered = new Popup(document.querySelector('.popup'), POPUP_REGISTERED_ELEMENTS, { popupName: 'popupRegistered' });
+const popupSignup = new Popup(document.querySelector('.popup'), POPUP_SIGNUP_ELEMENTS, { popupName: 'popupSignup' });
+const popupSignin = new Popup(document.querySelector('.popup'), POPUP_SIGNIN_ELEMENTS, { popupName: 'popupSignin' });
 
-// Первым аргументом передаём дом элемент, вторым передаём шаблоны, третьим пропсы,
 const header = new Header(
-  document.querySelector('.header'), headerElements, { color: 'light' },
+  document.querySelector('.header'), HEADER_ELEMENTS, { color: 'light' },
 );
 
-const signinForm = new Form(document.querySelector('.popup'), signinFormElements, { formName: 'signinForm' });
-const signupForm = new Form(document.querySelector('.popup'), signupFormElements, { formName: 'signupForm' });
-const searchForm = new Form(document.querySelector('.search'), searchFormElements, { formName: 'searchForm' });
+const signinForm = new Form(document.querySelector('.popup'), SIGNIN_FORM_ELEMENTS, { formName: 'signinForm' });
+const signupForm = new Form(document.querySelector('.popup'), SIGNUP_FORM_ELEMENTS, { formName: 'signupForm' });
+const searchForm = new Form(document.querySelector('.search'), SEARCH_FORM_ELEMENTS, { formName: 'searchForm' });
 
 signinForm.setDependecies({
-  validator, xss, mainApi, formErrorsText, auth, popupSignin,
+  validator, xss, mainApi, FORM_ERRORS_TEXT, auth, popupSignin,
 });
 signupForm.setDependecies({
-  validator, xss, mainApi, formErrorsText, popupSignup, popupRegistered,
+  validator, xss, mainApi, FORM_ERRORS_TEXT, popupSignup, popupRegistered,
 });
 searchForm.setDependecies({
-  validator, xss, formErrorsText, newsApi, auth,
+  validator, xss, FORM_ERRORS_TEXT, newsApi, auth,
 });
 
 popupSignup.setDependecies({ popupSignin, signupForm, popupRegistered });
@@ -54,7 +53,7 @@ popupRegistered.setDependecies({ popupSignin, signinForm });
 
 
 auth.setDependecies({
-  mainApi, header, popupSignin, headerElements,
+  mainApi, header, popupSignin, HEADER_ELEMENTS,
 });
 
 auth.sendCheckRequest();
