@@ -60,7 +60,7 @@ popupSignin.setDependecies({ popupSignup, signinForm });
 popupRegistered.setDependecies({ popupSignin, signinForm });
 
 newsCardList.setDependecies({
-  newsChunks, formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth,
+  newsChunks, formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth, mainApi,
 });
 
 auth.setDependecies({

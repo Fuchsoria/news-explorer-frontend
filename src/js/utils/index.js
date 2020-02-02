@@ -31,7 +31,6 @@ const formatNewsDate = (newsDate) => {
   return `${day} ${DATE_MONTHS[month]}, ${year}`;
 };
 
-
 export {
   formatCurrentDate,
   formatWeekBeforeDate,

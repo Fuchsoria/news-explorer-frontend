@@ -6,7 +6,7 @@
   },
   "extends": "airbnb-base",
   "rules": {
-    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allow": ["_id"] }],
     "class-methods-use-this": ["error", { "exceptMethods": ["_setInputError"] }],
     "no-console": "off"
   }

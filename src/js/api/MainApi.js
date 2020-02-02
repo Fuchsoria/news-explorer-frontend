@@ -3,6 +3,8 @@ export default class MainApi {
     this._apiLinks = apiLinks;
     this.getUserData = this.getUserData.bind(this);
     this.logout = this.logout.bind(this);
+    this.createArticle = this.createArticle.bind(this);
+    this.removeArticle = this.removeArticle.bind(this);
   }
 
   signup({ email, password, name }) {

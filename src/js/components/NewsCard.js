@@ -7,6 +7,8 @@ export default class NewsCard extends BaseComponent {
     this._createCard();
     this.getCardMarkup = this.getCardMarkup.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.setBookmarkMarked = this.setBookmarkMarked.bind(this);
+    this.removeBookmarkMarked = this.removeBookmarkMarked.bind(this);
   }
 
   _createDomElement() {
@@ -22,7 +24,7 @@ export default class NewsCard extends BaseComponent {
       cardTitle, cardDate, cardText, cardSource, cardImg, cardKeyword,
     } = this._blockElements;
 
-    this._domElement.setAttribute('data-Id', dataId);
+    this._domElement.setAttribute('data-id', dataId);
     this._domElement.querySelector(cardTitle).textContent = title;
     this._domElement.querySelector(cardDate).textContent = formatedDate;
     this._domElement.querySelector(cardText).textContent = description;
@@ -51,6 +53,14 @@ export default class NewsCard extends BaseComponent {
     bookmarkNode.appendChild(bookmarkElement);
   }
 
+  setBookmarkMarked() {
+    this._domElement.querySelector('.card__bookmark-icon').classList.add('card__bookmark-icon_marked');
+  }
+
+  removeBookmarkMarked() {
+    this._domElement.querySelector('.card__bookmark-icon').classList.remove('card__bookmark-icon_marked');
+  }
+
   _createCard() {
     if (this._blockElements && this._props) {
       this._createDomElement();
@@ -59,8 +69,19 @@ export default class NewsCard extends BaseComponent {
     }
   }
 
+
   getCardMarkup() {
     return this._domElement;
+  }
+
+  getCardProps() {
+    const {
+      keyword, source, title, description, urlToImage, publishedAt, link,
+    } = this._props;
+
+    return {
+      keyword, source, title, link, text: description, image: urlToImage, date: publishedAt,
+    };
   }
 
   deleteCard() {
