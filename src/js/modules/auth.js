@@ -26,6 +26,14 @@ export default class Auth {
     return this._loggedIn;
   }
 
+  _cleanupDependeciesMarkups() {
+    if (this._dependecies.newsCardList) {
+      const { newsCardList } = this._dependecies;
+
+      newsCardList.clearMarkup();
+    }
+  }
+
   _setUnauthorizedComponents() {
     this._loggedIn = false;
 
@@ -44,6 +52,8 @@ export default class Auth {
 
       });
     }
+
+    this._cleanupDependeciesMarkups();
   }
 
   _setAuthorizedComponents() {
@@ -62,6 +72,8 @@ export default class Auth {
         userName: this._userName,
       });
     }
+
+    this._cleanupDependeciesMarkups();
   }
 
   sendCheckRequest() {

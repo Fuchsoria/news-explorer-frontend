@@ -240,19 +240,36 @@ export default class Form extends BaseComponent {
     return queryResult;
   }
 
-
   _sendSearchRequest(event) {
     event.preventDefault();
     const validateResult = this._validateSearchForm();
 
-    if (validateResult) {
-      console.log(this._getInfo());
-      // this._setButtonDisabled('search');
-      // this._setInputsDisabled();
+    if (validateResult && this._dependecies.newsApi && this._dependecies.newsCardList) {
+      const { newsApi, newsCardList } = this._dependecies;
+      const { searchQuery } = this._getInfo();
 
-      console.log('Отправляю на поиск новостей');
-    } else {
-      console.log('Невалидно');
+      this._setButtonDisabled('search');
+      this._setInputsDisabled();
+      newsCardList.renderLoader();
+
+      newsApi.getNews(searchQuery)
+        .then((resp) => {
+          if (resp.status === 'ok' && resp.articles.length > 0) {
+            newsCardList.initialResults(resp.articles, searchQuery);
+          } else if (resp.status === 'ok' && resp.articles.length <= 0) {
+            newsCardList.renderNotFound();
+          } else {
+            throw new Error('500');
+          }
+        })
+        .then(() => {
+          this._setButtonActive('search');
+          this._setInputsActive();
+        })
+        .catch((err) => {
+          console.log(err.message);
+          newsCardList.renderError();
+        });
     }
   }
 

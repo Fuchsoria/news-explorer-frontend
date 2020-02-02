@@ -8,15 +8,21 @@ export default class BaseComponent {
 
   // Массовое добавление обработчиков определенному элементу
   _setHandlers(currentElement, handlers, event) {
+    const element = typeof currentElement === 'object'
+      ? currentElement : this._domElement.querySelector(currentElement);
+
     handlers.forEach((handler) => {
-      this._domElement.querySelector(currentElement).addEventListener(event, handler);
+      element.addEventListener(event, handler);
     });
   }
 
   // Удаление добавление обработчиков определенному элементу
   _removeHandlers(currentElement, handlers, event) {
+    const element = typeof currentElement === 'object'
+      ? currentElement : this._domElement.querySelector(currentElement);
+
     handlers.forEach((handler) => {
-      this._domElement.querySelector(currentElement).removeEventListener(event, handler);
+      element.removeEventListener(event, handler);
     });
   }
 

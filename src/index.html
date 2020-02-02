@@ -208,6 +208,13 @@
       </div>
     </template>
 
+    <template id="results-error">
+      <div class="no-results">
+        <h2 class="no-results__title">Во время запроса произошла ошибка.</h2>
+        <p class="no-results__text">Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+      </div>
+    </template>
+
     <template id="show-more">
       <button class="results__more">Показать еще</button>
     </template>
@@ -217,18 +224,15 @@
         <img src="" alt="Изображение новости" class="card__img" />
         <h6 class="card__keyword card__keyword_hidden"></h6>
         <div class="card__bookmark">
-          <!-- сюда рендерим закладку, в зависимости от статуса -->
         </div>
         <div class="card__content">
           <div class="card__limiter">
-            <h5 class="card__date">2 августа, 2019</h5>
-            <h3 class="card__title">Лесные огоньки: история одной фотографии</h3>
+            <h5 class="card__date"></h5>
+            <h3 class="card__title"></h3>
             <p class="card__text">
-              Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую
-              красоту одного из местных чудес природы.
             </p>
           </div>
-          <h4 class="card__source">Афиша</h4>
+          <h4 class="card__source"></h4>
         </div>
       </article>
     </template>

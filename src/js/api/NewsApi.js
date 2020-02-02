@@ -3,6 +3,7 @@ export default class NewsApi {
     this._apiLink = newsApiLink;
     this._apiParams = newsApiParams;
     this._apiDependecies = newsApiDependecies;
+    this.getNews = this.getNews.bind(this);
   }
 
   getNews(query) {

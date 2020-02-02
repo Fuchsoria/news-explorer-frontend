@@ -68,6 +68,28 @@ const HEADER_ELEMENTS = {
 
 const DATE_MONTHS = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
+const NEWS_CARD_LIST_ELEMENTS = {
+  resultsTemplate: document.querySelector('#results'),
+  resultsErrorTemplate: document.querySelector('#results-error'),
+  noResultsTemplate: document.querySelector('#no-results'),
+  loadingTemplate: document.querySelector('#loading'),
+  showMoreButtonTemplate: document.querySelector('#show-more'),
+};
+
+const NEWS_CARD_ELEMENTS = {
+  cardTemplate: document.querySelector('#card'),
+  bookmarkLoggedinTemplate: document.querySelector('#bookmark-loggedin'),
+  bookmarkNotLoggedTemplate: document.querySelector('#bookmark-notloggedin'),
+  bookmarkSavednewsTemplate: document.querySelector('#bookmark-savednews'),
+  cardTitle: '.card__title',
+  cardDate: '.card__date',
+  cardText: '.card__text',
+  cardSource: '.card__source',
+  cardBookmark: '.card__bookmark',
+  cardImg: '.card__img',
+  cardKeyword: '.card__keyword',
+};
+
 export {
   MAIN_API_LINKS,
   MAIN_API_DOMAIN,
@@ -82,4 +104,6 @@ export {
   SIGNUP_FORM_ELEMENTS,
   SEARCH_FORM_ELEMENTS,
   DATE_MONTHS,
+  NEWS_CARD_LIST_ELEMENTS,
+  NEWS_CARD_ELEMENTS,
 };
