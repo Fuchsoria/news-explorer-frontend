@@ -17,10 +17,10 @@ import {
   formatCurrentDate,
   formatWeekBeforeDate,
   formatNewsDate,
+  createCardInstance,
 } from './js/utils';
 import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
-import NewsCard from './js/components/NewsCard';
 
 const auth = new Auth();
 const newsChunks = new NewsChunks();
@@ -60,7 +60,7 @@ popupSignin.setDependecies({ popupSignup, signinForm });
 popupRegistered.setDependecies({ popupSignin, signinForm });
 
 newsCardList.setDependecies({
-  newsChunks, formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth, mainApi,
+  newsChunks, formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth, mainApi,
 });
 
 auth.setDependecies({

@@ -1,4 +1,5 @@
 import { DATE_MONTHS } from '../constants';
+import NewsCard from '../components/NewsCard';
 
 /**
  * Форматирует текущую дату в необходимый для новостного апи формат
@@ -40,8 +41,21 @@ const formatNewsDate = (newsDate) => {
   return `${day} ${DATE_MONTHS[month]}, ${year}`;
 };
 
+/**
+ * Создаёт инстанц карточки и возвращает его
+ * @param  {node} domElement
+ * @param  {object} blockElements
+ * @param  {object} props
+ */
+const createCardInstance = (domElement, blockElements, props) => {
+  const instance = new NewsCard(domElement, blockElements, props);
+
+  return instance;
+};
+
 export {
   formatCurrentDate,
   formatWeekBeforeDate,
   formatNewsDate,
+  createCardInstance,
 };

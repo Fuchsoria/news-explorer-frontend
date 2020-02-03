@@ -9,9 +9,9 @@ import {
 } from '../../js/constants/index';
 import {
   formatNewsDate,
+  createCardInstance,
 } from '../../js/utils';
 import MainApi from '../../js/api/MainApi';
-import NewsCard from '../../js/components/NewsCard';
 import SavedNews from '../../js/components/SavedNews';
 
 const auth = new Auth('saved');
@@ -25,7 +25,7 @@ const savedNews = new SavedNews(
 const newsCardList = new NewsCardList(SAVED_PAGE_BLOCKS.results, NEWS_CARD_LIST_ELEMENTS, { page: 'saved' });
 
 newsCardList.setDependecies({
-  formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth, mainApi, savedNews,
+  formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth, mainApi, savedNews,
 });
 auth.setDependecies({
   mainApi, header, HEADER_ELEMENTS, newsCardList, savedNews,

@@ -135,10 +135,10 @@ export default class NewsCardList extends BaseComponent {
    * @param  {array} articles - Массив артиклей
    */
   _renderCards(articles) {
-    if (this._dependecies.formatNewsDate && this._dependecies.NewsCard
-      && this._dependecies.NEWS_CARD_ELEMENTS) {
+    if (this._dependecies.formatNewsDate
+      && this._dependecies.NEWS_CARD_ELEMENTS && this._dependecies.createCardInstance) {
       const {
-        newsChunks, formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth,
+        newsChunks, formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth,
       } = this._dependecies;
       const currentChunk = articles || newsChunks.getOneChunk().items;
 
@@ -189,7 +189,7 @@ export default class NewsCardList extends BaseComponent {
           };
         }
 
-        const newCardInstance = new NewsCard(false, NEWS_CARD_ELEMENTS, cardProps);
+        const newCardInstance = createCardInstance(false, NEWS_CARD_ELEMENTS, cardProps);
         const newCardMarkup = newCardInstance.getCardMarkup();
 
         this._addCard(newCardMarkup);

@@ -95,11 +95,11 @@ export default class Auth {
 
       getUserData()
         .then((result) => {
-          if (result) {
+          if (result.name && result.email) {
             this._userName = result.name;
             this._setAuthorizedComponents();
           } else {
-            throw new Error('Unauthrized');
+            throw new Error('Unauthorized');
           }
         })
         .catch(() => {
