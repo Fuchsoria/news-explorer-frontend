@@ -16,6 +16,6 @@ export default class NewsApi {
       `${this._apiLink}q=${query}&from=${dateFrom}&to=${dateTo}&sortBy=${sortBy}&pageSize=${pageSize}&apiKey=${apiKey}`,
     )
       .then((resp) => resp.json())
-      .catch((err) => console.log(err));
+      .catch((err) => new Error(err.message));
   }
 }

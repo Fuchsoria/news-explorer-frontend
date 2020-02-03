@@ -108,6 +108,18 @@ const SAVEDNEWS_ELEMENTS = {
   restKeywords: '.saved__rest-keywords',
 };
 
+const MAIN_PAGE_BLOCKS = {
+  header: document.querySelector('.header'),
+  popup: document.querySelector('.popup'),
+  search: document.querySelector('.search'),
+  results: document.querySelector('.results'),
+};
+const SAVED_PAGE_BLOCKS = {
+  header: document.querySelector('.header'),
+  saved: document.querySelector('.saved'),
+  results: document.querySelector('.results'),
+};
+
 export {
   MAIN_API_LINKS,
   MAIN_API_DOMAIN,
@@ -125,4 +137,6 @@ export {
   NEWS_CARD_LIST_ELEMENTS,
   NEWS_CARD_ELEMENTS,
   SAVEDNEWS_ELEMENTS,
+  MAIN_PAGE_BLOCKS,
+  SAVED_PAGE_BLOCKS,
 };

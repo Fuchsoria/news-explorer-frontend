@@ -11,7 +11,7 @@ import {
   MAIN_API_LINKS, NEWS_API_PARAMS, NEWS_API_LINK, FORM_ERRORS_TEXT, HEADER_ELEMENTS,
   POPUP_REGISTERED_ELEMENTS, POPUP_SIGNUP_ELEMENTS, POPUP_SIGNIN_ELEMENTS,
   SIGNIN_FORM_ELEMENTS, SIGNUP_FORM_ELEMENTS, SEARCH_FORM_ELEMENTS,
-  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS,
+  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS, MAIN_PAGE_BLOCKS,
 } from './js/constants/index';
 import {
   formatCurrentDate,
@@ -31,19 +31,19 @@ const newsApi = new NewsApi(NEWS_API_LINK, NEWS_API_PARAMS, {
   formatWeekBeforeDate,
 });
 
-const popupRegistered = new Popup(document.querySelector('.popup'), POPUP_REGISTERED_ELEMENTS, { popupName: 'popupRegistered' });
-const popupSignup = new Popup(document.querySelector('.popup'), POPUP_SIGNUP_ELEMENTS, { popupName: 'popupSignup' });
-const popupSignin = new Popup(document.querySelector('.popup'), POPUP_SIGNIN_ELEMENTS, { popupName: 'popupSignin' });
+const popupRegistered = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_REGISTERED_ELEMENTS, { popupName: 'popupRegistered' });
+const popupSignup = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNUP_ELEMENTS, { popupName: 'popupSignup' });
+const popupSignin = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNIN_ELEMENTS, { popupName: 'popupSignin' });
 
 const header = new Header(
-  document.querySelector('.header'), HEADER_ELEMENTS, { color: 'light' },
+  MAIN_PAGE_BLOCKS.header, HEADER_ELEMENTS, { color: 'light' },
 );
 
-const signinForm = new Form(document.querySelector('.popup'), SIGNIN_FORM_ELEMENTS, { formName: 'signinForm' });
-const signupForm = new Form(document.querySelector('.popup'), SIGNUP_FORM_ELEMENTS, { formName: 'signupForm' });
-const searchForm = new Form(document.querySelector('.search'), SEARCH_FORM_ELEMENTS, { formName: 'searchForm' });
+const signinForm = new Form(MAIN_PAGE_BLOCKS.popup, SIGNIN_FORM_ELEMENTS, { formName: 'signinForm' });
+const signupForm = new Form(MAIN_PAGE_BLOCKS.popup, SIGNUP_FORM_ELEMENTS, { formName: 'signupForm' });
+const searchForm = new Form(MAIN_PAGE_BLOCKS.search, SEARCH_FORM_ELEMENTS, { formName: 'searchForm' });
 
-const newsCardList = new NewsCardList(document.querySelector('.results'), NEWS_CARD_LIST_ELEMENTS, { page: 'index' });
+const newsCardList = new NewsCardList(MAIN_PAGE_BLOCKS.results, NEWS_CARD_LIST_ELEMENTS, { page: 'index' });
 
 signinForm.setDependecies({
   validator, xss, mainApi, FORM_ERRORS_TEXT, auth, popupSignin,

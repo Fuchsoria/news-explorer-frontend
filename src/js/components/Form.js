@@ -18,14 +18,15 @@ export default class Form extends BaseComponent {
    */
   _setServerError(errorNumber) {
     const errorField = this._domElement.querySelector(this._blockElements.form).querySelector('.form__error_server');
+    const checkedErrorNumber = typeof errorNumber === 'number' ? errorNumber : Number(errorNumber);
 
-    if (errorNumber === 401 && this._dependecies.FORM_ERRORS_TEXT) {
+    if (checkedErrorNumber === 401 && this._dependecies.FORM_ERRORS_TEXT) {
       errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.wrongEmailOrPassword;
       errorField.classList.add('form__error_server_visible');
-    } else if (errorNumber === 409 && this._dependecies.FORM_ERRORS_TEXT) {
+    } else if (checkedErrorNumber === 409 && this._dependecies.FORM_ERRORS_TEXT) {
       errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.conflict;
       errorField.classList.add('form__error_server_visible');
-    } else if (errorNumber === 500 && this._dependecies.FORM_ERRORS_TEXT) {
+    } else if (checkedErrorNumber === 500 && this._dependecies.FORM_ERRORS_TEXT) {
       errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.serverError;
       errorField.classList.add('form__error_server_visible');
     } else {
@@ -175,12 +176,13 @@ export default class Form extends BaseComponent {
   _sendSigninRequest(event) {
     event.preventDefault();
     if (this._dependecies.mainApi) {
+      const { email, password } = this._getInfo();
+      const { mainApi } = this._dependecies;
+
       this._setButtonDisabled();
       this._setInputsDisabled();
 
-      const { email, password } = this._getInfo();
-
-      this._dependecies.mainApi.signin({ email, password })
+      mainApi.signin({ email, password })
         .then((resp) => {
           if (resp.status === 200) {
             this._setServerError();
@@ -192,10 +194,12 @@ export default class Form extends BaseComponent {
             }
           } else if (resp.status === 401) {
             throw new Error('401');
+          } else {
+            throw new Error('500');
           }
         })
-        .catch(() => {
-          this._setServerError(401);
+        .catch((err) => {
+          this._setServerError(err.message);
           this._setButtonActive();
           this._setInputsActive();
         });
@@ -221,12 +225,13 @@ export default class Form extends BaseComponent {
     event.preventDefault();
 
     if (this._dependecies.mainApi) {
+      const { email, password, name } = this._getInfo();
+      const { mainApi } = this._dependecies;
+
       this._setButtonDisabled();
       this._setInputsDisabled();
 
-      const { email, password, name } = this._getInfo();
-
-      this._dependecies.mainApi.signup({ email, password, name })
+      mainApi.signup({ email, password, name })
         .then((resp) => {
           if (resp.status === 201) {
             if (this._dependecies.popupRegistered && this._dependecies.popupSignup) {
@@ -234,13 +239,13 @@ export default class Form extends BaseComponent {
               this._dependecies.popupRegistered.setContent();
             }
           } else if (resp.status === 409) {
-            this._setServerError(409);
-            this._setButtonActive();
-            this._setInputsActive();
+            throw new Error('409');
+          } else {
+            throw new Error('500');
           }
         })
-        .catch(() => {
-          this._setServerError(500);
+        .catch((err) => {
+          this._setServerError(err.message);
           this._setButtonActive();
           this._setInputsActive();
         });
@@ -281,8 +286,7 @@ export default class Form extends BaseComponent {
           this._setButtonActive('search');
           this._setInputsActive();
         })
-        .catch((err) => {
-          console.log(err.message);
+        .catch(() => {
           newsCardList.renderError();
           this._setButtonActive('search');
           this._setInputsActive();

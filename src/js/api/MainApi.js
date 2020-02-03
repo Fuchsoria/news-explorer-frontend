@@ -20,7 +20,7 @@ export default class MainApi {
         password,
         name,
       }),
-    }).catch((err) => console.log(err));
+    }).catch((err) => new Error(err.message));
   }
 
   signin({ email, password }) {
@@ -34,14 +34,14 @@ export default class MainApi {
         email,
         password,
       }),
-    }).catch((err) => console.log(err));
+    }).catch((err) => new Error(err.message));
   }
 
   logout() {
     return fetch(this._apiLinks.logout, {
       method: 'POST',
       credentials: 'include',
-    }).catch((err) => console.log(err));
+    }).catch((err) => new Error(err.message));
   }
 
   getUserData() {
