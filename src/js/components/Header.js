@@ -9,6 +9,11 @@ export default class Header extends BaseComponent {
     this.closeMobileNavbar = this.closeMobileNavbar.bind(this);
   }
 
+  /**
+   * Создаёт и возвращает разметку меню
+   * @param  {bool} isLoggedIn - авторизован ли пользовать
+   * @param  {string} userName - имя пользователя
+   */
   _createElement({
     isLoggedIn, userName,
   }) {
@@ -30,6 +35,9 @@ export default class Header extends BaseComponent {
     return this._navContent;
   }
 
+  /**
+   * Инициализирует мобильное меню, добавляя в скоп компонента ссылки на ноды меню
+   */
   _initialMobileNavbar() {
     const {
       navBurger, navbar, navItems, overlay,
@@ -41,6 +49,9 @@ export default class Header extends BaseComponent {
     this._overlay = this._domElement.querySelector(overlay);
   }
 
+  /**
+   * В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
+   */
   _cleanupOpenedNavbar() {
     const {
       navbarOpened, overlayOpened,
@@ -89,9 +100,8 @@ export default class Header extends BaseComponent {
     // В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
     this._cleanupOpenedNavbar();
 
-    /* Очищаем навбар и рендерим его заного,
-    * innerHTML используется ТОЛЬКО для очистки внутренностей блока */
-    navbarNode.innerHTML = '';
+    // Очищаем навбар и рендерим его заного,
+    this._clearNodeContent(navbarNode);
     navbarNode.appendChild(this._createElement(props));
 
     // Инициируем мобильные дом элементы

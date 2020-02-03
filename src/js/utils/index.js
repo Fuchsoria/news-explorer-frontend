@@ -1,5 +1,8 @@
 import { DATE_MONTHS } from '../constants';
 
+/**
+ * Форматирует текущую дату в необходимый для новостного апи формат
+ */
 const formatCurrentDate = () => {
   const date = new Date();
   const year = date.getFullYear();
@@ -9,6 +12,9 @@ const formatCurrentDate = () => {
   return `${year}-${month + 1}-${day}`;
 };
 
+/**
+ * Форматирует дату недельной давности в необходимый для новостного апи формат
+ */
 const formatWeekBeforeDate = () => {
   const date = new Date();
   const timestamp = date.getTime();
@@ -21,9 +27,12 @@ const formatWeekBeforeDate = () => {
   return `${year}-${month + 1}-${day}`;
 };
 
+/**
+ * Форматирует дату из апи в необходимый шаблонный стандарт для вывода пользователю
+ * @param  {date} newsDate - Дата из новостного апи
+ */
 const formatNewsDate = (newsDate) => {
   const date = new Date(newsDate);
-
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();

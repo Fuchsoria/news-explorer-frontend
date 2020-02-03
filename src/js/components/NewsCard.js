@@ -16,6 +16,9 @@ export default class NewsCard extends BaseComponent {
     this._domElement = cardTemplate.cloneNode(true).content.querySelector('.card');
   }
 
+  /**
+   * Заполняет элементы контента карточки и расставляет необходимые аттрибуты
+   */
   _updateDomElementContent() {
     const {
       dataId, keyword, source, title, description, urlToImage, formatedDate, link, type,
@@ -26,6 +29,7 @@ export default class NewsCard extends BaseComponent {
 
     if (type === 'saved') {
       this._domElement.setAttribute('data-saved', true);
+      this._domElement.querySelector(cardKeyword).classList.remove(`${cardKeyword.replace('.', '')}_hidden`);
     }
 
     this._domElement.setAttribute('data-id', dataId);
@@ -38,6 +42,9 @@ export default class NewsCard extends BaseComponent {
     this._domElement.querySelector(cardLink).href = link;
   }
 
+  /**
+   * Устанавливает разметку закладки в зависимости от ситуации и типа страницы
+   */
   _setBookmark() {
     const { isLogged, type } = this._props;
     const {
@@ -59,18 +66,23 @@ export default class NewsCard extends BaseComponent {
   }
 
   setBookmarkMarked() {
-    this._domElement.querySelector('.card__bookmark-icon').classList.add('card__bookmark-icon_marked');
+    this._cardBookmarkIcon.classList.add('card__bookmark-icon_marked');
   }
 
   removeBookmarkMarked() {
-    this._domElement.querySelector('.card__bookmark-icon').classList.remove('card__bookmark-icon_marked');
+    this._cardBookmarkIcon.classList.remove('card__bookmark-icon_marked');
   }
 
+  /**
+   * Запускает создание и заполнение карточки
+   */
   _createCard() {
     if (this._blockElements && this._props) {
       this._createDomElement();
       this._setBookmark();
       this._updateDomElementContent();
+
+      this._cardBookmarkIcon = this._domElement.querySelector('.card__bookmark-icon');
     }
   }
 
@@ -95,8 +107,11 @@ export default class NewsCard extends BaseComponent {
     };
   }
 
+  /**
+   * Убирает обработчики с компонента и удаляет его ноду
+   */
   deleteCard() {
-    this._domElement.remove();
     this._unmount();
+    this._domElement.remove();
   }
 }

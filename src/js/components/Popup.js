@@ -24,9 +24,8 @@ export default class Popup extends BaseComponent {
   }
 
   clearContent() {
-    /* innerHTML используется ТОЛЬКО для очистки внутренностей блока */
     this._unmount();
-    this._domElement.querySelector(this._container).innerHTML = '';
+    this._clearNodeContent(this._domElement.querySelector(this._container));
   }
 
   _linkToSignin() {
@@ -54,12 +53,19 @@ export default class Popup extends BaseComponent {
     this.clearContent();
   }
 
+  /**
+   * Закрывает попап при нажатие кнопки escape либо нажатие на оверлей
+   * @param  {event} event - Событие нажатия кнопки или клика
+   */
   _checkUserEvents(event) {
     if (event.target.classList.contains('popup_overlay') || event.key === 'Escape') {
       this.close();
     }
   }
 
+  /**
+   * Создаёт попап и устанавливает в него необходимое содержимое и обработчики
+   */
   setContent() {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
     this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] },

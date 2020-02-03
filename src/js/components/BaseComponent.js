@@ -6,7 +6,22 @@ export default class BaseComponent {
     this._mounts = [];
   }
 
-  // Массовое добавление обработчиков определенному элементу
+  /**
+   * очищает у ноды всех потомков
+   * @param  {node} node - нода
+   */
+  _clearNodeContent(node) {
+    while (node.lastChild) {
+      node.removeChild(node.lastChild);
+    }
+  }
+
+  /**
+   * Добавляет на определенный элемент необходимые слушатели событий
+   * @param  {node} currentElement - нода либо текстовый селектор
+   * @param  {array} handlers - массив обработчиков
+   * @param  {string} event - событие строкой
+   */
   _setHandlers(currentElement, handlers, event) {
     const element = typeof currentElement === 'object'
       ? currentElement : this._domElement.querySelector(currentElement);
@@ -16,7 +31,12 @@ export default class BaseComponent {
     });
   }
 
-  // Удаление добавление обработчиков определенному элементу
+  /**
+   * Удаляет события с определенного элемента
+   * @param  {node} currentElement - нода либо текстовый селектор
+   * @param  {array} handlers - массив обработчиков
+   * @param  {string} event - событие строкой
+   */
   _removeHandlers(currentElement, handlers, event) {
     const element = typeof currentElement === 'object'
       ? currentElement : this._domElement.querySelector(currentElement);
@@ -26,50 +46,66 @@ export default class BaseComponent {
     });
   }
 
-  // Подгрузка обработчиков в единый массив внутри компонента
+  /**
+   * Вызывает метод добавления события и записывает их внутрь компонента
+   * @param  {node} element - нода либо текстовый селектор
+   * @param  {array} handlers - массив обработчиков
+   * @param  {string} event - событие либо устанавливает стандартное значение клик
+   */
   _mount({ element, handlers, event = 'click' }) {
     this._setHandlers(element, handlers, event);
     this._mounts.push({ element, handlers, event });
   }
 
-  // Подгрузка локальных обработчиков
+  /**
+   * массово добавляет локальные обработчики на один или несколько элементов
+   * @param  {array} array - массив объектов необходимых для метода _mount
+   */
   _mountLocalHandlers(array) {
     array.forEach((item) => {
       this._mount(item);
     });
   }
 
-  // Подгрузка внешних обработчиков
+  /**
+   * Подгрузка внешних обработчиков, указанных ранее через метод setMountHandlers
+   */
   _mountHandlers() {
     if (this._handlers) {
-      console.log('Подгрузчик обработчиков', this._handlers);
-      console.log('Загружаю компоненты');
       this._handlers.forEach((item) => {
         this._mount(item);
       });
-      console.log('Обновленные компоненты', this._mounts);
     }
   }
 
-  // Установка внешних обработчиков
+  /**
+   * Задаёт список обработчиков внутрь компонента,
+   * для дальнейшего использования через метод _mountHandlers
+   * @param  {array} array - список объектов необходимых для подгрузки обработчиков
+   */
   setMountHandlers(array) {
     this._handlers = array;
   }
 
-  // Добавляем зависимости уже после инициализации
+  /**
+   * Добавляем зависимости уже после инициализации класса компонента,
+   * необходимо для решения цикличных зависимостей
+   * @param  {object} dependecies - Объект зависимостей, которые будут добавлены внутрь компонента
+   */
   setDependecies(dependecies) {
     this._dependecies = dependecies;
   }
 
-  // Выгрузка всех обработчиков компонента
+  /**
+   * Выгрузка всех обработчиков компонента, установленных через _mount либо его родительские методы
+   */
   _unmount() {
     if (this._mounts.length > 0) {
-      console.log(this._mounts);
       this._mounts.forEach((item) => {
         this._removeHandlers(item.element, item.handlers, item.event);
       });
+
       this._mounts = [];
-      console.log('Выгрузил компоненты', this._mounts);
     }
   }
 }

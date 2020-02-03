@@ -12,6 +12,10 @@ export default class Form extends BaseComponent {
     this._validateSearchForm = this._validateSearchForm.bind(this);
   }
 
+  /**
+   * При наличие номера ошибки отображает её в форме, при отсутствие очищает и скрывает
+   * @param  {number} errorNumber - номер ошибки
+   */
   _setServerError(errorNumber) {
     const errorField = this._domElement.querySelector(this._blockElements.form).querySelector('.form__error_server');
 
@@ -30,10 +34,19 @@ export default class Form extends BaseComponent {
     }
   }
 
+  /**
+   * Возвращает ноду текущей формы
+   */
   _currentFormElement() {
     return this._domElement.querySelector(this._blockElements.form);
   }
 
+  /**
+   * Устанавливает ошибку на поле ввода
+   * @param  {node} input - нода, по которой будет найдена нода для ошибок
+   * @param  {string} errorText - текст ошибки
+   * @param  {string} searchInput - используется как триггер для распознания типа формы
+   */
   _setInputError(input, errorText, searchInput) {
     let errorField;
 
@@ -73,7 +86,6 @@ export default class Form extends BaseComponent {
 
     return validationResult;
   }
-
 
   _setButtonDisabled(type) {
     if (type === 'search') {
@@ -117,6 +129,9 @@ export default class Form extends BaseComponent {
     });
   }
 
+  /**
+   * Возвращает данные из текущей формы с xss фильтром либо без
+   */
   _getInfo() {
     const form = this._currentFormElement();
     let dataObject;
@@ -275,6 +290,9 @@ export default class Form extends BaseComponent {
     }
   }
 
+  /**
+   * Запускает стартовые обработчики формы
+   */
   handlers() {
     this._unmount();
     if (this._props.formName === 'signinForm') {

@@ -104,6 +104,7 @@ const SAVEDNEWS_ELEMENTS = {
   keywords: '.saved__keywords',
   firstKeyword: '.saved__first-keyword',
   secondKeyword: '.saved__second-keyword',
+  thirdKeyword: '.saved__third-keyword',
   restKeywords: '.saved__rest-keywords',
 };
 

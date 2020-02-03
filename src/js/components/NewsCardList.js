@@ -14,11 +14,17 @@ export default class NewsCardList extends BaseComponent {
     this._lastCardId = 0;
   }
 
+  /**
+   * Очищает сохраненные карточки и id из скопа компонента
+   */
   _clearAlreadyRendered() {
     this._alreadyRendered = {};
     this._lastCardId = 0;
   }
 
+  /**
+   * Возвращает новое id для создания карточки
+   */
   _getNewId() {
     const lastId = this._lastCardId;
     this._lastCardId += 1;
@@ -26,20 +32,35 @@ export default class NewsCardList extends BaseComponent {
     return lastId;
   }
 
+  /**
+   * Добавляет аттрибут сохраненной карточки
+   * и добавляет серверное id карточки в объекте уже отрендеренных карточек
+   * @param  {string} cardId - Id карточки
+   * @param  {string} cardServerId - Id карточки на сервере
+   */
   _addCardServerId(cardId, cardServerId) {
     this._alreadyRendered[cardId].serverId = cardServerId;
     this._alreadyRendered[cardId].markup.setAttribute('data-saved', true);
   }
 
+  /**
+   * Удаляет аттрибут сохраненной карточки
+   * и удаляёт серверное id карточки из объекта уже отрендеренных карточек
+   * @param  {string} cardId - Id карточки
+   */
   _removeCardServerId(cardId) {
     this._alreadyRendered[cardId].markup.removeAttribute('data-saved');
     delete this._alreadyRendered[cardId].serverId;
   }
 
   clearMarkup() {
-    this._domElement.innerHTML = '';
+    this._clearNodeContent(this._domElement);
   }
 
+  /**
+   * Отрисовывает разметку шаблона в результатах
+   * @param  {template} template - шаблон необходимый для рендера в результатах
+   */
   _renderMarkup(template) {
     this._removeBookmarkHandlers();
     this.clearMarkup();
@@ -96,19 +117,23 @@ export default class NewsCardList extends BaseComponent {
     this._setHandlers('.results__more', [this._showMore], 'click');
   }
 
+  /**
+   * Добавляет карточку на страницу
+   * @param  {node} card - Нода карточки
+   */
   _addCard(card) {
     const results = this._domElement.querySelector('.results__cards');
 
     results.appendChild(card);
   }
 
-  _isButtonNeededOnStart() {
-    const chunksCount = this._dependecies.newsChunks
-      ? this._dependecies.newsChunks.getChunksCount() : 0;
-
-    return chunksCount > 1;
-  }
-
+  /**
+   * Запускает цикл по переданным артиклям либо из берет их из чанков,
+   * цикл созадёт пропсы в зависимости от типа карточек
+   * и сохраняет их инициализации и ноды внутри локального объекта,
+   * и отправляет карточки на добавление на страницу
+   * @param  {array} articles - Массив артиклей
+   */
   _renderCards(articles) {
     if (this._dependecies.formatNewsDate && this._dependecies.NewsCard
       && this._dependecies.NEWS_CARD_ELEMENTS) {
@@ -174,8 +199,6 @@ export default class NewsCardList extends BaseComponent {
           instance: newCardInstance,
           markup: newCardMarkup,
         };
-
-        console.log(this._alreadyRendered);
       });
     }
   }
@@ -197,8 +220,6 @@ export default class NewsCardList extends BaseComponent {
 
       createArticle(props)
         .then((res) => {
-          console.log(res);
-
           if (!res.id) {
             throw new Error('500');
           }
@@ -238,6 +259,11 @@ export default class NewsCardList extends BaseComponent {
     }
   }
 
+  /**
+   * В зависимости от типа страницы и аттрибута карточки -
+   * отправляет запрос на добавление/удаление карточки
+   * @param  {event} event - Объект события
+   */
   _bookmarkHandler(event) {
     const cardElement = event.target.closest('.card');
     const cardId = cardElement.getAttribute('data-id');
@@ -272,6 +298,11 @@ export default class NewsCardList extends BaseComponent {
     }
   }
 
+  /**
+   * Инициализирует результаты поиска новостей
+   * @param  {array} articles
+   * @param  {string} keyword
+   */
   initialResults(articles, keyword) {
     if (this._dependecies.newsChunks && this._dependecies.auth) {
       const { newsChunks, auth } = this._dependecies;
@@ -297,6 +328,11 @@ export default class NewsCardList extends BaseComponent {
     }
   }
 
+  /**
+   * Устанавливает тип, инициализирует рендер разметки результатов, карточек
+   * и добавляет обработчики закладок
+   * @param  {array} articles - Массив сохраненных новостей
+   */
   initialSavedResults(articles) {
     this._type = 'saved';
     Promise.resolve()

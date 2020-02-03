@@ -53,10 +53,7 @@ export default class Auth {
           { element: HEADER_ELEMENTS.navBurger, handlers: [header.openMobileNavbar] }],
       );
 
-      header.render({
-        isLoggedIn: this._loggedIn,
-
-      });
+      header.render({ isLoggedIn: this._loggedIn });
     }
 
     if (this._page === 'saved') {

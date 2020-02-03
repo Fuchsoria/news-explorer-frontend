@@ -21,18 +21,24 @@ export default class NewsChunks extends BaseComponent {
     this._currentChunkIndex = 0;
   }
 
+  /**
+   * Создаёт и отправляет чанк в общий массив чанков,
+   * для дальнейшего получения через метод getOneChunk
+   * @param  {array} array - массив объектов
+   */
   generateChunks(array) {
     for (let i = 0; i < array.length; i += 3) {
       this._chunks.push(array.slice(i, i + 3));
     }
-
-    console.log(this._chunks);
   }
 
   getChunksCount() {
     return this._chunks.length;
   }
 
+  /**
+   * Возвращает объект текущего чанка со статусом последний ли это чанк
+   */
   getOneChunk() {
     const isLastChunk = this._currentChunkIndex >= (this._chunks.length - 1);
     const items = this._currentChunkIndex <= (this._chunks.length - 1)
