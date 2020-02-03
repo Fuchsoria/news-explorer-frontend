@@ -50,9 +50,19 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _renderResultsMarkup() {
-    const { resultsTemplate } = this._blockElements;
+    let template;
 
-    this._renderMarkup(resultsTemplate);
+    if (this._type === 'saved' && this._blockElements.savedResultsTemplate) {
+      const { savedResultsTemplate } = this._blockElements;
+
+      template = savedResultsTemplate;
+    } else {
+      const { resultsTemplate } = this._blockElements;
+
+      template = resultsTemplate;
+    }
+
+    this._renderMarkup(template);
   }
 
   renderLoader() {
@@ -99,38 +109,60 @@ export default class NewsCardList extends BaseComponent {
     return chunksCount > 1;
   }
 
-  _renderCards() {
-    if (this._dependecies.newsChunks && this._dependecies.formatNewsDate
-      && this._dependecies.NewsCard && this._dependecies.NEWS_CARD_ELEMENTS
-      && this._dependecies.auth) {
+  _renderCards(articles) {
+    if (this._dependecies.formatNewsDate && this._dependecies.NewsCard
+      && this._dependecies.NEWS_CARD_ELEMENTS) {
       const {
         newsChunks, formatNewsDate, NewsCard, NEWS_CARD_ELEMENTS, auth,
       } = this._dependecies;
-      const currentChunk = newsChunks.getOneChunk();
+      const currentChunk = articles || newsChunks.getOneChunk().items;
 
       if (currentChunk.isLastChunk) {
         this._removeShowMoreButton();
       }
 
-      currentChunk.items.forEach((item) => {
+      currentChunk.forEach((item) => {
         const dataId = this._getNewId();
-        const {
-          title, description, urlToImage, publishedAt, source, url,
-        } = item;
+        let cardProps;
 
-        const cardProps = {
-          isLogged: auth.getUserAuthStatus(),
-          type: 'main',
-          dataId,
-          keyword: this._keyword,
-          source: source.name,
-          link: url,
-          title,
-          description,
-          urlToImage,
-          publishedAt,
-          formatedDate: formatNewsDate(publishedAt),
-        };
+        if (this._type === 'saved') {
+          const {
+            _id, keyword, title, text, image, date, source, link,
+          } = item;
+
+          cardProps = {
+            isLogged: true,
+            type: this._type,
+            dataId,
+            serverId: _id,
+            keyword,
+            source,
+            link,
+            title,
+            description: text,
+            urlToImage: image,
+            publishedAt: date,
+            formatedDate: formatNewsDate(date),
+          };
+        } else {
+          const {
+            title, description, urlToImage, publishedAt, source, url,
+          } = item;
+
+          cardProps = {
+            isLogged: auth.getUserAuthStatus(),
+            type: 'main',
+            dataId,
+            keyword: this._keyword,
+            source: source.name,
+            link: url,
+            title,
+            description,
+            urlToImage,
+            publishedAt,
+            formatedDate: formatNewsDate(publishedAt),
+          };
+        }
 
         const newCardInstance = new NewsCard(false, NEWS_CARD_ELEMENTS, cardProps);
         const newCardMarkup = newCardInstance.getCardMarkup();
@@ -151,7 +183,10 @@ export default class NewsCardList extends BaseComponent {
   _showMore() {
     this._removeBookmarkHandlers();
     this._renderCards();
-    this._addBookmarkHandlers();
+
+    if (this._isLogged) {
+      this._addBookmarkHandlers();
+    }
   }
 
   _sendAddCardRequest(cardId) {
@@ -179,12 +214,26 @@ export default class NewsCardList extends BaseComponent {
   _sendRemoveCardRequest(cardId) {
     if (this._dependecies.mainApi) {
       const { removeArticle } = this._dependecies.mainApi;
-      const { serverId, instance } = this._alreadyRendered[cardId];
+      const { instance } = this._alreadyRendered[cardId];
+      const serverId = instance.getCardProps().serverId || this._alreadyRendered[cardId].serverId;
 
       removeArticle(serverId)
-        .then((res) => console.log(res))
+        .then((res) => {
+          if (!res.id && !res._id) {
+            throw new Error('500');
+          }
+        })
         .then(() => this._removeCardServerId(cardId))
-        .then(() => instance.removeBookmarkMarked())
+        .then(() => {
+          if (this._type === 'saved' && this._dependecies.savedNews) {
+            const { savedNews } = this._dependecies;
+
+            instance.deleteCard();
+            savedNews.deleteSavedCard(serverId);
+          } else {
+            instance.removeBookmarkMarked();
+          }
+        })
         .catch((err) => console.log(err));
     }
   }
@@ -193,10 +242,13 @@ export default class NewsCardList extends BaseComponent {
     const cardElement = event.target.closest('.card');
     const cardId = cardElement.getAttribute('data-id');
     const isSaved = cardElement.hasAttribute('data-saved');
+    const isBookmarkClick = event.target.classList.contains('card__bookmark-icon');
 
-    if (isSaved) {
+    if (this._type === 'saved' && isBookmarkClick) {
       this._sendRemoveCardRequest(cardId);
-    } else {
+    } else if (isSaved && isBookmarkClick) {
+      this._sendRemoveCardRequest(cardId);
+    } else if (!isSaved && isBookmarkClick) {
       this._sendAddCardRequest(cardId);
     }
   }
@@ -221,8 +273,9 @@ export default class NewsCardList extends BaseComponent {
   }
 
   initialResults(articles, keyword) {
-    if (this._dependecies.newsChunks) {
-      const { newsChunks } = this._dependecies;
+    if (this._dependecies.newsChunks && this._dependecies.auth) {
+      const { newsChunks, auth } = this._dependecies;
+      this._isLogged = auth.getUserAuthStatus();
       this._keyword = keyword;
 
       Promise.resolve()
@@ -235,8 +288,21 @@ export default class NewsCardList extends BaseComponent {
         .then(() => this._renderResultsMarkup())
         .then(() => this._renderShowMoreButton())
         .then(() => this._renderCards())
-        .then(() => this._addBookmarkHandlers())
+        .then(() => {
+          if (this._isLogged) {
+            this._addBookmarkHandlers();
+          }
+        })
         .catch((err) => console.log(err));
     }
+  }
+
+  initialSavedResults(articles) {
+    this._type = 'saved';
+    Promise.resolve()
+      .then(() => this._renderResultsMarkup())
+      .then(() => this._renderCards(articles))
+      .then(() => this._addBookmarkHandlers())
+      .catch((err) => console.log(err));
   }
 }

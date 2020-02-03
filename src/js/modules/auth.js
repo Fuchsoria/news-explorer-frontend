@@ -1,8 +1,10 @@
 export default class Auth {
-  constructor() {
+  constructor(page) {
     this.sendCheckRequest = this.sendCheckRequest.bind(this);
     this.userLogout = this.userLogout.bind(this);
     this._loggedIn = false;
+    this._userName = '';
+    this._page = page;
   }
 
   setDependecies(dependecies) {
@@ -24,6 +26,10 @@ export default class Auth {
 
   getUserAuthStatus() {
     return this._loggedIn;
+  }
+
+  getUserName() {
+    return this._userName;
   }
 
   _cleanupDependeciesMarkups() {
@@ -53,6 +59,10 @@ export default class Auth {
       });
     }
 
+    if (this._page === 'saved') {
+      window.location.href = '../';
+    }
+
     this._cleanupDependeciesMarkups();
   }
 
@@ -71,6 +81,12 @@ export default class Auth {
         isLoggedIn: this._loggedIn,
         userName: this._userName,
       });
+
+      if (this._page === 'saved' && this._dependecies.savedNews) {
+        const { savedNews } = this._dependecies;
+
+        savedNews.initialSavedNews();
+      }
     }
 
     this._cleanupDependeciesMarkups();

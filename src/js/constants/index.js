@@ -70,6 +70,7 @@ const DATE_MONTHS = ['Января', 'Февраля', 'Марта', 'Апрел
 
 const NEWS_CARD_LIST_ELEMENTS = {
   resultsTemplate: document.querySelector('#results'),
+  savedResultsTemplate: document.querySelector('#saved-results'),
   resultsErrorTemplate: document.querySelector('#results-error'),
   noResultsTemplate: document.querySelector('#no-results'),
   loadingTemplate: document.querySelector('#loading'),
@@ -88,6 +89,22 @@ const NEWS_CARD_ELEMENTS = {
   cardBookmark: '.card__bookmark',
   cardImg: '.card__img',
   cardKeyword: '.card__keyword',
+  cardLink: '.card__link',
+};
+
+const SAVEDNEWS_ELEMENTS = {
+  keywordsForOneTemplate: document.querySelector('#keywords-one'),
+  keywordsForTwoTemplate: document.querySelector('#keywords-two'),
+  keywordsForThreeTemplate: document.querySelector('#keywords-three'),
+  keywordsForManyTemplate: document.querySelector('#keywords-many'),
+  savedArticlesTemplate: document.querySelector('#saved-articles'),
+  articlesCount: '.saved__articles-count',
+  count: '.saved__count',
+  username: '.saved__username',
+  keywords: '.saved__keywords',
+  firstKeyword: '.saved__first-keyword',
+  secondKeyword: '.saved__second-keyword',
+  restKeywords: '.saved__rest-keywords',
 };
 
 export {
@@ -106,4 +123,5 @@ export {
   DATE_MONTHS,
   NEWS_CARD_LIST_ELEMENTS,
   NEWS_CARD_ELEMENTS,
+  SAVEDNEWS_ELEMENTS,
 };

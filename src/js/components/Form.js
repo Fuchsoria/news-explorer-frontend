@@ -269,6 +269,8 @@ export default class Form extends BaseComponent {
         .catch((err) => {
           console.log(err.message);
           newsCardList.renderError();
+          this._setButtonActive('search');
+          this._setInputsActive();
         });
     }
   }

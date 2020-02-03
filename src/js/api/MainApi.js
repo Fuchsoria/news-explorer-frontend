@@ -5,6 +5,7 @@ export default class MainApi {
     this.logout = this.logout.bind(this);
     this.createArticle = this.createArticle.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
+    this.getArticles = this.getArticles.bind(this);
   }
 
   signup({ email, password, name }) {

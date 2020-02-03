@@ -70,37 +70,3 @@ auth.setDependecies({
 auth.sendCheckRequest();
 
 searchForm.handlers();
-
-console.log(formatCurrentDate());
-console.log(formatWeekBeforeDate());
-
-console.log(formatNewsDate(new Date()));
-
-
-// mainApi.getArticles()
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
-
-// mainApi.createArticle({
-//   keyword: 'ключ',
-//   title: 'Титул',
-//   text: 'Текст',
-//   date: '21.01.2020',
-//   source: 'сырки',
-//   link: 'https://google.ru',
-//   image: 'https://www.google.ru/',
-// })
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
-
-// mainApi.removeArticle('5e2f4549b84adb24f69dbd0b')
-//   .then((resp) => console.log(resp))
-//   .catch((err) => console.log(err));
-
-// newsApi.getNews('человек')
-//   .then((resp) => newsChunks.generateChunks(resp.articles))
-//   .then(() => console.log(newsChunks.getOneChunk()))
-//   .then(() => console.log(newsChunks.getOneChunk()))
-//   .then(() => console.log(newsChunks.getOneChunk()))
-//   .then(() => console.log(newsChunks.getOneChunk()))
-//   .catch((err) => console.log(err));

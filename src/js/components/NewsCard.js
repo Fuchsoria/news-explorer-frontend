@@ -18,11 +18,15 @@ export default class NewsCard extends BaseComponent {
 
   _updateDomElementContent() {
     const {
-      dataId, keyword, source, title, description, urlToImage, formatedDate,
+      dataId, keyword, source, title, description, urlToImage, formatedDate, link, type,
     } = this._props;
     const {
-      cardTitle, cardDate, cardText, cardSource, cardImg, cardKeyword,
+      cardTitle, cardDate, cardText, cardSource, cardImg, cardKeyword, cardLink,
     } = this._blockElements;
+
+    if (type === 'saved') {
+      this._domElement.setAttribute('data-saved', true);
+    }
 
     this._domElement.setAttribute('data-id', dataId);
     this._domElement.querySelector(cardTitle).textContent = title;
@@ -31,6 +35,7 @@ export default class NewsCard extends BaseComponent {
     this._domElement.querySelector(cardSource).textContent = source;
     this._domElement.querySelector(cardKeyword).textContent = keyword;
     this._domElement.querySelector(cardImg).src = urlToImage;
+    this._domElement.querySelector(cardLink).href = link;
   }
 
   _setBookmark() {
@@ -69,22 +74,29 @@ export default class NewsCard extends BaseComponent {
     }
   }
 
-
   getCardMarkup() {
     return this._domElement;
   }
 
   getCardProps() {
     const {
-      keyword, source, title, description, urlToImage, publishedAt, link,
+      keyword, source, title, description, urlToImage, publishedAt, link, serverId,
     } = this._props;
 
     return {
-      keyword, source, title, link, text: description, image: urlToImage, date: publishedAt,
+      keyword,
+      source,
+      title,
+      link,
+      text: description,
+      image: urlToImage,
+      date: publishedAt,
+      serverId,
     };
   }
 
   deleteCard() {
+    this._domElement.remove();
     this._unmount();
   }
 }
