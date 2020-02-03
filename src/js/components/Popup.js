@@ -14,6 +14,7 @@ export default class Popup extends BaseComponent {
     this._linkToSignin = this._linkToSignin.bind(this);
     this._linkToSignup = this._linkToSignup.bind(this);
     this._linkToRegistered = this._linkToRegistered.bind(this);
+    this._checkUserEvents = this._checkUserEvents.bind(this);
   }
 
   _createPopup() {
@@ -43,9 +44,27 @@ export default class Popup extends BaseComponent {
     this._dependecies.popupRegistered.setContent();
   }
 
+  open() {
+    this._domElement.classList.add('popup_opened');
+    this.setContent();
+  }
+
+  close() {
+    this._domElement.classList.remove('popup_opened');
+    this.clearContent();
+  }
+
+  _checkUserEvents(event) {
+    if (event.target.classList.contains('popup_overlay') || event.key === 'Escape') {
+      this.close();
+    }
+  }
+
   setContent() {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
-    this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] }]);
+    this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] },
+      { element: document, handlers: [this._checkUserEvents], event: 'keydown' },
+      { element: this._domElement, handlers: [this._checkUserEvents] }]);
 
     if (this._props.popupName === 'popupSignup' && this._dependecies.popupSignin) {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignin] });
@@ -62,15 +81,5 @@ export default class Popup extends BaseComponent {
     } else if (this._props.popupName === 'popupRegistered' && this._dependecies.popupSignin && this._dependecies.signinForm) {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignin] });
     }
-  }
-
-  open() {
-    this._domElement.classList.add('popup_opened');
-    this.setContent();
-  }
-
-  close() {
-    this._domElement.classList.remove('popup_opened');
-    this.clearContent();
   }
 }
