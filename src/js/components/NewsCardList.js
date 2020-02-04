@@ -140,10 +140,18 @@ export default class NewsCardList extends BaseComponent {
       const {
         newsChunks, formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth,
       } = this._dependecies;
-      const currentChunk = articles || newsChunks.getOneChunk().items;
+      let currentChunk;
 
-      if (currentChunk.isLastChunk) {
-        this._removeShowMoreButton();
+      if (articles) {
+        currentChunk = articles;
+      } else {
+        const chunk = newsChunks.getOneChunk();
+
+        currentChunk = chunk.items;
+
+        if (chunk.isLastChunk) {
+          this._removeShowMoreButton();
+        }
       }
 
       currentChunk.forEach((item) => {
