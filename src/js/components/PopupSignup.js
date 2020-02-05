@@ -6,17 +6,11 @@ export default class PopupSignup extends Popup {
 
     this.setContent = this.setContent.bind(this);
     this._linkToSignin = this._linkToSignin.bind(this);
-    this._linkToRegistered = this._linkToRegistered.bind(this);
   }
 
   _linkToSignin() {
     this.clearContent();
     this._dependecies.popupSignin.setContent();
-  }
-
-  _linkToRegistered() {
-    this.clearContent();
-    this._dependecies.popupRegistered.setContent();
   }
 
   setContent() {
