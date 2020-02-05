@@ -1,17 +1,6 @@
 import BaseComponent from './BaseComponent';
 
 export default class Form extends BaseComponent {
-  constructor(...args) {
-    super(...args);
-    this.handlers = this.handlers.bind(this);
-    this._sendSigninRequest = this._sendSigninRequest.bind(this);
-    this._sendSignupRequest = this._sendSignupRequest.bind(this);
-    this._sendSearchRequest = this._sendSearchRequest.bind(this);
-    this._validateSigninForm = this._validateSigninForm.bind(this);
-    this._validateSignupForm = this._validateSignupForm.bind(this);
-    this._validateSearchForm = this._validateSearchForm.bind(this);
-  }
-
   /**
    * При наличие номера ошибки отображает её в форме, при отсутствие очищает и скрывает
    * @param  {number} errorNumber - номер ошибки
@@ -48,10 +37,10 @@ export default class Form extends BaseComponent {
    * @param  {string} errorText - текст ошибки
    * @param  {string} searchInput - используется как триггер для распознания типа формы
    */
-  _setInputError(input, errorText, searchInput) {
+  _setInputError(input, errorText, queryInput) {
     let errorField;
 
-    if (!searchInput) {
+    if (!queryInput) {
       errorField = input.closest('.form__field').querySelector('.form__error');
     } else {
       errorField = this._domElement.querySelector('.form__error');
@@ -88,30 +77,18 @@ export default class Form extends BaseComponent {
     return validationResult;
   }
 
-  _setButtonDisabled(type) {
-    if (type === 'search') {
-      const button = this._currentFormElement().querySelector('.search__button');
+  _setButtonDisabled() {
+    const button = this._currentFormElement().querySelector('.form__button');
 
-      button.setAttribute('disabled', true);
-    } else {
-      const button = this._currentFormElement().querySelector('.form__button');
-
-      button.classList.add('form__button_disabled');
-      button.setAttribute('disabled', true);
-    }
+    button.classList.add('form__button_disabled');
+    button.setAttribute('disabled', true);
   }
 
-  _setButtonActive(type) {
-    if (type === 'search') {
-      const button = this._currentFormElement().querySelector('.search__button');
+  _setButtonActive() {
+    const button = this._currentFormElement().querySelector('.form__button');
 
-      button.removeAttribute('disabled');
-    } else {
-      const button = this._currentFormElement().querySelector('.form__button');
-
-      button.classList.remove('form__button_disabled');
-      button.removeAttribute('disabled');
-    }
+    button.classList.remove('form__button_disabled');
+    button.removeAttribute('disabled');
   }
 
   _setInputsDisabled() {
@@ -156,160 +133,5 @@ export default class Form extends BaseComponent {
     }
 
     return dataObject;
-  }
-
-
-  _validateSigninForm() {
-    const form = this._currentFormElement();
-    const { email, password } = form;
-
-    const emailResult = this._validateInput('email', email);
-    const passwordResult = this._validateInput('password', password);
-
-    if (emailResult && passwordResult) {
-      this._setButtonActive();
-    } else {
-      this._setButtonDisabled();
-    }
-  }
-
-  _sendSigninRequest(event) {
-    event.preventDefault();
-    if (this._dependecies.mainApi) {
-      const { email, password } = this._getInfo();
-      const { mainApi } = this._dependecies;
-
-      this._setButtonDisabled();
-      this._setInputsDisabled();
-
-      mainApi.signin({ email, password })
-        .then((resp) => {
-          if (resp.status === 200) {
-            this._setServerError();
-            if (this._dependecies.auth && this._dependecies.popupSignin) {
-              const { auth, popupSignin } = this._dependecies;
-
-              auth.sendCheckRequest();
-              popupSignin.close();
-            }
-          } else if (resp.status === 401) {
-            throw new Error('401');
-          } else {
-            throw new Error('500');
-          }
-        })
-        .catch((err) => {
-          this._setServerError(err.message);
-          this._setButtonActive();
-          this._setInputsActive();
-        });
-    }
-  }
-
-  _validateSignupForm() {
-    const form = this._currentFormElement();
-    const { email, password, name } = form;
-
-    const emailResult = this._validateInput('email', email);
-    const passwordResult = this._validateInput('password', password);
-    const nameResult = this._validateInput('name', name);
-
-    if (emailResult && passwordResult && nameResult) {
-      this._setButtonActive();
-    } else {
-      this._setButtonDisabled();
-    }
-  }
-
-  _sendSignupRequest(event) {
-    event.preventDefault();
-
-    if (this._dependecies.mainApi) {
-      const { email, password, name } = this._getInfo();
-      const { mainApi } = this._dependecies;
-
-      this._setButtonDisabled();
-      this._setInputsDisabled();
-
-      mainApi.signup({ email, password, name })
-        .then((resp) => {
-          if (resp.status === 201) {
-            if (this._dependecies.popupRegistered && this._dependecies.popupSignup) {
-              this._dependecies.popupSignup.clearContent();
-              this._dependecies.popupRegistered.setContent();
-            }
-          } else if (resp.status === 409) {
-            throw new Error('409');
-          } else {
-            throw new Error('500');
-          }
-        })
-        .catch((err) => {
-          this._setServerError(err.message);
-          this._setButtonActive();
-          this._setInputsActive();
-        });
-    }
-  }
-
-  _validateSearchForm() {
-    const form = this._currentFormElement();
-    const { search } = form;
-    const queryResult = this._validateInput('query', search);
-
-    return queryResult;
-  }
-
-  _sendSearchRequest(event) {
-    event.preventDefault();
-    const validateResult = this._validateSearchForm();
-
-    if (validateResult && this._dependecies.newsApi && this._dependecies.newsCardList) {
-      const { newsApi, newsCardList } = this._dependecies;
-      const { searchQuery } = this._getInfo();
-
-      this._setButtonDisabled('search');
-      this._setInputsDisabled();
-      newsCardList.renderLoader();
-
-      newsApi.getNews(searchQuery)
-        .then((resp) => {
-          if (resp.status === 'ok' && resp.articles.length > 0) {
-            newsCardList.initialResults(resp.articles, searchQuery);
-          } else if (resp.status === 'ok' && resp.articles.length <= 0) {
-            newsCardList.renderNotFound();
-          } else {
-            throw new Error('500');
-          }
-        })
-        .then(() => {
-          this._setButtonActive('search');
-          this._setInputsActive();
-        })
-        .catch(() => {
-          newsCardList.renderError();
-          this._setButtonActive('search');
-          this._setInputsActive();
-        });
-    }
-  }
-
-  /**
-   * Запускает стартовые обработчики формы
-   */
-  handlers() {
-    this._unmount();
-    if (this._props.formName === 'signinForm') {
-      this._setButtonDisabled();
-      this._mount({ element: this._blockElements.form, handlers: [this._sendSigninRequest], event: 'submit' });
-      this._mount({ element: this._blockElements.form, handlers: [this._validateSigninForm], event: 'input' });
-    } else if (this._props.formName === 'signupForm') {
-      this._setButtonDisabled();
-      this._mount({ element: this._blockElements.form, handlers: [this._validateSignupForm], event: 'input' });
-      this._mount({ element: this._blockElements.form, handlers: [this._sendSignupRequest], event: 'submit' });
-    } else if (this._props.formName === 'searchForm') {
-      this._mount({ element: this._blockElements.form, handlers: [this._validateSearchForm], event: 'input' });
-      this._mount({ element: this._blockElements.form, handlers: [this._sendSearchRequest], event: 'submit' });
-    }
   }
 }

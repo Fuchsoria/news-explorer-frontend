@@ -2,8 +2,12 @@ import './index.css';
 import validator from 'validator';
 import xss from 'xss';
 import Header from './js/components/Header';
-import Popup from './js/components/Popup';
-import Form from './js/components/Form';
+import PopupSignin from './js/components/PopupSignin';
+import PopupSignup from './js/components/PopupSignup';
+import PopupRegistered from './js/components/PopupRegistered';
+import FormSearch from './js/components/FormSearch';
+import FormSignin from './js/components/FormSignin';
+import FormSignup from './js/components/FormSignup';
 import Auth from './js/modules/auth';
 import NewsChunks from './js/components/NewsChunks';
 import NewsCardList from './js/components/NewsCardList';
@@ -31,17 +35,17 @@ const newsApi = new NewsApi(NEWS_API_LINK, NEWS_API_PARAMS, {
   formatWeekBeforeDate,
 });
 
-const popupRegistered = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_REGISTERED_ELEMENTS, { popupName: 'popupRegistered' });
-const popupSignup = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNUP_ELEMENTS, { popupName: 'popupSignup' });
-const popupSignin = new Popup(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNIN_ELEMENTS, { popupName: 'popupSignin' });
+const popupRegistered = new PopupRegistered(MAIN_PAGE_BLOCKS.popup, POPUP_REGISTERED_ELEMENTS);
+const popupSignup = new PopupSignup(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNUP_ELEMENTS);
+const popupSignin = new PopupSignin(MAIN_PAGE_BLOCKS.popup, POPUP_SIGNIN_ELEMENTS);
 
 const header = new Header(
   MAIN_PAGE_BLOCKS.header, HEADER_ELEMENTS, { color: 'light' },
 );
 
-const signinForm = new Form(MAIN_PAGE_BLOCKS.popup, SIGNIN_FORM_ELEMENTS, { formName: 'signinForm' });
-const signupForm = new Form(MAIN_PAGE_BLOCKS.popup, SIGNUP_FORM_ELEMENTS, { formName: 'signupForm' });
-const searchForm = new Form(MAIN_PAGE_BLOCKS.search, SEARCH_FORM_ELEMENTS, { formName: 'searchForm' });
+const signinForm = new FormSignin(MAIN_PAGE_BLOCKS.popup, SIGNIN_FORM_ELEMENTS);
+const signupForm = new FormSignup(MAIN_PAGE_BLOCKS.popup, SIGNUP_FORM_ELEMENTS);
+const searchForm = new FormSearch(MAIN_PAGE_BLOCKS.search, SEARCH_FORM_ELEMENTS);
 
 const newsCardList = new NewsCardList(MAIN_PAGE_BLOCKS.results, NEWS_CARD_LIST_ELEMENTS, { page: 'index' });
 
