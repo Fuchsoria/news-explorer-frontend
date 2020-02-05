@@ -27,8 +27,10 @@ export default class NewsChunks extends BaseComponent {
    * @param  {array} array - массив объектов
    */
   generateChunks(array) {
-    for (let i = 0; i < array.length; i += 3) {
-      this._chunks.push(array.slice(i, i + 3));
+    const { maxItemsPerChank } = this._props;
+
+    for (let i = 0; i < array.length; i += maxItemsPerChank) {
+      this._chunks.push(array.slice(i, i + maxItemsPerChank));
     }
   }
 

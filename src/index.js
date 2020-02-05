@@ -15,7 +15,7 @@ import {
   MAIN_API_LINKS, NEWS_API_PARAMS, NEWS_API_LINK, FORM_ERRORS_TEXT, HEADER_ELEMENTS,
   POPUP_REGISTERED_ELEMENTS, POPUP_SIGNUP_ELEMENTS, POPUP_SIGNIN_ELEMENTS,
   SIGNIN_FORM_ELEMENTS, SIGNUP_FORM_ELEMENTS, SEARCH_FORM_ELEMENTS,
-  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS, MAIN_PAGE_BLOCKS,
+  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS, MAIN_PAGE_BLOCKS, NEWS_CHUNKS,
 } from './js/constants/index';
 import {
   formatCurrentDate,
@@ -27,7 +27,7 @@ import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 const auth = new Auth();
-const newsChunks = new NewsChunks();
+const newsChunks = new NewsChunks(false, false, NEWS_CHUNKS);
 
 const mainApi = new MainApi(MAIN_API_LINKS);
 const newsApi = new NewsApi(NEWS_API_LINK, NEWS_API_PARAMS, {

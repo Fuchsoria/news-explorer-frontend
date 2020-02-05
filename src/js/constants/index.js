@@ -120,6 +120,10 @@ const SAVED_PAGE_BLOCKS = {
   results: document.querySelector('.results'),
 };
 
+const NEWS_CHUNKS = {
+  maxItemsPerChank: 3,
+};
+
 export {
   MAIN_API_LINKS,
   MAIN_API_DOMAIN,
@@ -139,4 +143,5 @@ export {
   SAVEDNEWS_ELEMENTS,
   MAIN_PAGE_BLOCKS,
   SAVED_PAGE_BLOCKS,
+  NEWS_CHUNKS,
 };
