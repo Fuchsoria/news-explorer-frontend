@@ -1,4 +1,5 @@
-import BaseComponent from './BaseComponent';
+import './form.css';
+import BaseComponent from '../../js/components/BaseComponent';
 
 export default class Form extends BaseComponent {
   /**
@@ -17,6 +18,9 @@ export default class Form extends BaseComponent {
       errorField.classList.add('form__error_server_visible');
     } else if (checkedErrorNumber === 500 && this._dependecies.FORM_ERRORS_TEXT) {
       errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.serverError;
+      errorField.classList.add('form__error_server_visible');
+    } else if (checkedErrorNumber === 12029 && this._dependecies.FORM_ERRORS_TEXT) {
+      errorField.textContent = this._dependecies.FORM_ERRORS_TEXT.connectionLost;
       errorField.classList.add('form__error_server_visible');
     } else {
       errorField.classList.remove('form__error_server_visible');

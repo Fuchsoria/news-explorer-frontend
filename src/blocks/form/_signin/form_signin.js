@@ -1,4 +1,4 @@
-import Form from './Form';
+import Form from '../form';
 
 export default class FormSignin extends Form {
   constructor(...args) {
@@ -44,8 +44,10 @@ export default class FormSignin extends Form {
             }
           } else if (resp.status === 401) {
             throw new Error('401');
-          } else {
+          } else if (resp.status === 500) {
             throw new Error('500');
+          } else {
+            throw new Error('12029');
           }
         })
         .catch((err) => {

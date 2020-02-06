@@ -1,4 +1,4 @@
-import Popup from './Popup';
+import Popup from '../popup';
 
 export default class PopupSignin extends Popup {
   constructor(...args) {
@@ -20,8 +20,8 @@ export default class PopupSignin extends Popup {
       this._mount({ element: '.popup__link', handlers: [this._linkToSignup] });
     }
 
-    if (this._dependecies.signinForm) {
-      this._dependecies.signinForm.handlers();
+    if (this._dependecies.formSignin) {
+      this._dependecies.formSignin.handlers();
     }
   }
 }

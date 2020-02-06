@@ -1,4 +1,4 @@
-import Form from './Form';
+import Form from '../form';
 
 export default class FormSignup extends Form {
   constructor(...args) {
@@ -43,8 +43,10 @@ export default class FormSignup extends Form {
             }
           } else if (resp.status === 409) {
             throw new Error('409');
-          } else {
+          } else if (resp.status === 500) {
             throw new Error('500');
+          } else {
+            throw new Error('12029');
           }
         })
         .catch((err) => {

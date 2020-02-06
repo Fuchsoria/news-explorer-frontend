@@ -1,37 +1,36 @@
 import './index.css';
-import Header from '../../js/components/Header';
+import Header from '../../blocks/header/header';
+import Results from '../../blocks/results/results';
+import Saved from '../../blocks/saved/saved';
+import SavedNews from '../../blocks/saved-news/saved-news';
 import Auth from '../../js/modules/auth';
-import NewsCardList from '../../js/components/NewsCardList';
 import {
   MAIN_API_LINKS, HEADER_ELEMENTS,
-  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS,
-  SAVEDNEWS_ELEMENTS, SAVED_PAGE_BLOCKS,
+  RESULTS_ELEMENTS, CARD_ELEMENTS, SAVED_ELEMENTS, SAVED_PAGE_BLOCKS,
 } from '../../js/constants/index';
 import {
   formatNewsDate,
   createCardInstance,
 } from '../../js/utils';
 import MainApi from '../../js/api/MainApi';
-import SavedNews from '../../js/components/SavedNews';
 
 const auth = new Auth('saved');
 const mainApi = new MainApi(MAIN_API_LINKS);
 const header = new Header(
   SAVED_PAGE_BLOCKS.header, HEADER_ELEMENTS, { color: 'dark' },
 );
-const savedNews = new SavedNews(
-  SAVED_PAGE_BLOCKS.saved, SAVEDNEWS_ELEMENTS,
-);
-const newsCardList = new NewsCardList(SAVED_PAGE_BLOCKS.results, NEWS_CARD_LIST_ELEMENTS, { page: 'saved' });
+const savedNews = new SavedNews();
+const saved = new Saved(SAVED_PAGE_BLOCKS.saved, SAVED_ELEMENTS);
+const results = new Results(SAVED_PAGE_BLOCKS.results, RESULTS_ELEMENTS, { page: 'saved' });
 
-newsCardList.setDependecies({
-  formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth, mainApi, savedNews,
+results.setDependecies({
+  formatNewsDate, createCardInstance, RESULTS_ELEMENTS, auth, mainApi, savedNews, CARD_ELEMENTS,
 });
 auth.setDependecies({
-  mainApi, header, HEADER_ELEMENTS, newsCardList, savedNews,
+  mainApi, header, HEADER_ELEMENTS, results, savedNews,
 });
 savedNews.setDependecies({
-  SAVEDNEWS_ELEMENTS, mainApi, auth, newsCardList,
+  mainApi, auth, results, saved,
 });
 
 auth.sendCheckRequest();

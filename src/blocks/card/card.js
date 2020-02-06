@@ -1,6 +1,7 @@
-import BaseComponent from './BaseComponent';
+import './card.css';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class NewsCard extends BaseComponent {
+export default class Card extends BaseComponent {
   constructor(...args) {
     super(...args);
 

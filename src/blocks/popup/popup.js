@@ -1,4 +1,5 @@
-import BaseComponent from './BaseComponent';
+import './popup.css';
+import BaseComponent from '../../js/components/BaseComponent';
 
 export default class Popup extends BaseComponent {
   constructor(...args) {

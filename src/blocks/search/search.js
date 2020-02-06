@@ -1,6 +1,7 @@
-import Form from './Form';
+import './search.css';
+import Form from '../form/form';
 
-export default class FormSearch extends Form {
+export default class Search extends Form {
   constructor(...args) {
     super(...args);
 
@@ -33,20 +34,20 @@ export default class FormSearch extends Form {
     event.preventDefault();
     const validateResult = this._validateSearchForm();
 
-    if (validateResult && this._dependecies.newsApi && this._dependecies.newsCardList) {
-      const { newsApi, newsCardList } = this._dependecies;
+    if (validateResult && this._dependecies.newsApi && this._dependecies.results) {
+      const { newsApi, results } = this._dependecies;
       const { searchQuery } = this._getInfo();
 
       this._setButtonDisabled();
       this._setInputsDisabled();
-      newsCardList.renderLoader();
+      results.renderLoader();
 
       newsApi.getNews(searchQuery)
         .then((resp) => {
           if (resp.status === 'ok' && resp.articles.length > 0) {
-            newsCardList.initialResults(resp.articles, searchQuery);
+            results.initialResults(resp.articles, searchQuery);
           } else if (resp.status === 'ok' && resp.articles.length <= 0) {
-            newsCardList.renderNotFound();
+            results.renderNotFound();
           } else {
             throw new Error('500');
           }
@@ -56,7 +57,7 @@ export default class FormSearch extends Form {
           this._setInputsActive();
         })
         .catch(() => {
-          newsCardList.renderError();
+          results.renderError();
           this._setButtonActive();
           this._setInputsActive();
         });

@@ -1,4 +1,4 @@
-import Popup from './Popup';
+import Popup from '../popup';
 
 export default class PopupRegistered extends Popup {
   constructor(...args) {

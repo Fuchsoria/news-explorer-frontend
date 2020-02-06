@@ -33,10 +33,10 @@ export default class Auth {
   }
 
   _cleanupDependeciesMarkups() {
-    if (this._dependecies.newsCardList) {
-      const { newsCardList } = this._dependecies;
+    if (this._dependecies.results) {
+      const { results } = this._dependecies;
 
-      newsCardList.clearMarkup();
+      results.clearMarkup();
     }
   }
 

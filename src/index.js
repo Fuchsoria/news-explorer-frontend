@@ -1,21 +1,21 @@
 import './index.css';
 import validator from 'validator';
 import xss from 'xss';
-import Header from './js/components/Header';
-import PopupSignin from './js/components/PopupSignin';
-import PopupSignup from './js/components/PopupSignup';
-import PopupRegistered from './js/components/PopupRegistered';
-import FormSearch from './js/components/FormSearch';
-import FormSignin from './js/components/FormSignin';
-import FormSignup from './js/components/FormSignup';
+import Header from './blocks/header/header';
+import Results from './blocks/results/results';
+import Search from './blocks/search/search';
+import PopupSignin from './blocks/popup/_signin/popup_signin';
+import PopupSignup from './blocks/popup/_signup/popup_signup';
+import PopupRegistered from './blocks/popup/_registered/popup_registered';
+import FormSignin from './blocks/form/_signin/form_signin';
+import FormSignup from './blocks/form/_signup/form_signup';
+import NewsChunks from './js/modules/newsChunks';
 import Auth from './js/modules/auth';
-import NewsChunks from './js/components/NewsChunks';
-import NewsCardList from './js/components/NewsCardList';
 import {
   MAIN_API_LINKS, NEWS_API_PARAMS, NEWS_API_LINK, FORM_ERRORS_TEXT, HEADER_ELEMENTS,
   POPUP_REGISTERED_ELEMENTS, POPUP_SIGNUP_ELEMENTS, POPUP_SIGNIN_ELEMENTS,
   SIGNIN_FORM_ELEMENTS, SIGNUP_FORM_ELEMENTS, SEARCH_FORM_ELEMENTS,
-  NEWS_CARD_LIST_ELEMENTS, NEWS_CARD_ELEMENTS, MAIN_PAGE_BLOCKS, NEWS_CHUNKS,
+  RESULTS_ELEMENTS, CARD_ELEMENTS, MAIN_PAGE_BLOCKS, NEWS_CHUNKS,
 } from './js/constants/index';
 import {
   formatCurrentDate,
@@ -27,7 +27,7 @@ import MainApi from './js/api/MainApi';
 import NewsApi from './js/api/NewsApi';
 
 const auth = new Auth();
-const newsChunks = new NewsChunks(false, false, NEWS_CHUNKS);
+const newsChunks = new NewsChunks(NEWS_CHUNKS);
 
 const mainApi = new MainApi(MAIN_API_LINKS);
 const newsApi = new NewsApi(NEWS_API_LINK, NEWS_API_PARAMS, {
@@ -43,34 +43,35 @@ const header = new Header(
   MAIN_PAGE_BLOCKS.header, HEADER_ELEMENTS, { color: 'light' },
 );
 
-const signinForm = new FormSignin(MAIN_PAGE_BLOCKS.popup, SIGNIN_FORM_ELEMENTS);
-const signupForm = new FormSignup(MAIN_PAGE_BLOCKS.popup, SIGNUP_FORM_ELEMENTS);
-const searchForm = new FormSearch(MAIN_PAGE_BLOCKS.search, SEARCH_FORM_ELEMENTS);
+const formSignin = new FormSignin(MAIN_PAGE_BLOCKS.popup, SIGNIN_FORM_ELEMENTS);
+const formSignup = new FormSignup(MAIN_PAGE_BLOCKS.popup, SIGNUP_FORM_ELEMENTS);
+const search = new Search(MAIN_PAGE_BLOCKS.search, SEARCH_FORM_ELEMENTS);
 
-const newsCardList = new NewsCardList(MAIN_PAGE_BLOCKS.results, NEWS_CARD_LIST_ELEMENTS, { page: 'index' });
+const results = new Results(MAIN_PAGE_BLOCKS.results, RESULTS_ELEMENTS, { page: 'index' });
 
-signinForm.setDependecies({
+
+formSignin.setDependecies({
   validator, xss, mainApi, FORM_ERRORS_TEXT, auth, popupSignin,
 });
-signupForm.setDependecies({
+formSignup.setDependecies({
   validator, xss, mainApi, FORM_ERRORS_TEXT, popupSignup, popupRegistered,
 });
-searchForm.setDependecies({
-  validator, xss, FORM_ERRORS_TEXT, newsApi, auth, newsCardList,
+search.setDependecies({
+  validator, xss, FORM_ERRORS_TEXT, newsApi, auth, results,
 });
 
-popupSignup.setDependecies({ popupSignin, signupForm, popupRegistered });
-popupSignin.setDependecies({ popupSignup, signinForm });
-popupRegistered.setDependecies({ popupSignin, signinForm });
+popupSignup.setDependecies({ popupSignin, formSignup, popupRegistered });
+popupSignin.setDependecies({ popupSignup, formSignin });
+popupRegistered.setDependecies({ popupSignin, formSignin });
 
-newsCardList.setDependecies({
-  newsChunks, formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth, mainApi,
+results.setDependecies({
+  newsChunks, formatNewsDate, createCardInstance, CARD_ELEMENTS, auth, mainApi,
 });
 
 auth.setDependecies({
-  mainApi, header, popupSignin, HEADER_ELEMENTS, newsCardList,
+  mainApi, header, popupSignin, HEADER_ELEMENTS, results,
 });
 
 auth.sendCheckRequest();
 
-searchForm.handlers();
+search.handlers();

@@ -1,6 +1,7 @@
-import BaseComponent from './BaseComponent';
+import './results.css';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class NewsCardList extends BaseComponent {
+export default class Results extends BaseComponent {
   constructor(...args) {
     super(...args);
     this.renderLoader = this.renderLoader.bind(this);
@@ -136,9 +137,9 @@ export default class NewsCardList extends BaseComponent {
    */
   _renderCards(articles) {
     if (this._dependecies.formatNewsDate
-      && this._dependecies.NEWS_CARD_ELEMENTS && this._dependecies.createCardInstance) {
+      && this._dependecies.CARD_ELEMENTS && this._dependecies.createCardInstance) {
       const {
-        newsChunks, formatNewsDate, createCardInstance, NEWS_CARD_ELEMENTS, auth,
+        newsChunks, formatNewsDate, createCardInstance, CARD_ELEMENTS, auth,
       } = this._dependecies;
       let currentChunk;
 
@@ -197,7 +198,7 @@ export default class NewsCardList extends BaseComponent {
           };
         }
 
-        const newCardInstance = createCardInstance(false, NEWS_CARD_ELEMENTS, cardProps);
+        const newCardInstance = createCardInstance(false, CARD_ELEMENTS, cardProps);
         const newCardMarkup = newCardInstance.getCardMarkup();
 
         this._addCard(newCardMarkup);

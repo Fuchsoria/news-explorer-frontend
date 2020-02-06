@@ -1,9 +1,6 @@
-import BaseComponent from './BaseComponent';
-
-export default class NewsChunks extends BaseComponent {
-  constructor(...args) {
-    super(...args);
-
+export default class NewsChunks {
+  constructor(props) {
+    this._props = props;
     this._chunks = [];
     this._currentChunkIndex = 0;
 

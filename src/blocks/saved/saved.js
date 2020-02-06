@@ -1,26 +1,26 @@
-import BaseComponent from './BaseComponent';
+import './saved.css';
+import BaseComponent from '../../js/components/BaseComponent';
 
-export default class SavedNews extends BaseComponent {
+export default class Saved extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.initialSavedNews = this.initialSavedNews.bind(this);
-    this.getUserArticles = this.getUserArticles.bind(this);
+    this.updateUserInfo = this.updateUserInfo.bind(this);
   }
 
   /**
    * Рендерит информацию о количестве сохраненных новостей
    */
-  _renderArticlesCount() {
-    if (this._dependecies.SAVEDNEWS_ELEMENTS) {
+  _renderArticlesCount(articles, userName) {
+    if (this._blockElements) {
       const {
         savedArticlesTemplate, articlesCount, count, username,
-      } = this._dependecies.SAVEDNEWS_ELEMENTS;
+      } = this._blockElements;
       const domElement = this._domElement.querySelector(articlesCount);
       const markup = savedArticlesTemplate.cloneNode(true).content;
 
-      markup.querySelector(username).textContent = this._userName;
-      markup.querySelector(count).textContent = this._articles.length;
+      markup.querySelector(username).textContent = userName;
+      markup.querySelector(count).textContent = articles.length;
 
       this._clearNodeContent(domElement);
       domElement.appendChild(markup);
@@ -31,13 +31,13 @@ export default class SavedNews extends BaseComponent {
    * Вытягивает ключевые слова, уникализирует их и сортирует по самым популярным
    * Далее рандерит их в соответствие с требованием отображения
    */
-  _renderKeywords() {
-    if (this._dependecies.SAVEDNEWS_ELEMENTS && this._articles) {
+  _renderKeywords(articles) {
+    if (this._blockElements && articles) {
       const {
         keywordsForOneTemplate, keywordsForTwoTemplate, keywordsForThreeTemplate,
         keywordsForManyTemplate, keywords, firstKeyword, secondKeyword, thirdKeyword, restKeywords,
-      } = this._dependecies.SAVEDNEWS_ELEMENTS;
-      const keywordsArray = this._articles.map((item) => item.keyword);
+      } = this._blockElements;
+      const keywordsArray = articles.map((item) => item.keyword);
       const countWords = keywordsArray.reduce((acc, item) => {
         acc[item] = (acc[item] || 0) + 1;
         return acc;
@@ -75,7 +75,7 @@ export default class SavedNews extends BaseComponent {
         markup.querySelector(restKeywords).textContent = restCount;
       }
 
-      if (this._articles.length > 0) {
+      if (articles.length > 0) {
         this._clearNodeContent(domElement);
         domElement.appendChild(markup);
       } else {
@@ -84,53 +84,8 @@ export default class SavedNews extends BaseComponent {
     }
   }
 
-  _renderSavedArticles() {
-    if (this._dependecies.newsCardList && this._articles) {
-      const { newsCardList } = this._dependecies;
-
-      newsCardList.initialSavedResults(this._articles);
-    }
-  }
-
-  _updateUserInfo() {
-    this._renderArticlesCount();
-    this._renderKeywords();
-  }
-
-  /**
-   * Удаляет объект карточки из сохраненных внутри компонента объектов
-   * и обновляет информацию для пользователя
-   * @param  {string} serverId - id карточки на бэкенде
-   */
-  deleteSavedCard(serverId) {
-    this._articles = this._articles.filter((article) => article._id !== serverId);
-
-    this._updateUserInfo();
-  }
-
-  /**
-   * Отправляет запрос api на получение сохраненных новостей
-   */
-  getUserArticles() {
-    if (this._dependecies.mainApi && this._dependecies.auth) {
-      const { mainApi, auth } = this._dependecies;
-      this._userName = auth.getUserName();
-
-      mainApi
-        .getArticles()
-        .then((res) => {
-          this._articles = res;
-          this._renderSavedArticles();
-          this._updateUserInfo();
-        })
-        .catch((err) => console.log(err));
-    }
-  }
-
-  /**
-   * Внешний метод для инициализации сохраненных новостей
-   */
-  initialSavedNews() {
-    this.getUserArticles();
+  updateUserInfo(articles, nickName) {
+    this._renderArticlesCount(articles, nickName);
+    this._renderKeywords(articles);
   }
 }

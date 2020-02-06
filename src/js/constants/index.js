@@ -33,7 +33,7 @@ const POPUP_SIGNIN_ELEMENTS = {
   closeElement: '.popup__close-area',
 };
 
-const SIGNIN_FORM_ELEMENTS = { form: '.form_login', email: 'email', password: 'password' };
+const SIGNIN_FORM_ELEMENTS = { form: '.form_signin', email: 'email', password: 'password' };
 const SIGNUP_FORM_ELEMENTS = {
   form: '.form_signup',
   email: 'email',
@@ -48,6 +48,7 @@ const FORM_ERRORS_TEXT = {
   emptyField: 'Поле не может быть пустым',
   serverError: 'Произошла серверная ошибка',
   conflict: 'Пользователь с данным Email уже зарегистрирован',
+  connectionLost: 'Не удалось отправить запрос, проверьте соединение',
   emptyQuery: 'Нужно ввести ключевое слово',
 };
 
@@ -68,7 +69,7 @@ const HEADER_ELEMENTS = {
 
 const DATE_MONTHS = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-const NEWS_CARD_LIST_ELEMENTS = {
+const RESULTS_ELEMENTS = {
   resultsTemplate: document.querySelector('#results'),
   savedResultsTemplate: document.querySelector('#saved-results'),
   resultsErrorTemplate: document.querySelector('#results-error'),
@@ -77,7 +78,7 @@ const NEWS_CARD_LIST_ELEMENTS = {
   showMoreButtonTemplate: document.querySelector('#show-more'),
 };
 
-const NEWS_CARD_ELEMENTS = {
+const CARD_ELEMENTS = {
   cardTemplate: document.querySelector('#card'),
   bookmarkLoggedinTemplate: document.querySelector('#bookmark-loggedin'),
   bookmarkNotLoggedTemplate: document.querySelector('#bookmark-notloggedin'),
@@ -92,7 +93,7 @@ const NEWS_CARD_ELEMENTS = {
   cardLink: '.card__link',
 };
 
-const SAVEDNEWS_ELEMENTS = {
+const SAVED_ELEMENTS = {
   keywordsForOneTemplate: document.querySelector('#keywords-one'),
   keywordsForTwoTemplate: document.querySelector('#keywords-two'),
   keywordsForThreeTemplate: document.querySelector('#keywords-three'),
@@ -138,9 +139,9 @@ export {
   SIGNUP_FORM_ELEMENTS,
   SEARCH_FORM_ELEMENTS,
   DATE_MONTHS,
-  NEWS_CARD_LIST_ELEMENTS,
-  NEWS_CARD_ELEMENTS,
-  SAVEDNEWS_ELEMENTS,
+  RESULTS_ELEMENTS,
+  CARD_ELEMENTS,
+  SAVED_ELEMENTS,
   MAIN_PAGE_BLOCKS,
   SAVED_PAGE_BLOCKS,
   NEWS_CHUNKS,
