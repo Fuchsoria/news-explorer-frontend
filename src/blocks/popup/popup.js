@@ -52,6 +52,6 @@ export default class Popup extends BaseComponent {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());
     this._mountLocalHandlers([{ element: this._closeElement, handlers: [this.close] },
       { element: document, handlers: [this._checkUserEvents], event: 'keydown' },
-      { element: this._domElement, handlers: [this._checkUserEvents] }]);
+      { element: this._domElement, handlers: [this._checkUserEvents], event: 'mousedown' }]);
   }
 }
