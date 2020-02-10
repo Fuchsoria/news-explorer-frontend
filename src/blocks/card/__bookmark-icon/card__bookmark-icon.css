@@ -12,6 +12,8 @@
   background-position: center center;
 
   cursor: pointer;
+  position: relative;
+  z-index: 999;
 
   transition: background-image .5s;
 }
