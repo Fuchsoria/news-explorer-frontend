@@ -24,10 +24,10 @@ export default class NewsChunks {
    * @param  {array} array - массив объектов
    */
   generateChunks(array) {
-    const { maxItemsPerChank } = this._props;
+    const { maxItemsPerChunk } = this._props;
 
-    for (let i = 0; i < array.length; i += maxItemsPerChank) {
-      this._chunks.push(array.slice(i, i + maxItemsPerChank));
+    for (let i = 0; i < array.length; i += maxItemsPerChunk) {
+      this._chunks.push(array.slice(i, i + maxItemsPerChunk));
     }
   }
 

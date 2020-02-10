@@ -122,7 +122,7 @@ const SAVED_PAGE_BLOCKS = {
 };
 
 const NEWS_CHUNKS = {
-  maxItemsPerChank: 3,
+  maxItemsPerChunk: 3,
 };
 
 export {
