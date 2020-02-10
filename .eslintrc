@@ -1,8 +1,13 @@
-{	
+{
   "globals": {
     "window": true,
     "document": true,
 	"fetch": true
   },
-  "extends": "airbnb-base"
+  "extends": "airbnb-base",
+  "rules": {
+    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allow": ["_id"] }],
+    "class-methods-use-this": ["error", { "exceptMethods": ["_setInputError", "_clearNodeContent"] }],
+    "no-console": "off"
+  }
 }

@@ -1,3 +1,5 @@
+@import url('./_hidden/card__keyword_hidden.css');
+
 .card__keyword {
   position: absolute;
   top: 24px;

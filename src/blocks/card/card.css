@@ -10,6 +10,7 @@
 @import url(./__notice-message/card__notice-message.css);
 @import url(./__keyword/card__keyword.css);
 @import url(./__limiter/card__limiter.css);
+@import url(./__link/card__link.css);
 
 .card {
   position: relative;

@@ -15,26 +15,21 @@
   <body>
     <div class="news-explorer">
       <header class="header header_background container">
-        <nav class="nav">
-          <div class="nav__content container container_content">
-            <a href="./" class="nav__logo">NewsExplorer</a>
-            <div class="nav__burger"></div>
-            <ul class="nav__items">
-              <li class="nav__item"><a href="./" class="nav__link nav__link_current">Главная</a></li>
-              <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
-            </ul>
-          </div>
-        </nav>
+        <div class="overlay"></div>
+        <nav class="nav"></nav>
         <section class="search">
           <h1 class="search__title">Что в мире творится?</h1>
           <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
-          <form class="search__form">
-            <input type="text" class="search__input" placeholder="Введите тему новости" minlength="2" maxlength="30" pattern="([а-яёА-ЯЁa-zA-Z0-9]+)"/>
+          <form class="search__form" novalidate>
+            <p class="form__error form__error_search">Тест ошибки</p>
+            <input name="search" type="text" class="search__input" placeholder="Введите тему новости" />
             <button class="search__button">Искать</button>
           </form>
         </section>
       </header>
       <main class="main container">
+        <div class="results">
+        </div>
         <section class="author">
           <div class="author__content container container_content">
             <picture>
@@ -75,80 +70,189 @@
           </div>
         </div>
       </footer>
-      <div class="overlay"></div>
     </div>
-    <div class="popup popup_login popup_overlay">
-      <div class="popup__container">
-        <form class="form form_login">
-          <h3 class="form__title">Вход</h3>
-          <fieldset class="form__fieldset">
-            <div class="form__field">
-              <h6 class="form__field-title">Email</h6>
-              <input
-                type="email"
-                class="form__input"
-                pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
-                placeholder="Введите почту"
-              />
-              <p class="form__error">Неправильный формат email</p>
-            </div>
-            <div class="form__field">
-              <h6 class="form__field-title">Пароль</h6>
-              <input type="password" class="form__input" placeholder="Введите пароль" />
-            </div>
-          </fieldset>
-          <p class="form__error form__error_server">Неверная почта или пароль</p>
-          <button class="form__button form__button_login">Войти</button>
-        </form>
-        <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>
-      </div>
+    <div class="popup popup_overlay">
+      <div class="popup__container"></div>
     </div>
 
-    <div class="popup popup_signup popup_overlay">
-      <div class="popup__container">
-        <form class="form form_signup">
-          <h3 class="form__title">Регистрация</h3>
-          <fieldset class="form__fieldset">
-            <div class="form__field">
-              <h6 class="form__field-title">Email</h6>
-              <input
-                type="email"
-                class="form__input"
-                pattern="[0-9a-zA-Z_-]+[@][0-9a-zA-Z_-]+[.][0-9a-zA-Z]+"
-                placeholder="Введите почту"
-              />
-              <p class="form__error">Неправильный формат email</p>
-            </div>
-            <div class="form__field">
-              <h6 class="form__field-title">Пароль</h6>
-              <input type="password" class="form__input" placeholder="Введите пароль" />
-            </div>
-            <div class="form__field">
-              <h6 class="form__field-title">Имя</h6>
-              <input
-                type="text"
-                class="form__input"
-                minlength="2"
-                maxlength="20"
-                pattern="([А-ЯЁ]{1}[а-яё]+)(-[А-ЯЁ]{1}[а-яё]+)?"
-                placeholder="Имя"
-              />
-              <p class="form__error">В имени разрешены только русские символы начинающиеся с заглавной буквы</p>
-            </div>
-          </fieldset>
-          <p class="form__error form__error_server">Такой пользователь уже есть</p>
-          <button class="form__button form__button_signup">Зарегистрировать</button>
-        </form>
-        <div class="popup__text">или <span class="popup__link">Войти</span></div>
+    <template id="nav-notlogged-light">
+      <div class="nav__content container container_content">
+        <a href="./" class="nav__logo">NewsExplorer</a>
+        <div class="nav__burger"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="./" class="nav__link nav__link_current">Главная</a></li>
+          <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
+        </ul>
       </div>
-    </div>
+    </template>
 
-    <div class="popup popup_registered popup_overlay">
-      <div class="popup__container">
-        <p class="popup__message">Пользователь успешно зарегистрирован!</p>
-        <div class="popup__link popup__link_registered">Выполнить вход</div>
+    <template id="nav-logged-light">
+      <div class="nav__content container container_content">
+        <a href="../" class="nav__logo">NewsExplorer</a>
+        <div class="nav__burger"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="../" class="nav__link nav__link_current">Главная</a></li>
+          <li class="nav__item"><a href="../savednews" class="nav__link">Сохранённые статьи</a></li>
+          <li class="nav__item nav__item_auth">
+            <button class="nav__auth-button">
+              <span class="nav__username">Грета</span>
+              <img class="nav__exit" src="<%= require('./images/Union.svg') %>" alt="Выход" />
+            </button>
+          </li>
+        </ul>
       </div>
-    </div>
+    </template>
+
+    <template id="nav-logged-dark">
+      <div class="nav__content container container_content">
+        <a href="../" class="nav__logo nav__logo_theme_dark">NewsExplorer</a>
+        <div class="nav__burger nav__burger_dark"></div>
+        <ul class="nav__items">
+          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Главная</a></li>
+          <li class="nav__item">
+            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Сохранённые статьи</a>
+          </li>
+          <li class="nav__item nav__item_auth">
+            <button class="nav__auth-button nav__auth-button_theme_dark">
+              <span class="nav__username">Грета</span>
+              <img class="nav__exit" src="<%= require('./images/Union_dark.svg') %>" alt="Выход" />
+            </button>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <template id="popup-signin">
+      <div class="popup__close-area">
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+      </div>
+      <form class="form form_signin" novalidate>
+        <h3 class="form__title">Вход</h3>
+        <fieldset class="form__fieldset">
+          <div class="form__field">
+            <h6 class="form__field-title">Email</h6>
+            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
+            <p class="form__error"></p>
+          </div>
+          <div class="form__field">
+            <h6 class="form__field-title">Пароль</h6>
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
+            <p class="form__error"></p>
+          </div>
+        </fieldset>
+        <p class="form__error form__error_server"></p>
+        <button class="form__button form__button_login">Войти</button>
+      </form>
+      <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>
+    </template>
+
+    <template id="popup-signup">
+      <div class="popup__close-area">
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+      </div>
+      <form class="form form_signup" novalidate>
+        <h3 class="form__title">Регистрация</h3>
+        <fieldset class="form__fieldset">
+          <div class="form__field">
+            <h6 class="form__field-title">Email</h6>
+            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
+            <p class="form__error"></p>
+          </div>
+          <div class="form__field">
+            <h6 class="form__field-title">Пароль</h6>
+            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
+            <p class="form__error"></p>
+          </div>
+          <div class="form__field">
+            <h6 class="form__field-title">Имя</h6>
+            <input name="name" type="text" class="form__input" placeholder="Имя" />
+            <p class="form__error"></p>
+          </div>
+        </fieldset>
+        <p class="form__error form__error_server">Такой пользователь уже есть</p>
+        <button class="form__button form__button_signup">Зарегистрировать</button>
+      </form>
+      <div class="popup__text">или <span class="popup__link">Войти</span></div>
+    </template>
+
+    <template id="popup-registered">
+      <div class="popup__close-area">
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+      </div>
+      <p class="popup__message">Пользователь успешно зарегистрирован!</p>
+      <div class="popup__link popup__link_registered">Выполнить вход</div>
+    </template>
+
+    <template id="loading">
+      <div class="loading">
+        <div class="loading__circle"></div>
+        <p class="loading__text">Идет поиск новостей...</p>
+      </div>
+    </template>
+
+    <template id="no-results">
+      <div class="no-results">
+        <img src="<%= require('./images/not-found_v1.svg') %>" alt="Нет результатов" class="no-results__icon" />
+        <h2 class="no-results__title">Ничего не найдено</h2>
+        <p class="no-results__text">К сожалению по вашему запросу ничего не найдено.</p>
+      </div>
+    </template>
+
+    <template id="results">
+      <div class="results__content container container_content">
+        <h2 class="results__title">Результаты поиска</h2>
+        <div class="results__cards">
+        </div>
+      </div>
+    </template>
+
+    <template id="results-error">
+      <div class="no-results">
+        <h2 class="no-results__title">Во время запроса произошла ошибка.</h2>
+        <p class="no-results__text">Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+      </div>
+    </template>
+
+    <template id="show-more">
+      <button class="results__more">Показать еще</button>
+    </template>
+
+    <template id="card">
+      <article class="card">
+        <a href="" target="_blank" class="card__link"></a>
+        <img src="" alt="Изображение новости" class="card__img" />
+        <h6 class="card__keyword card__keyword_hidden"></h6>
+        <div class="card__bookmark">
+        </div>
+        <div class="card__content">
+          <div class="card__limiter">
+            <h5 class="card__date"></h5>
+            <h3 class="card__title"></h3>
+            <p class="card__text">
+            </p>
+          </div>
+          <h4 class="card__source"></h4>
+        </div>
+      </article>
+    </template>
+
+    <template id="bookmark-loggedin">
+      <div class="card__bookmark-icon"></div>
+    </template>
+
+    <template id="bookmark-notloggedin">
+      <div class="card__bookmark-icon"></div>
+      <div class="card__auth-notice">
+        <p class="card__notice-message">Войдите, чтобы сохранять статьи</p>
+      </div>
+    </template>
+
+    <template id="bookmark-savednews">
+      <div class="card__bookmark-icon card__bookmark-icon_remove"></div>
+      <div class="card__auth-notice">
+        <p class="card__notice-message">Убрать из сохранённых</p>
+      </div>
+    </template>
 
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
   </body>

@@ -12,11 +12,6 @@ module.exports = {
   entry: {
     main: './src/index.js',
     savednews: './src/pages/savednews/index.js',
-    mainloggedin: './src/pages/mainloggedin/index.js',
-    mainresultsnotloggedin: './src/pages/mainresultsnotloggedin/index.js',
-    mainresultsloggedin: './src/pages/mainresultsloggedin/index.js',
-    mainresultsloading: './src/pages/mainresultsloading/index.js',
-    mainresultsnoresults: './src/pages/mainresultsnoresults/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -92,36 +87,6 @@ module.exports = {
       template: './src/pages/savednews/index.html',
       filename: './savednews/index.html',
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/pages/mainloggedin/index.html',
-      filename: './mainloggedin/index.html',
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/pages/mainresultsnotloggedin/index.html',
-      filename: './mainresultsnotloggedin/index.html',
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/pages/mainresultsloggedin/index.html',
-      filename: './mainresultsloggedin/index.html',
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/pages/mainresultsloading/index.html',
-      filename: './mainresultsloading/index.html',
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/pages/mainresultsnoresults/index.html',
-      filename: './mainresultsnoresults/index.html',
-    }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -135,4 +100,9 @@ module.exports = {
       canPrint: true,
     }),
   ],
+  devServer: {
+    allowedHosts: [
+      'test.news-explorer.info',
+    ],
+  },
 };

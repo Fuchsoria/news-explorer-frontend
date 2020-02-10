@@ -1,5 +1,7 @@
 @import url(./_server/form__error_server.css);
 @import url(./_server/form__error_server_visible.css);
+@import url(./_search/form__error_search.css);
+@import url(./_visible/form__error_visible.css);
 
 .form__error {
   font-family: Inter, arial, sans-serif;
@@ -16,6 +18,6 @@
   opacity: 0;
 }
 
-.form__input:invalid:not(:placeholder-shown) + .form__error {
+/* .form__input:invalid:not(:placeholder-shown) + .form__error {
   opacity: 1;
-}
+} */

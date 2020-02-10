@@ -4,3 +4,8 @@
   cursor: default;
   box-shadow: none;
 }
+
+.form__button.form__button_disabled:hover {
+  background-color: #e6e8eb;
+  color: #b6bcbf;
+}

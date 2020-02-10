@@ -6,17 +6,4 @@
 
 .results {
   background-color: #f5f6f7;
-  margin: 80px 0;
-}
-
-@media screen and (max-width: 992px) {
-  .results {
-    margin: 40px 0;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .results {
-    margin: 32px 0;
-  }
 }
