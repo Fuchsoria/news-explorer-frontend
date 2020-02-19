@@ -7,8 +7,8 @@ export default class BaseComponent {
   }
 
   /**
-   * очищает у ноды всех потомков
-   * @param  {node} node - нода
+   * cleans the nodes of all descendants
+   * @param  {node} node - node
    */
   _clearNodeContent(node) {
     while (node.lastChild) {
@@ -17,10 +17,10 @@ export default class BaseComponent {
   }
 
   /**
-   * Добавляет на определенный элемент необходимые слушатели событий
-   * @param  {node} currentElement - нода либо текстовый селектор
-   * @param  {array} handlers - массив обработчиков
-   * @param  {string} event - событие строкой
+   * Adds necessary event listeners to a specific element
+   * @param  {node} currentElement - node or text selector
+   * @param  {array} handlers - array of handlers
+   * @param  {string} event - event string
    */
   _setHandlers(currentElement, handlers, event) {
     const element = typeof currentElement === 'object'
@@ -32,10 +32,10 @@ export default class BaseComponent {
   }
 
   /**
-   * Удаляет события с определенного элемента
-   * @param  {node} currentElement - нода либо текстовый селектор
-   * @param  {array} handlers - массив обработчиков
-   * @param  {string} event - событие строкой
+   * Deletes events from a specific item
+   * @param  {node} currentElement - node or text selector
+   * @param  {array} handlers - array of handlers
+   * @param  {string} event - event string
    */
   _removeHandlers(currentElement, handlers, event) {
     const element = typeof currentElement === 'object'
@@ -47,10 +47,10 @@ export default class BaseComponent {
   }
 
   /**
-   * Вызывает метод добавления события и записывает их внутрь компонента
-   * @param  {node} element - нода либо текстовый селектор
-   * @param  {array} handlers - массив обработчиков
-   * @param  {string} event - событие либо устанавливает стандартное значение клик
+   * Invokes a method to add events and writes them inside a component
+   * @param  {node} element - node or text selector
+   * @param  {array} handlers - array of handlers
+   * @param  {string} event - event either sets the default click value
    */
   _mount({ element, handlers, event = 'click' }) {
     this._setHandlers(element, handlers, event);
@@ -58,8 +58,8 @@ export default class BaseComponent {
   }
 
   /**
-   * массово добавляет локальные обработчики на один или несколько элементов
-   * @param  {array} array - массив объектов необходимых для метода _mount
+   * massively adds local handlers to one or more elements
+   * @param  {array} array - array of objects necessary for the method _mount
    */
   _mountLocalHandlers(array) {
     array.forEach((item) => {
@@ -68,7 +68,7 @@ export default class BaseComponent {
   }
 
   /**
-   * Подгрузка внешних обработчиков, указанных ранее через метод setMountHandlers
+   * Loading external handlers previously specified through the setMountHandlers method
    */
   _mountHandlers() {
     if (this._handlers) {
@@ -79,25 +79,25 @@ export default class BaseComponent {
   }
 
   /**
-   * Задаёт список обработчиков внутрь компонента,
-   * для дальнейшего использования через метод _mountHandlers
-   * @param  {array} array - список объектов необходимых для подгрузки обработчиков
+   * Defines a list of handlers inside a component,
+   * for further use through the method _mountHandlers
+   * @param  {array} array - list of objects required for loading handlers
    */
   setMountHandlers(array) {
     this._handlers = array;
   }
 
   /**
-   * Добавляем зависимости уже после инициализации класса компонента,
-   * необходимо для решения цикличных зависимостей
-   * @param  {object} dependecies - Объект зависимостей, которые будут добавлены внутрь компонента
+   * Add dependencies after initializing the component class,
+   * necessary to solve cyclic dependencies
+   * @param  {object} dependecies - Dependency object to be added inside the component
    */
   setDependecies(dependecies) {
     this._dependecies = dependecies;
   }
 
   /**
-   * Выгрузка всех обработчиков компонента, установленных через _mount либо его родительские методы
+   * Unloading all component handlers installed via _mount or its parent methods
    */
   _unmount() {
     if (this._mounts.length > 0) {

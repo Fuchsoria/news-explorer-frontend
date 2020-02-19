@@ -11,9 +11,9 @@ export default class Header extends BaseComponent {
   }
 
   /**
-   * Создаёт и возвращает разметку меню
-   * @param  {bool} isLoggedIn - авторизован ли пользовать
-   * @param  {string} userName - имя пользователя
+   * Creates and returns menu markup
+   * @param  {bool} isLoggedIn
+   * @param  {string} userName
    */
   _createElement({
     isLoggedIn, userName,
@@ -37,7 +37,7 @@ export default class Header extends BaseComponent {
   }
 
   /**
-   * Инициализирует мобильное меню, добавляя в скоп компонента ссылки на ноды меню
+   * Initializes the mobile menu by adding links to menu nodes to the component’s skop
    */
   _initialMobileNavbar() {
     const {
@@ -51,7 +51,7 @@ export default class Header extends BaseComponent {
   }
 
   /**
-   * В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
+   * In the case of mobile authorization / exit, we clean up NOT re-rendering classes
    */
   _cleanupOpenedNavbar() {
     const {
@@ -95,20 +95,20 @@ export default class Header extends BaseComponent {
   render(props) {
     const navbarNode = this._domElement.querySelector(this._blockElements.navbar);
 
-    // Убираем предыдущие хандлеры шапки, если они есть
+    // We remove the previous handler caps, if any
     this._unmount();
 
-    // В случае мобильной авторизации/выхода подчищаем НЕ перерендеривающиеся классы
+    // In the case of mobile authorization / exit, we clean up NOT re-rendering classes
     this._cleanupOpenedNavbar();
 
-    // Очищаем навбар и рендерим его заного,
+    // We clear the navbar and render it again
     this._clearNodeContent(navbarNode);
     navbarNode.appendChild(this._createElement(props));
 
-    // Инициируем мобильные дом элементы
+    // Initiate Mobile Home Elements
     this._initialMobileNavbar();
 
-    // Подгружаем необходимые хандлеры
+    // We load the necessary handlers
     this._mountHandlers();
   }
 }

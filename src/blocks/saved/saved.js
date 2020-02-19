@@ -9,7 +9,7 @@ export default class Saved extends BaseComponent {
   }
 
   /**
-   * Рендерит информацию о количестве сохраненных новостей
+   * Renders information on the number of saved news
    */
   _renderArticlesCount(articles, userName) {
     if (this._blockElements) {
@@ -28,8 +28,8 @@ export default class Saved extends BaseComponent {
   }
 
   /**
-   * Вытягивает ключевые слова, уникализирует их и сортирует по самым популярным
-   * Далее рандерит их в соответствие с требованием отображения
+   * Pulls keywords, uniquely identifies them and sorts them by the most popular
+   * Then it renders them in accordance with the display requirement
    */
   _renderKeywords(articles) {
     if (this._blockElements && articles) {

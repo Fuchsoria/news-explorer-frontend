@@ -1,4 +1,4 @@
-const MAIN_API_DOMAIN = 'https://api.news-explorer.info';
+const MAIN_API_DOMAIN = 'https://news-api.fuchsoria.dev';
 
 const MAIN_API_LINKS = {
   signup: `${MAIN_API_DOMAIN}/signup`,
@@ -43,13 +43,13 @@ const SIGNUP_FORM_ELEMENTS = {
 const SEARCH_FORM_ELEMENTS = { form: '.search__form', search: 'search' };
 
 const FORM_ERRORS_TEXT = {
-  wrongEmailFormat: 'Неправильный формат email',
-  wrongEmailOrPassword: 'Неверная почта или пароль',
-  emptyField: 'Поле не может быть пустым',
-  serverError: 'Произошла серверная ошибка',
-  conflict: 'Пользователь с данным Email уже зарегистрирован',
-  connectionLost: 'Не удалось отправить запрос, проверьте соединение',
-  emptyQuery: 'Нужно ввести ключевое слово',
+  wrongEmailFormat: 'Invalid email format',
+  wrongEmailOrPassword: 'Invalid email or password',
+  emptyField: 'The field cannot be empty',
+  serverError: 'Server Error Occurred',
+  conflict: 'User with this Email is already registered',
+  connectionLost: 'Failed to send request, check connection',
+  emptyQuery: 'Need to enter a keyword',
 };
 
 const HEADER_ELEMENTS = {
@@ -67,7 +67,7 @@ const HEADER_ELEMENTS = {
   overlayOpened: 'overlay_opened',
 };
 
-const DATE_MONTHS = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+const DATE_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const RESULTS_ELEMENTS = {
   resultsTemplate: document.querySelector('#results'),

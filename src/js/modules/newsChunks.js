@@ -19,9 +19,9 @@ export default class NewsChunks {
   }
 
   /**
-   * Создаёт и отправляет чанк в общий массив чанков,
-   * для дальнейшего получения через метод getOneChunk
-   * @param  {array} array - массив объектов
+   * Creates and sends a chunk to a common array of chunks,
+   * for further retrieval via the getOneChunk method
+   * @param  {array} array - array of objects
    */
   generateChunks(array) {
     const { maxItemsPerChunk } = this._props;
@@ -36,7 +36,7 @@ export default class NewsChunks {
   }
 
   /**
-   * Возвращает объект текущего чанка со статусом последний ли это чанк
+   * Returns the object of the current chunk with the status whether it is the last chunk
    */
   getOneChunk() {
     const isLastChunk = this._currentChunkIndex >= (this._chunks.length - 1);

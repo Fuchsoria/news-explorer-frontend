@@ -18,7 +18,7 @@ export default class Card extends BaseComponent {
   }
 
   /**
-   * Заполняет элементы контента карточки и расставляет необходимые аттрибуты
+   * Fills in card content elements and sets necessary attributes
    */
   _updateDomElementContent() {
     const {
@@ -44,7 +44,7 @@ export default class Card extends BaseComponent {
   }
 
   /**
-   * Устанавливает разметку закладки в зависимости от ситуации и типа страницы
+   * Sets bookmark layout based on situation and page type
    */
   _setBookmark() {
     const { isLogged, type } = this._props;
@@ -75,7 +75,7 @@ export default class Card extends BaseComponent {
   }
 
   /**
-   * Запускает создание и заполнение карточки
+   * Starts creating and filling out a card
    */
   _createCard() {
     if (this._blockElements && this._props) {
@@ -109,7 +109,7 @@ export default class Card extends BaseComponent {
   }
 
   /**
-   * Убирает обработчики с компонента и удаляет его ноду
+   * Removes handlers from a component and removes it to a node
    */
   deleteCard() {
     this._unmount();

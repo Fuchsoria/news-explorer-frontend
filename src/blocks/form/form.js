@@ -3,8 +3,8 @@ import BaseComponent from '../../js/components/BaseComponent';
 
 export default class Form extends BaseComponent {
   /**
-   * При наличие номера ошибки отображает её в форме, при отсутствие очищает и скрывает
-   * @param  {number} errorNumber - номер ошибки
+   * If there is an error number, displays it in the form, if not, clears and hides
+   * @param  {number} errorNumber - error number
    */
   _setServerError(errorNumber) {
     const errorField = this._domElement.querySelector(this._blockElements.form).querySelector('.form__error_server');
@@ -29,17 +29,17 @@ export default class Form extends BaseComponent {
   }
 
   /**
-   * Возвращает ноду текущей формы
+   * Returns the node of the current form
    */
   _currentFormElement() {
     return this._domElement.querySelector(this._blockElements.form);
   }
 
   /**
-   * Устанавливает ошибку на поле ввода
-   * @param  {node} input - нода, по которой будет найдена нода для ошибок
-   * @param  {string} errorText - текст ошибки
-   * @param  {string} searchInput - используется как триггер для распознания типа формы
+   * Set error on input field
+   * @param  {node} input - the node by which the error node will be found
+   * @param  {string} errorText - error text
+   * @param  {string} searchInput - used as a trigger to recognize the type of form
    */
   _setInputError(input, errorText, queryInput) {
     let errorField;
@@ -112,7 +112,7 @@ export default class Form extends BaseComponent {
   }
 
   /**
-   * Возвращает данные из текущей формы с xss фильтром либо без
+   * Returns data from the current form with or without an xss filter
    */
   _getInfo() {
     const form = this._currentFormElement();

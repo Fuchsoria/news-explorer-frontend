@@ -2,7 +2,7 @@ import { DATE_MONTHS } from '../constants';
 import Card from '../../blocks/card/card';
 
 /**
- * Форматирует текущую дату в необходимый для новостного апи формат
+ * Formats the current date in the format necessary for the news api
  */
 const formatCurrentDate = () => {
   const date = new Date();
@@ -14,7 +14,7 @@ const formatCurrentDate = () => {
 };
 
 /**
- * Форматирует дату недельной давности в необходимый для новостного апи формат
+ * Formats the date a week ago in the format necessary for the news api
  */
 const formatWeekBeforeDate = () => {
   const date = new Date();
@@ -29,8 +29,8 @@ const formatWeekBeforeDate = () => {
 };
 
 /**
- * Форматирует дату из апи в необходимый шаблонный стандарт для вывода пользователю
- * @param  {date} newsDate - Дата из новостного апи
+ * Formats the date from api to the necessary template standard for output to the user
+ * @param  {date} newsDate - Date from news api
  */
 const formatNewsDate = (newsDate) => {
   const date = new Date(newsDate);
@@ -42,7 +42,7 @@ const formatNewsDate = (newsDate) => {
 };
 
 /**
- * Создаёт инстанц карточки и возвращает его
+ * Creates an instance card and returns it
  * @param  {node} domElement
  * @param  {object} blockElements
  * @param  {object} props

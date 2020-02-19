@@ -102,7 +102,7 @@ module.exports = {
   ],
   devServer: {
     allowedHosts: [
-      'test.news-explorer.info',
+      'test.fuchsoria.dev',
     ],
   },
 };

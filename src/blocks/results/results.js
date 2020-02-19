@@ -16,7 +16,7 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Очищает сохраненные карточки и id из скопа компонента
+   * Clears saved cards and id from component osprey
    */
   _clearAlreadyRendered() {
     this._alreadyRendered = {};
@@ -24,7 +24,7 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Возвращает новое id для создания карточки
+   * Returns a new id to create a card
    */
   _getNewId() {
     const lastId = this._lastCardId;
@@ -34,10 +34,10 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Добавляет аттрибут сохраненной карточки
-   * и добавляет серверное id карточки в объекте уже отрендеренных карточек
-   * @param  {string} cardId - Id карточки
-   * @param  {string} cardServerId - Id карточки на сервере
+   * Adds a saved card attribute
+   * and adds the server id of the card in the object of already rendered cards
+   * @param  {string} cardId - Id card
+   * @param  {string} cardServerId - Id card on the server
    */
   _addCardServerId(cardId, cardServerId) {
     this._alreadyRendered[cardId].serverId = cardServerId;
@@ -45,9 +45,9 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Удаляет аттрибут сохраненной карточки
-   * и удаляёт серверное id карточки из объекта уже отрендеренных карточек
-   * @param  {string} cardId - Id карточки
+   * Deletes the attribute of the saved card.
+   * and removes the server id of the card from the object of already rendered cards
+   * @param  {string} cardId - Id card
    */
   _removeCardServerId(cardId) {
     this._alreadyRendered[cardId].markup.removeAttribute('data-saved');
@@ -59,8 +59,8 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Отрисовывает разметку шаблона в результатах
-   * @param  {template} template - шаблон необходимый для рендера в результатах
+   * Draws template layout in results
+   * @param  {template} template - template needed for rendering in the results
    */
   _renderMarkup(template) {
     this._removeBookmarkHandlers();
@@ -119,8 +119,8 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Добавляет карточку на страницу
-   * @param  {node} card - Нода карточки
+   * Adds a card to the page.
+   * @param  {node} card - card node
    */
   _addCard(card) {
     const results = this._domElement.querySelector('.results__cards');
@@ -129,11 +129,11 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Запускает цикл по переданным артиклям либо из берет их из чанков,
-   * цикл созадёт пропсы в зависимости от типа карточек
-   * и сохраняет их инициализации и ноды внутри локального объекта,
-   * и отправляет карточки на добавление на страницу
-   * @param  {array} articles - Массив артиклей
+  * Starts a cycle on the transferred articles or from takes them from chunks,
+   * the cycle will create props depending on the type of cards
+   * and saves their initialization and nodes inside the local object,
+   * and sends cards to add to the page
+   * @param  {array} articles - Articles array
    */
   _renderCards(articles) {
     if (this._dependecies.formatNewsDate
@@ -269,9 +269,9 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * В зависимости от типа страницы и аттрибута карточки -
-   * отправляет запрос на добавление/удаление карточки
-   * @param  {event} event - Объект события
+   * Depending on the type of page and attribute of the card -
+   * sends a request to add / remove cards
+   * @param  {event} event - Event object
    */
   _bookmarkHandler(event) {
     const cardElement = event.target.closest('.card');
@@ -308,7 +308,7 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Инициализирует результаты поиска новостей
+   * Initializes news search results
    * @param  {array} articles
    * @param  {string} keyword
    */
@@ -338,9 +338,9 @@ export default class Results extends BaseComponent {
   }
 
   /**
-   * Устанавливает тип, инициализирует рендер разметки результатов, карточек
-   * и добавляет обработчики закладок
-   * @param  {array} articles - Массив сохраненных новостей
+   * Sets the type, initializes the rendering of the markup of results, cards
+   * and adds bookmark handlers
+   * @param  {array} articles - Array of saved news
    */
   initialSavedResults(articles) {
     this._type = 'saved';
