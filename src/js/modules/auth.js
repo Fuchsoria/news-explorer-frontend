@@ -47,7 +47,7 @@ export default class Auth {
       && this._dependecies.popupSignin
       && this._dependecies.HEADER_ELEMENTS) {
       const { header, popupSignin, HEADER_ELEMENTS } = this._dependecies;
-      // Подключаем необходимые хандлеры, которые будут использованы после рендера
+      // We connect the necessary handlers that will be used after rendering
       header.setMountHandlers(
         [{ element: HEADER_ELEMENTS.authButton, handlers: [popupSignin.open] },
           { element: HEADER_ELEMENTS.navBurger, handlers: [header.openMobileNavbar] }],

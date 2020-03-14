@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="keywords" content="Поиск новостей, новости" />
-    <meta name="description" content="Поиск новостей по ключевым словам" />
-    <meta name="author" content="Герман" />
+    <meta name="keywords" content="News Search, News" />
+    <meta name="description" content="Keyword News Search" />
+    <meta name="author" content="German" />
     <link rel="shortcut icon" href="<%= require('./images/favicon.ico') %>" type="image/x-icon" />
     <link rel="icon" href="<%= require('./images/favicon.ico') %>" type="image/x-icon" />
-    <title>News Explorer - Главная страница</title>
+    <title>News Explorer - Home page</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>" />
   </head>
   <body>
@@ -18,12 +18,12 @@
         <div class="overlay"></div>
         <nav class="nav"></nav>
         <section class="search">
-          <h1 class="search__title">Что в мире творится?</h1>
-          <p class="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+          <h1 class="search__title">What is going on in the world?</h1>
+          <p class="search__text">Find the latest articles on any topic and save in your personal account.</p>
           <form class="search__form" novalidate>
-            <p class="form__error form__error_search">Тест ошибки</p>
-            <input name="search" type="text" class="search__input" placeholder="Введите тему новости" />
-            <button class="search__button">Искать</button>
+            <p class="form__error form__error_search">Error test</p>
+            <input name="search" type="text" class="search__input" placeholder="Enter a news topic" />
+            <button class="search__button">Search</button>
           </form>
         </section>
       </header>
@@ -35,18 +35,16 @@
             <picture>
               <source media="(max-width: 400px)" srcset="<%= require('./images/author-400.jpg') %>" />
               <source media="(max-width: 800px)" srcset="<%= require('./images/author-800.jpg') %>" />
-              <img class="author__image" src="<%= require('./images/author.jpg') %>" alt="Автор" />
+              <img class="author__image" src="<%= require('./images/author.jpg') %>" alt="Author" />
             </picture>
             <div class="author__about">
-              <h2 class="author__title">Об авторе</h2>
+              <h2 class="author__title">About author</h2>
               <p class="author__text">
-                Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими
-                технологиями разработки владеете.
+                This is a block with a description of the author of the project. Here you should indicate what your name is, what you do, what development technologies you own.
               </p>
-              <p class="author__text">
-                Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь
-                потенциальным заказчикам.
-              </p>
+              <!-- <p class="author__text">
+                You can also talk about the training process in the Workshop, what you learned here, and how you can help potential customers.
+              </p> -->
             </div>
           </div>
         </section>
@@ -55,17 +53,17 @@
         <div class="footer__content container container_content">
           <a href="./" class="footer__copy">© 2019 News-Explorer</a>
           <ul class="menu">
-            <li class="menu__item"><a href="./" class="menu__link">Главная</a></li>
+            <li class="menu__item"><a href="./" class="menu__link">Home</a></li>
             <li class="menu__item">
-              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link">Яндекс.Практикум</a>
+              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link">Yandex.Praktikum</a>
             </li>
           </ul>
           <div class="socials">
             <a href="https://github.com/Fuchsoria" target="_blank" class="socials__link"
-              ><img src="<%= require('./images/github.svg') %>" class="socials__icon" alt="Профиль github"
+              ><img src="<%= require('./images/github.svg') %>" class="socials__icon" alt="Profile github"
             /></a>
             <a href="https://www.facebook.com/german.fuchsoria" target="_blank" class="socials__link">
-              <img src="<%= require('./images/fb.svg') %>" class="socials__icon" alt="Профиль facebook" />
+              <img src="<%= require('./images/fb.svg') %>" class="socials__icon" alt="Profile facebook" />
             </a>
           </div>
         </div>
@@ -80,8 +78,8 @@
         <a href="./" class="nav__logo">NewsExplorer</a>
         <div class="nav__burger"></div>
         <ul class="nav__items">
-          <li class="nav__item"><a href="./" class="nav__link nav__link_current">Главная</a></li>
-          <li class="nav__item nav__item_auth"><button class="nav__auth-button">Авторизоваться</button></li>
+          <li class="nav__item"><a href="./" class="nav__link nav__link_current">Home</a></li>
+          <li class="nav__item nav__item_auth"><button class="nav__auth-button">Signin</button></li>
         </ul>
       </div>
     </template>
@@ -91,12 +89,12 @@
         <a href="../" class="nav__logo">NewsExplorer</a>
         <div class="nav__burger"></div>
         <ul class="nav__items">
-          <li class="nav__item"><a href="../" class="nav__link nav__link_current">Главная</a></li>
-          <li class="nav__item"><a href="../savednews" class="nav__link">Сохранённые статьи</a></li>
+          <li class="nav__item"><a href="../" class="nav__link nav__link_current">Home</a></li>
+          <li class="nav__item"><a href="../savednews" class="nav__link">Saved news</a></li>
           <li class="nav__item nav__item_auth">
             <button class="nav__auth-button">
-              <span class="nav__username">Грета</span>
-              <img class="nav__exit" src="<%= require('./images/Union.svg') %>" alt="Выход" />
+              <span class="nav__username">Greta</span>
+              <img class="nav__exit" src="<%= require('./images/Union.svg') %>" alt="Signout" />
             </button>
           </li>
         </ul>
@@ -108,14 +106,14 @@
         <a href="../" class="nav__logo nav__logo_theme_dark">NewsExplorer</a>
         <div class="nav__burger nav__burger_dark"></div>
         <ul class="nav__items">
-          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Главная</a></li>
+          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Home</a></li>
           <li class="nav__item">
-            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Сохранённые статьи</a>
+            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Saved news</a>
           </li>
           <li class="nav__item nav__item_auth">
             <button class="nav__auth-button nav__auth-button_theme_dark">
-              <span class="nav__username">Грета</span>
-              <img class="nav__exit" src="<%= require('./images/Union_dark.svg') %>" alt="Выход" />
+              <span class="nav__username">Greta</span>
+              <img class="nav__exit" src="<%= require('./images/Union_dark.svg') %>" alt="Signout" />
             </button>
           </li>
         </ul>
@@ -124,83 +122,83 @@
 
     <template id="popup-signin">
       <div class="popup__close-area">
-        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Close" class="popup__close" />
       </div>
       <form class="form form_signin" novalidate>
-        <h3 class="form__title">Вход</h3>
+        <h3 class="form__title">Signin</h3>
         <fieldset class="form__fieldset">
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
-            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
+            <input name="email" type="email" class="form__input" placeholder="Enter email" />
             <p class="form__error"></p>
           </div>
           <div class="form__field">
-            <h6 class="form__field-title">Пароль</h6>
-            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
+            <h6 class="form__field-title">Password</h6>
+            <input name="password" type="password" class="form__input" placeholder="Enter password" />
             <p class="form__error"></p>
           </div>
         </fieldset>
         <p class="form__error form__error_server"></p>
-        <button class="form__button form__button_login">Войти</button>
+        <button class="form__button form__button_login">Signin</button>
       </form>
-      <div class="popup__text">или <span class="popup__link">Зарегистрироваться</span></div>
+      <div class="popup__text">or <span class="popup__link">Signup</span></div>
     </template>
 
     <template id="popup-signup">
       <div class="popup__close-area">
-        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Close" class="popup__close" />
       </div>
       <form class="form form_signup" novalidate>
-        <h3 class="form__title">Регистрация</h3>
+        <h3 class="form__title">Signup</h3>
         <fieldset class="form__fieldset">
           <div class="form__field">
             <h6 class="form__field-title">Email</h6>
-            <input name="email" type="email" class="form__input" placeholder="Введите почту" />
+            <input name="email" type="email" class="form__input" placeholder="Enter email" />
             <p class="form__error"></p>
           </div>
           <div class="form__field">
-            <h6 class="form__field-title">Пароль</h6>
-            <input name="password" type="password" class="form__input" placeholder="Введите пароль" />
+            <h6 class="form__field-title">Password</h6>
+            <input name="password" type="password" class="form__input" placeholder="Enter password" />
             <p class="form__error"></p>
           </div>
           <div class="form__field">
-            <h6 class="form__field-title">Имя</h6>
-            <input name="name" type="text" class="form__input" placeholder="Имя" />
+            <h6 class="form__field-title">Name</h6>
+            <input name="name" type="text" class="form__input" placeholder="Enter name" />
             <p class="form__error"></p>
           </div>
         </fieldset>
-        <p class="form__error form__error_server">Такой пользователь уже есть</p>
-        <button class="form__button form__button_signup">Зарегистрировать</button>
+        <p class="form__error form__error_server">This user already exists</p>
+        <button class="form__button form__button_signup">Signup</button>
       </form>
-      <div class="popup__text">или <span class="popup__link">Войти</span></div>
+      <div class="popup__text">or <span class="popup__link">Signin</span></div>
     </template>
 
     <template id="popup-registered">
       <div class="popup__close-area">
-        <img src="<%= require('./images/popup-close.svg') %>" alt="Закрыть" class="popup__close" />
+        <img src="<%= require('./images/popup-close.svg') %>" alt="Close" class="popup__close" />
       </div>
-      <p class="popup__message">Пользователь успешно зарегистрирован!</p>
-      <div class="popup__link popup__link_registered">Выполнить вход</div>
+      <p class="popup__message">User successfully registered!</p>
+      <div class="popup__link popup__link_registered">Signin</div>
     </template>
 
     <template id="loading">
       <div class="loading">
         <div class="loading__circle"></div>
-        <p class="loading__text">Идет поиск новостей...</p>
+        <p class="loading__text">Searching for news...</p>
       </div>
     </template>
 
     <template id="no-results">
       <div class="no-results">
-        <img src="<%= require('./images/not-found_v1.svg') %>" alt="Нет результатов" class="no-results__icon" />
-        <h2 class="no-results__title">Ничего не найдено</h2>
-        <p class="no-results__text">К сожалению по вашему запросу ничего не найдено.</p>
+        <img src="<%= require('./images/not-found_v1.svg') %>" alt="Nothing found" class="no-results__icon" />
+        <h2 class="no-results__title">Nothing found</h2>
+        <p class="no-results__text">Unfortunately, your search returned no results.</p>
       </div>
     </template>
 
     <template id="results">
       <div class="results__content container container_content">
-        <h2 class="results__title">Результаты поиска</h2>
+        <h2 class="results__title">Searching results</h2>
         <div class="results__cards">
         </div>
       </div>
@@ -208,19 +206,19 @@
 
     <template id="results-error">
       <div class="no-results">
-        <h2 class="no-results__title">Во время запроса произошла ошибка.</h2>
-        <p class="no-results__text">Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.</p>
+        <h2 class="no-results__title">An error occurred during the request.</h2>
+        <p class="no-results__text">There may be a connection problem or the server is not available. Wait a moment and try again.</p>
       </div>
     </template>
 
     <template id="show-more">
-      <button class="results__more">Показать еще</button>
+      <button class="results__more">Show more</button>
     </template>
 
     <template id="card">
       <article class="card">
         <a href="" target="_blank" class="card__link"></a>
-        <img src="" alt="Изображение новости" class="card__img" />
+        <img src="" alt="News Image" class="card__img" />
         <h6 class="card__keyword card__keyword_hidden"></h6>
         <div class="card__bookmark">
         </div>
@@ -243,14 +241,14 @@
     <template id="bookmark-notloggedin">
       <div class="card__bookmark-icon"></div>
       <div class="card__auth-notice">
-        <p class="card__notice-message">Войдите, чтобы сохранять статьи</p>
+        <p class="card__notice-message">Login to save articles</p>
       </div>
     </template>
 
     <template id="bookmark-savednews">
       <div class="card__bookmark-icon card__bookmark-icon_remove"></div>
       <div class="card__auth-notice">
-        <p class="card__notice-message">Убрать из сохранённых</p>
+        <p class="card__notice-message">Remove from saved</p>
       </div>
     </template>
 

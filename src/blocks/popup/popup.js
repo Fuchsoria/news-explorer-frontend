@@ -36,8 +36,8 @@ export default class Popup extends BaseComponent {
   }
 
   /**
-   * Закрывает попап при нажатие кнопки escape либо нажатие на оверлей
-   * @param  {event} event - Событие нажатия кнопки или клика
+   * Closes a popup when pressing the escape button or clicking on the overlay
+   * @param  {event} event - Button or click event
    */
   _checkUserEvents(event) {
     if (event.target.classList.contains('popup_overlay') || event.key === 'Escape') {
@@ -46,7 +46,7 @@ export default class Popup extends BaseComponent {
   }
 
   /**
-   * Инициализация попапа, создаёт и добавляет стандартные обработчики
+   * Initializing a popup, creates and adds standard handlers
    */
   _initPopup() {
     this._domElement.querySelector(this._container).appendChild(this._createPopup());

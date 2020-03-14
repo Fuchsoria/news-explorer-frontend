@@ -18,9 +18,9 @@ export default class SavedNews extends BaseComponent {
   }
 
   /**
-   * Удаляет объект карточки из сохраненных внутри компонента объектов
-   * и обновляет информацию для пользователя
-   * @param  {string} serverId - id карточки на бэкенде
+   * Deletes the card object from the objects stored inside the component
+   * and updates user information
+   * @param  {string} serverId - id card on the backend
    */
   deleteSavedCard(serverId) {
     this._articles = this._articles.filter((article) => article._id !== serverId);
@@ -33,7 +33,7 @@ export default class SavedNews extends BaseComponent {
   }
 
   /**
-   * Отправляет запрос api на получение сохраненных новостей
+   * Sends an api request to receive saved news
    */
   getUserArticles() {
     if (this._dependecies.mainApi && this._dependecies.auth && this._dependecies.saved) {
@@ -51,7 +51,7 @@ export default class SavedNews extends BaseComponent {
   }
 
   /**
-   * Внешний метод для инициализации сохраненных новостей
+   * External method to initialize saved news
    */
   initialSavedNews() {
     this.getUserArticles();

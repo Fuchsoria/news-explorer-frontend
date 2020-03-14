@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="keywords" content="Поиск новостей, новости" />
-    <meta name="description" content="Поиск новостей по ключевым словам" />
-    <meta name="author" content="Герман" />
+    <meta name="keywords" content="News Search, News" />
+    <meta name="description" content="Keyword News Search" />
+    <meta name="author" content="German" />
     <link rel="shortcut icon" href="../<%= require('../../images/favicon.ico') %>" type="image/x-icon" />
     <link rel="icon" href="../<%= require('../../images/favicon.ico') %>" type="image/x-icon" />
-    <title>News Explorer - Сохранённые статьи</title>
+    <title>News Explorer - Saved News</title>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.savednews.css %>" />
   </head>
   <body>
@@ -18,7 +18,7 @@
         <div class="overlay"></div>
         <nav class="nav nav_theme_dark"></nav>
         <section class="saved container container_content">
-          <h6 class="saved__title">Сохранённые статьи</h6>
+          <h6 class="saved__title">Saved News</h6>
           <h2 class="saved__articles-count"></h2>
           <h5 class="saved__keywords"></h5>
         </section>
@@ -30,17 +30,17 @@
         <div class="footer__content container container_content">
           <a href="../" class="footer__copy">© 2019 News-Explorer</a>
           <ul class="menu">
-            <li class="menu__item"><a href="../" class="menu__link">Главная</a></li>
+            <li class="menu__item"><a href="../" class="menu__link">Home</a></li>
             <li class="menu__item">
-              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link">Яндекс.Практикум</a>
+              <a href="https://praktikum.yandex.ru" target="_blank" class="menu__link">Yandex.Praktikum</a>
             </li>
           </ul>
           <div class="socials">
             <a href="https://github.com/Fuchsoria" target="_blank" class="socials__link"
-              ><img src="../<%= require('../../images/github.svg') %>" class="socials__icon" alt="Профиль github"
+              ><img src="../<%= require('../../images/github.svg') %>" class="socials__icon" alt="Profile github"
             /></a>
             <a href="https://www.facebook.com/german.fuchsoria" target="_blank" class="socials__link">
-              <img src="../<%= require('../../images/fb.svg') %>" class="socials__icon" alt="Профиль facebook" />
+              <img src="../<%= require('../../images/fb.svg') %>" class="socials__icon" alt="Profile facebook" />
             </a>
           </div>
         </div>
@@ -50,7 +50,7 @@
     <template id="card">
       <article class="card">
         <a href="" target="_blank" class="card__link"></a>
-        <img src="" alt="Изображение новости" class="card__img" />
+        <img src="" alt="News Image" class="card__img" />
         <h6 class="card__keyword card__keyword_hidden"></h6>
         <div class="card__bookmark"></div>
         <div class="card__content">
@@ -67,13 +67,13 @@
     <template id="bookmark-savednews">
       <div class="card__bookmark-icon card__bookmark-icon_remove"></div>
       <div class="card__auth-notice">
-        <p class="card__notice-message">Убрать из сохранённых</p>
+        <p class="card__notice-message">Remove from saved</p>
       </div>
     </template>
 
     <template id="results">
       <div class="results__content container container_content">
-        <h2 class="results__title">Результаты поиска</h2>
+        <h2 class="results__title">Searching results</h2>
         <div class="results__cards">
         </div>
       </div>
@@ -90,14 +90,14 @@
         <a href="../" class="nav__logo nav__logo_theme_dark">NewsExplorer</a>
         <div class="nav__burger nav__burger_dark"></div>
         <ul class="nav__items">
-          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Главная</a></li>
+          <li class="nav__item"><a href="../" class="nav__link nav__link_theme_dark">Home</a></li>
           <li class="nav__item">
-            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Сохранённые статьи</a>
+            <a href="../savednews" class="nav__link nav__link_theme_dark nav__link_current">Saved news</a>
           </li>
           <li class="nav__item nav__item_auth">
             <button class="nav__auth-button nav__auth-button_theme_dark">
-              <span class="nav__username">Грета</span>
-              <img class="nav__exit" src="../<%= require('../../images/Union_dark.svg') %>" alt="Выход" />
+              <span class="nav__username">Greta</span>
+              <img class="nav__exit" src="../<%= require('../../images/Union_dark.svg') %>" alt="Signout" />
             </button>
           </li>
         </ul>
@@ -105,23 +105,23 @@
     </template>
 
     <template id="saved-articles">
-      <span class="saved__username"></span>, у вас <span class="saved__count"></span> сохранённых статей
+      <span class="saved__username"></span>, you have <span class="saved__count"></span> saved news
     </template>
     <template id="keywords-one">
-      По ключевому слову: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>
+      By keyword: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>
     </template>
     <template id="keywords-two">
-      По ключевым словам: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>,
+      By keywords: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>,
       <span class="saved__second-keyword saved__keywords saved__keywords_bold"></span>
     </template>
     <template id="keywords-three">
-      По ключевым словам: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>,
-      <span class="saved__second-keyword saved__keywords saved__keywords_bold"></span> и <span class="saved__third-keyword saved__keywords saved__keywords_bold"></span>
+      By keywords: <span class="saved__first-keyword saved__keywords saved__keywords_bold"></span>,
+      <span class="saved__second-keyword saved__keywords saved__keywords_bold"></span> and <span class="saved__third-keyword saved__keywords saved__keywords_bold"></span>
     </template>
     <template id="keywords-many">
-      По ключевым словам: <span class="saved__first-keyword saved__keywords saved__keywords_bold">Природа</span>,
-      <span class="saved__second-keyword saved__keywords saved__keywords_bold">Тайга</span> и
-      <span class="saved__keywords saved__keywords_bold"><span class="saved__rest-keywords">2</span> другим</span>
+      By keywords: <span class="saved__first-keyword saved__keywords saved__keywords_bold">Nature</span>,
+      <span class="saved__second-keyword saved__keywords saved__keywords_bold">Taiga</span> and
+      <span class="saved__keywords saved__keywords_bold"><span class="saved__rest-keywords">2</span> other</span>
     </template>
 
     <script src="<%= htmlWebpackPlugin.files.chunks.savednews.entry %>"></script>
