@@ -15,7 +15,7 @@ const NEWS_API_PARAMS = {
   apiKey: '8059f596a47c4f5b91e73ee4e8a374d9',
   pageSize: 100,
 };
-const NEWS_API_LINK = 'https://newsapi.org/v2/everything?';
+const NEWS_API_LINK = 'https://praktikum.tk/news/v2/everything?';
 
 const POPUP_REGISTERED_ELEMENTS = {
   templateName: '#popup-registered',
